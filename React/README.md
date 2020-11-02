@@ -93,7 +93,7 @@ function HomeHandle(props) {
 }
 ```
 
-在React的官⽅方文档中，Context被归类为高级部分(Advanced)， 属于React的高级API，但官方并不建议在稳定版的App中使用 Context。
+在React的官方文档中，Context被归类为高级部分(Advanced)， 属于React的高级API，但官方并不建议在稳定版的App中使用 Context。
 
 不过，这并非意味着我们不需要关注Context。事实上，很多优秀 的React组件都通过Context来完成自己的功能，比如react-redux 的<Provider />，就是通过Context提供一个全局态的store， 拖拽组件react-dnd，通过Context在组件中分发DOM的Drag和 Drop事件，路由组件react-router通过Context管理路由状态等 等。在React组件开发中，如果用好Context，可以让你的组件变 得强大，而且灵活。
 
@@ -246,7 +246,7 @@ class Lesson2 extends React.Component {
  } 
 }
 export default function HocTest() {  
-    // 这⾥里里使⽤用Lesson2  
+    // 这里使用Lesson2  
     return (    
         <div>
             {[0, 0, 0].map((item, idx) => (        
@@ -283,7 +283,7 @@ export default function User() {
         return ()=>{
             clearInterval(timer)
         }
-    })
+    }, [date])
     return (
         <div>
             <h1>user</h1>
@@ -294,4 +294,148 @@ export default function User() {
 
 ```
 
-## 
+#### 副作用钩子 Eﬀect Hook 
+
+useEffect 给函数组件增加了执行副作用操作的能力。
+
+副作用（Side Eﬀect）是指一个 function 做了和本身运算返回值无 关的事，比如：修改了了全局变量量、修改了传入的参数、甚至是 console.log()，所以 ajax 操作，修改 dom 都是算作副作用。
+
+- 设置依赖
+
+  ```js
+  // 设置空数组意为没有依赖，则副作用操作仅执行一次 
+  useEffect(()=>{...}, [])
+  // 如果副作用操作对某状态有依赖，务必添加依赖选项
+   useEffect(() => {  document.title = fruit; }, [fruit]);
+  ```
+
+- 清除工作
+
+  有一些副作用是需要清除的，清除工作非常重要的， 可以防止引起内存泄露
+
+  ```js
+  useEffect(()=>{
+          const timer = setInterval(() => {
+              setDate(new Date())
+          }, 1000);
+          return ()=>{
+              clearInterval(timer)
+          }
+      }, [date])
+  ```
+
+## useReducer
+
+useReducer是useState的可选项，常用于组件有复杂状态逻辑 时，类似于redux中reducer概念。
+
+- 商品列列表状态维护
+
+  ```jsx
+  import React, {useReducer,useEffect} from 'react'
+  import { FruitsList,FruitAdd } from './components/HoocksPage';
+  
+  function fruitsReducer(state,action) {
+      switch(action.type){
+          case 'init':
+          case 'replace':
+              return action.payload
+          case 'add':
+              return [...state,action.payload]
+          default:
+              return state
+      }
+  }
+  
+  export default function HooksReducer() {
+      const [fruits,dispatch] = useReducer(fruitsReducer,[])
+      useEffect(() => {
+          // effect
+          setTimeout(()=>{
+              dispatch({type:'init',payload:['apple','banana']})
+          },1000)
+          return () => {
+              // cleanup
+          }
+      }, [])
+      return (
+          <div>
+              <h1>HooksReducer</h1>
+              <FruitAdd addFruit={newF=>{dispatch({type:'add',payload:newF})}}></FruitAdd>
+              <FruitsList fruits={fruits} setFruits={newFruit=>{dispatch({type:'replace',payload:newFruit})}}></FruitsList>
+          </div>
+      )
+  }
+  
+  // HoocksPage
+  import React, {  useState } from 'react'
+  
+  export function FruitsList({fruits,setFruits}) {
+      const del = (index) => {
+          const temp = [...fruits];
+          temp.splice(index, 1)
+          setFruits(temp)
+      }
+      return (
+          <div>
+              <ul>
+                  {
+                      fruits.map((item, index) => {
+                          return <li key={index} onClick={() => { del(index) }}>{item}</li>
+                      })
+                  }
+              </ul>
+          </div>
+      )
+  }
+  export function FruitAdd({addFruit}) {
+      const [name, setName] = useState(""); 
+      return (
+          <div>      
+              <input type="text" value={name} onChange={e => setName(e.target.value)} />      
+              <button onClick={() => addFruit(name)}>add</button>
+          </div>);
+  }
+  ```
+
+## useContext
+
+useContext用于在快速在函数组件中导入上下文。
+
+```js
+import React,{useContext} from 'react'
+import { Context,Provider,Consumer } from '../AppContext';
+
+export default function HooksContext() {
+    const store={
+        user:{
+            name:'Tom'
+        }
+    }
+    return (
+        <div>
+            <Provider value={store}>
+                <ContextChild></ContextChild>
+            </Provider>
+        </div>
+    )
+}
+
+function ContextChild(props){
+    console.log(useContext(Context));
+    const {user} = useContext(Context)
+    return <div>ContextChild
+        <p>name: {user.name}</p>
+    </div>
+    
+}
+
+// AppContext
+import React from 'react'
+export const Context = React.createContext() 
+export const Provider = Context.Provider 
+export const Consumer = Context.Consumer
+export const consumerHandle = Cmp => props => {
+    return <Consumer>{ctx=><Cmp {...props} {...ctx}></Cmp>}</Consumer>
+}
+```
+
