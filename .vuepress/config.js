@@ -21,9 +21,9 @@ module.exports = {
             {
                 title: 'React',   // 必要的
                 path: '/react/',      // 可选的, 标题的跳转链接，应为绝对路径且必须存在
-                // children: [
-                //   ['/webpack/test','test']
-                // ]
+                children: [
+                  ['/react/Component','Component']
+                ]
             },
         ]
     }
