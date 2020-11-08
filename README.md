@@ -3,7 +3,7 @@ home: true
 # heroImage: /hero.png
 heroText: 前端学习笔记
 actionText: 马上开始 →
-actionLink: /webpack/
+actionLink: ./git/
 features:
 - title: 资料丰富
   details: 内容覆盖前端整体知识、丰富你的知识阅历。
