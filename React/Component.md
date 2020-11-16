@@ -299,10 +299,219 @@ export class Dialog2 extends React.Component {
     createPortal(props) {
         unstable_renderSubtreeIntoContainer(
             this, //当前组件      
-            <div className="dialog">{props.children}</div>, // 塞进传送⻔门的JSX      
-            this.node // 传送⻔门另⼀一端的DOM node    
+            <div className="dialog">{props.children}</div>, // 塞进传送门的JSX      
+            this.node // 传送门另一端的DOM node    
         );
     }
 }
+```
+
+## 树形组件设计与实现 
+
+### 设计思路
+
+递归：自己调用自己
+react中实现递归组件更加纯粹，就是组件递归渲染即可。假设我们的节点组件是TreeNode，它的render中只要 发现当前节点拥有子节点就要继续渲染自己。节点的打开状态可以通过给组件一个open状态来维护。 
+
+```jsx
+import React, { Component } from 'react'
+import TreeNode from './components/TreeNode'
+
+//数据源 
+const treeData = {
+    key: 0,//标识唯⼀一性  
+    title: "全国", //节点名称显示  
+    children: [    //⼦子节点数组    
+        {
+            key: 6, title: "北方区域",
+            children: [
+                {
+                    key: 1, title: "黑龙江省",
+                    children: [
+                        { key: 6, title: "哈尔滨", },],
+                }, 
+                { key: 2, title: "北京", },
+            ],
+        },
+        {
+            key: 3, title: "南方区域",
+            children: [
+                { key: 4, title: "上海", }, { key: 5, title: "深圳", },
+            ],
+        },
+    ],
+};
+
+export default class TreePage extends Component {
+    render() {
+        return (
+            <div>
+                <h1>TreePage</h1>
+                <TreeNode data={treeData}></TreeNode>
+            </div>
+        )
+    }
+}
+
+```
+
+```jsx
+// TreeNode.jsx
+import React, { Component } from 'react'
+import {Icon} from 'antd'
+
+export default class TreeNode extends Component {
+    constructor(props){
+        super(props);
+        this.state={
+            expanded:false
+        }
+    }
+    handleExpand=()=>{
+        this.setState({
+            expanded:!this.state.expanded
+        })
+    }
+    render() {
+        const {key,title,children} = this.props.data
+        const hasChild=children&&children.length
+        const {expanded} = this.state
+        return (
+            <div className="treeNode">
+                <div key={key} onClick={this.handleExpand}>
+                {hasChild&&(expanded?<Icon type="caret-down" />:<Icon type="caret-right" />)}
+                    <span>{title}</span>
+                </div>
+                {expanded&&hasChild&&(
+                        children.map(item=>{
+                            return <TreeNode key={item.key} data={item}></TreeNode>
+                        })
+                    )}
+            </div>
+        )
+    }
+}
+
+```
+
+## 常见组件优技术 
+
+### 定制组件的shouldComponentUpdate钩子
+
+范例：通过shouldComponentUpdate优化组件
+
+```jsx
+import React, { Component } from "react";
+export default class CommentList extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            comments: []
+        };
+    }
+    componentDidMount() {
+        setInterval(() => {
+            this.setState({
+                comments: [{ author: "⼩小明", body: "这是⼩小明写的⽂文章", }, { author: "⼩小红", body: "这是⼩小红写的⽂文章", },],
+            });
+        }, 1000);
+    }
+    render() {
+        const { comments } = this.state;
+        return (<div>
+            <h1>CommentList</h1>
+            {comments.map((c, i) => { return <Comment key={i} data={c} />; })}
+        </div>);
+    }
+}
+class Comment extends Component {
+    shouldComponentUpdate(nextProps, nextState) {
+        const { author, body } = nextProps.data;
+        const { author: nowAuthor, body: nowBody } = this.props.data;
+        if (body === nowBody && author === nowAuthor) {
+            return false; //如果不执行这里，将会多次render    
+        }
+        return true;
+    }
+    render() {
+        console.log("hah");
+        const { body, author } = this.props.data;
+        return (<div>
+            <p>作者： {author}</p>
+            <p>正⽂文：{body}</p>
+            <p>---------------------------------</p>
+        </div>);
+    }
+}
+
+```
+
+## PureComponent 
+
+定制了shouldComponentUpdate后的Component;
+
+缺点是必须要用class形式，而且要注意是浅比较。
+
+```jsx
+import React, { Component, PureComponent } from "react";
+export default class PuerComponentPage extends PureComponent {
+    constructor(props) {
+        super(props);
+        this.state = {
+            counter: 0,
+            obj: { num: 100, },
+        };
+    }
+    setCounter = () => {
+        this.setState({
+            counter: 1,
+            obj: { num: 200, },
+        });
+        console.log("setCounter");
+    };
+    render() {
+        console.log("render");
+        const { counter, obj } = this.state;
+        return (<div>
+            <button onClick={this.setCounter}>setCounter</button>
+            <div>counter: {counter}</div>
+            <div>obj.num: {obj.num}</div>
+        </div>);
+    }
+}
+```
+
+## React.memo 
+
+React.memo(...)是React v16.6引进来的新属性。它的作用和React.PureComponent类似，是用来控制函数 组件的重新渲染的。React.memo(...) 其实就是函数组件的React.PureComponent。
+
+```jsx
+import React, { Component, memo } from "react";
+export default class MemoPage extends Component {
+    constructor(props) {
+        super(props);
+        this.state = { counter: 0, obj: { num: -1 }, };
+    }
+    setCounter = () => {
+        this.setState({
+            counter: 1 /* ,      
+                obj: {        num: 100,      }, */,
+        });
+    };
+    render() {
+        const { counter } = this.state;
+        return (<div>
+            <h1>MemoPage</h1>
+            <button onClick={this.setCounter}>按钮</button>
+            {/* <PuerCounter counter={counter} obj={obj} /> */}
+            <PuerCounter counter={counter} />
+        </div>);
+    }
+}
+const PuerCounter = memo(props => {
+    console.log("render");
+    return <div>{props.counter}</div>;
+});
+
 ```
 
