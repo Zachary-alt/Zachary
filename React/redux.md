@@ -454,7 +454,7 @@ export function createStore(reducer,enhancer){
 
 核⼼任务是实现函数序列执⾏ 
 
-//把下⾯加⼊kRedux.js
+//把下⾯加⼊zRedux.js
 
 ```js
 export function applyMiddleware(...middlewares) {
