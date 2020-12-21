@@ -67,7 +67,7 @@ export default class RouterPage extends Component {
 }
 ```
 
-## 路由守卫 
+### 路由守卫 
 
 思路：创建⾼阶组件包装Route使其具有权限判断功能 
 
@@ -197,8 +197,168 @@ export const loginReducer = (state = {...initalLogin}, action) => {
 
 1. HashRouter最简单，不需要服务器端渲染，靠浏览器的#的来区分path就可以，BrowserRouter 
 
-需要服务器端对不同的URL返回不同的HTML，后端配置可参考。 
+需要服务器端对不同的URL返回不同的HTML，后端配置可[参考](https://react-guide.github.io/react-router-cn/docs/guides/basics/Histories.html)。 
 
 2. BrowserRouter使⽤HTML5历史API（ pushState，replaceState和popstate事件），让⻚⾯的UI同步与URL。 
 3. HashRouter不⽀持location.key和location.state，动态路由跳转需要通过?传递参数。 
 4. Hash history 不需要服务器任何配置就可以运⾏，如果你刚刚⼊⻔，那就使⽤它吧。但是我们不推荐在实际线上环境中⽤到它，因为每⼀个 web 应⽤都应该渴望使⽤ browserHistory 。
+
+react-router秉承⼀切皆组件，因此实现的核⼼就是BrowserRouter、Route、Link
+
+### 实现**BrowserRouter** 
+
+**BrowserRouter**：历史记录管理对象history初始化及向下传递，location变更监听 
+
+创建MyRouterTest.js，⾸先实现BrowserRouter
+
+```jsx
+import React, { Component,useContext } from "react";
+
+import { createBrowserHistory } from "history";
+const RouterContext = React.createContext();
+export class BrowserRouter extends Component {
+  constructor(props) {
+    super(props);
+    this.history = createBrowserHistory(this.props);
+    this.state = {
+      location: this.history.location,
+    };
+    this.unlisten = this.history.listen((location) => {
+      this.setState({ location });
+    });
+  }
+  componentWillUnmount() {
+    if (this.unlisten) this.unlisten();
+  }
+  render() {
+    return (
+      <RouterContext.Provider
+        children={this.props.children || null}
+        value={{
+          history: this.history,
+          location: this.state.location,
+        }}
+      />
+    );
+  }
+}
+```
+
+### 实现**Route** 
+
+路由配置，匹配检测，内容渲染
+
+```jsx
+import matchPath from './matchPath'
+
+export function Route(props) {
+  const ctx = useContext(RouterContext);
+  const { location } = ctx;
+  const { path, component, children, render } = props;
+  const match = matchPath(location.pathname, props);
+  console.log("match", match);
+  const matchCurrent = match && match.isExact;
+  //const matchCurrent = path === location.pathname;
+  const cmpProps = { ...ctx, match };
+  console.log("render", render);
+  if (matchCurrent && typeof children === "function") {
+    return children(cmpProps);
+  }
+  return (
+    <>
+      {typeof children === "function" && children(cmpProps)}
+      {matchCurrent && component
+        ? React.createElement(component, cmpProps)
+        : null}
+      {matchCurrent && !component && render && render(cmpProps)}
+    </>
+  );
+}
+```
+
+> 依赖：matchPath.js
+
+```js
+import pathToRegexp from "path-to-regexp";
+const cache = {};
+const cacheLimit = 10000;
+let cacheCount = 0;
+function compilePath(path, options) {
+    const cacheKey = `${options.end}${options.strict}${options.sensitive}`;
+    const pathCache = cache[cacheKey] || (cache[cacheKey] = {});
+    if (pathCache[path]) return pathCache[path];
+    const keys = [];
+    const regexp = pathToRegexp(path, keys, options);
+    const result = { regexp, keys };
+    if (cacheCount < cacheLimit) {
+        pathCache[path] = result;
+        cacheCount++;
+    }
+    return result;
+}
+/**
+ * Public API for matching a URL pathname to a path.
+*/
+function matchPath(pathname, options = {}) {
+    if (typeof options === "string") options = { path: options };
+    const { path, exact = false, strict = false, sensitive = false } =
+        options;
+    const paths = [].concat(path);
+    return paths.reduce((matched, path) => {
+        if (!path) return null;
+        if (matched) return matched;
+        const { regexp, keys } = compilePath(path, {
+            end: exact,
+            strict,
+            sensitive
+        });
+        const match = regexp.exec(pathname);
+        if (!match) return null;
+        const [url, ...values] = match;
+        const isExact = pathname === url;
+        if (exact && !isExact) return null;
+        return {
+            path, // the path used to match
+            url: path === "/" && url === "" ? "/" : url, // the matched portion of the URL
+            isExact, // whether or not we matched exactly
+            params: keys.reduce((memo, key, index) => {
+                memo[key.name] = values[index];
+                return memo;
+            }, {})
+        };
+    }, null);
+}
+export default matchPath;
+```
+
+### 实现**Link** 
+
+Link.js: 跳转链接，处理点击事件
+
+```jsx
+export class Link extends Component {
+  handleClick(event, history) {
+    event.preventDefault();
+    history.push(this.props.to);
+  }
+  render() {
+    const { to, children } = this.props;
+    return (
+      <RouterContext.Consumer>
+        {(context) => {
+          return (
+            <a
+            //   {...rest}
+              onClick={(event) => this.handleClick(event, context.history)}
+              href={to}
+            >
+              {children}
+            </a>
+          );
+        }}
+      </RouterContext.Consumer>
+    );
+  }
+}
+```
+
