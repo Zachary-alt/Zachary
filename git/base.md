@@ -84,6 +84,8 @@ git push origin <branchName>
 
 `git reset --hard `被撤销的 commit 记录保留不会被保留
 
+`git push origin HEAD --force `强推到远程
+
 ### git revert
 
 `git revert `用一次相反的提交覆盖原来的代码，达到回滚的目的。这种方式更灵活，可以针对某一次的 commit 进行回滚
