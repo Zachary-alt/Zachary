@@ -165,29 +165,31 @@ vuex：创建唯一的全局数据管理者store，通过它管理数据并通�
   派发校验事件 
 
   ```vue
-  <template> 
-      <div> 
-      	<input :value="value" @input="onInput" v-bind="$attrs"> 
-      </div> 
-  </template> 
+  <template>
+    <div>
+        <!-- $attrs存储的是props之外的部分 -->
+        <input :value="value" @input="onInput" v-bind="$attrs">
+    </div>
+  </template>
   
-  <script> 
-  export default { 
-      inheritAttrs: false, 
-      props: { 
+  <script>
+  export default {
+      inheritAttrs: false, // 避免顶层容器继承属性
+      props:{
           value: { 
               type: String, 
               default: "" 
           } 
       },
-      methods: { 
-          onInput(e) { 
-              this.$emit("input", e.target.value); 
+      methods:{
+          onInput(e){
+              this.$emit('input',e.target.value)
+              // 通知formitem校验
               this.$parent.$emit('validate'); 
-          } 
-      } 
-  };
-  </script> 
+          }
+      }
+  }
+  </script>
   ```
 
 - FormItem 
@@ -226,6 +228,7 @@ vuex：创建唯一的全局数据管理者store，通过它管理数据并通�
           }; 
       },
       mounted() { 
+          // 监听校验事件、并执行监听
           this.$on('validate', ()=>{this.validate()}) 
       },
       methods: { 
@@ -271,7 +274,7 @@ vuex：创建唯一的全局数据管理者store，通过它管理数据并通�
   export default { 
       provide() { 
           return { 
-              form: this 
+              form: this // 传递form实例给后代，比如fromitem用来校验
           }; 
       },
       props: { 
@@ -298,3 +301,55 @@ vuex：创建唯一的全局数据管理者store，通过它管理数据并通�
   };
   </script>
   ```
+
+试验代码
+
+```vue
+<template>
+  <div>
+      <kForm :model="form" :rules="rules" ref="form">
+        <kFormItem label="用户名" prop="name">
+            <KInput :value="form.name" v-model="form.name"></KInput>
+        </kFormItem>
+        <kFormItem label="密码" prop="pwd">
+            <KInput v-model="form.pwd" type="password"></KInput>
+        </kFormItem>
+        <kFormItem>
+            <button @click="login">登录</button>
+        </kFormItem>
+
+      </kForm>
+      
+      {{form}}
+  </div>
+</template>
+
+<script>
+import KInput from './KInput'
+import kFormItem from './kFormItem'
+import kForm from './kForm'
+export default {
+    components:{KInput,kFormItem,kForm},
+    data(){
+        return{
+            form:{
+                name:"",
+                pwd:""
+            },
+            rules:{
+                name:[{required:true,message:"必填"}],
+                pwd:[{required:true,message:"必填"}],
+            }
+        }
+    },
+    methods: {
+        login() {
+            this.$refs.form.validate(isValid=>{
+                console.log(isValid);
+            })
+        }
+    },
+}
+</script>
+```
+
