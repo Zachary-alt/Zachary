@@ -38,7 +38,10 @@ module.exports = {
                 path: '/react/',      // 可选的, 标题的跳转链接，应为绝对路径且必须存在
                 children: [
                   ['/react/base','react干货'],
-                  ['/react/component','组件化']
+                  ['/react/component','组件化'],
+                  ['/react/redux','redux'],
+                  ['/react/router','router'],
+                  ['/react/umi','umi']
                 ]
             },
         ]

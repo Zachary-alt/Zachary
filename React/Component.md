@@ -438,7 +438,7 @@ class Comment extends Component {
         const { body, author } = this.props.data;
         return (<div>
             <p>作者： {author}</p>
-            <p>正⽂文：{body}</p>
+            <p>正⽂：{body}</p>
             <p>---------------------------------</p>
         </div>);
     }

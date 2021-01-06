@@ -11,5 +11,5 @@ features:
   details: 打造全网最全最新原理解析。
 - title: 深入浅出
   details: 结构清晰，内容由浅入深、深入浅出。
-footer: MIT Licensed | Copyright © 2018-present Evan You
+footer: 
 ---
