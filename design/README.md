@@ -167,3 +167,83 @@ console.log( calculateBonus( 'S', 20000 ) );// 输出:80000
 console.log( calculateBonus( 'A', 10000 ) );// 输出:30000
 ```
 
+### 代理模式
+
+代理模式的定义：为⼀个对象提供⼀个代⽤品或占位符，以便控制对它的访问。 
+
+常⽤的虚拟代理形式：某⼀个花销很⼤的操作，可以通过虚拟代理的⽅式延迟到这种需要它的时候才去创建（例：使⽤虚拟代理实现图⽚懒加载） 
+
+图⽚懒加载的⽅式：先通过⼀张loading图占位，然后通过异步的⽅式加载图⽚，等图⽚加载好了再把完成的图⽚加载到img标签⾥⾯。
+
+```js
+var imgFunc = (function () {
+    var imgNode = document.createElement('img');
+    document.body.appendChild(imgNode);
+    return {
+        setSrc: function (src) {
+            imgNode.src = src;
+        }
+    }
+})();
+var proxyImage = (function () {
+    var img = new Image();
+    img.onload = function () {
+        imgFunc.setSrc(this.src);
+    }
+    return {
+        setSrc: function (src) {
+            imgFunc.setSrc('./loading.gif');
+            img.src = src;
+        }
+    }
+})();
+proxyImage.setSrc('./pic.png');
+```
+
+假设我们在做⼀个⽂件同步的功能，当我们选中⼀个 checkbox 的时候，它对应的⽂件就会被同 步到另外⼀台备⽤服务器上⾯。当⼀次选中过多时，会产⽣频繁的⽹络请求。将带来很⼤的开销。可以通过⼀个代理函数 proxySynchronousFile 来收集⼀段时间之内的请求， 最后⼀次性发送给服务器
+
+```js
+var synchronousFile = function (id) {
+    console.log('开始同步⽂件，id 为: ' + id);
+};
+var proxySynchronousFile = (function () {
+    var cache = [], // 保存⼀段时间内需要同步的 ID
+        timer; // 定时器
+    return function (id) {
+        cache.push(id);
+        if (timer) { // 保证不会覆盖已经启动的定时器
+            return;
+        }
+        timer = setTimeout(function () {
+            synchronousFile(cache.join(','));
+            clearTimeout(timer); // 清空定时器
+            timer = null;
+            cache.length = 0; // 清空 ID 集合
+        }, 2000);
+    }// 2 秒后向本体发送需要同步的 ID 集合
+})();
+var checkbox = document.getElementsByTagName('input');
+for (var i = 0, c; c = checkbox[i++];) {
+    c.onclick = function () {
+        if (this.checked === true) {
+            proxySynchronousFile(this.id);
+        }
+    }
+}
+```
+
+### 中介者模式
+
+中介者模式的定义：通过⼀个中介者对象，其他所有的相关对象都通过该中介者对象来通信，⽽不是相互引⽤，当其中的⼀个对象发⽣改变时，只需要通知中介者对象即可。通过中介者模式可以解除对象与对象之间的紧耦合关系。
+
+例如：现实⽣活中，航线上的⻜机只需要和机场的塔台通信就能确定航线和⻜⾏状态，⽽不需要和所有⻜机通信。同时塔台作为中介者，知道每架⻜机的⻜⾏状态，所以可以安排所有⻜机的起降和航线安排。
+
+中介者模式适⽤的场景：例如购物⻋需求，存在商品选择表单、颜⾊选择表单、购买数量表单等等，都会触发change事件，那么可以通过中介者来转发处理这些事件，实现各个事件间的解耦，仅仅维护中介者对象即可。
+
+redux，vuex 都属于中介者模式的实际应⽤，我们把共享的数据，抽离成⼀个单独的store， 每个都通过store这个中介来操作对象
+
+⽬的就是减少耦合
+
+### 装饰器模式
+
+装饰者模式的定义：在不改变对象⾃身的基础上，在程序运⾏期间给对象动态地添加⽅法。常⻅应⽤，react的⾼阶组件, 或者react-redux中的@connect 或者⾃⼰定义⼀些⾼阶组件
