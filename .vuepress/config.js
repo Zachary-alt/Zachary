@@ -27,6 +27,10 @@ module.exports = {
                 ]
             },
             {
+                title: '前端设计模式',   // 必要的
+                path: '/design/'
+            },
+            {
                 title: 'Vue',   // 必要的
                 path: '/vue/',      // 可选的, 标题的跳转链接，应为绝对路径且必须存在
                 children: [
@@ -43,6 +47,10 @@ module.exports = {
                   ['/react/router','router'],
                   ['/react/umi','umi']
                 ]
+            },
+            {
+                title: '前端算法和数据结构',   // 必要的
+                path: '/algorithm/'
             },
         ]
     }
