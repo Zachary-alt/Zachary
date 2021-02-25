@@ -353,3 +353,50 @@ export default {
 </script>
 ```
 
+#### .sync和v-model的异同
+
+```vue
+v-model和.sync
+<!--v-model是语法糖-->
+<Input v-model="username">
+<!--默认等效于下⾯面这⾏行行-->
+<Input :value="username" @input="username=$event">
+// 但是你也可以通过设置model选项修改默认⾏行行为，Checkbox.vue
+{
+    model: {
+        prop: 'checked',
+        event: 'change'
+    }
+}
+// 上⾯面这样设置会导致上级使⽤用v-model时⾏行行为变化，相当于
+<KCheckBox :checked="model.remember" @change="model.remember = $event">
+</KCheckBox>
+// 场景：v-model通常⽤用于表单控件，它有默认⾏行行为，同时属性名和事件名均可在⼦子组件定义
+<!-- sync修饰符添加于v2.4，类似于v-model，它能⽤用于修改传递到⼦子组件的属性，如果像下⾯面
+这样写 -->
+<Input :value.sync="model.username">
+<!-- 等效于下⾯面这⾏行行，那么和v-model的区别只有事件名称的变化 -->
+<Input :value="username" @update:value="username=$event">
+<!-- 这⾥里里绑定属性名称更更改，相应的属性名也会变化 -->
+<Input :foo="username" @update:foo="username=$event">
+// 场景：⽗父组件传递的属性⼦子组件想修改
+// 所以sync修饰符的控制能⼒力力都在⽗父级，事件名称也相对固定update:xx
+// 习惯上表单元素⽤用v-model
+```
+
+### 实现弹窗组件
+
+弹窗这类组件的特点是它们在当前vue实例之外独立存在，通常挂载于body；它们是通过JS动态创建
+的，不需要在任何组件中声明。常见使用姿势：
+
+```js
+this.$create(Notice, {
+    title: '来搬砖',
+    message: '提示信息',
+    duration: 1000
+}).show();
+```
+
+#### create
+
+create函数用于动态创建指定组件实例并挂载至body
