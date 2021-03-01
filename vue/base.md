@@ -400,3 +400,325 @@ this.$create(Notice, {
 #### create
 
 create函数用于动态创建指定组件实例并挂载至body
+
+```js
+import Vue from "vue";
+
+// 创建函数接收要创建组件定义
+function create(Component, props){
+    // 创建⼀个Vue新实例例
+    const vm = new Vue({
+        render(h){
+            // render函数将传入组件配置对象转换为虚拟dom
+            console.log(h(Component, { props }));
+            return h(Component, { props });
+        }
+    }).$mount(); //执行挂载函数，但未指定挂载目标，表示只执行初始化工作
+
+    // 将生成dom元素追加至body
+    document.body.appendChild(vm.$el);
+
+    // 给组件实例添加销毁方法
+    const comp = vm.$children[0];
+    comp.remove = () => {
+        document.body.removeChild(vm.$el);
+        vm.$destroy();
+    };
+    return comp;
+}
+
+export default create;
+```
+
+> render函数的作用是得到描述dom结构的虚拟dom
+
+创建通知组件，Notice.vue
+
+```vue
+<template>
+  <div class="box" v-if="isShow">
+    <h3>{{ title }}</h3>
+    <p class="box-content">{{ message }}</p>
+  </div>
+</template>
+<script>
+export default {
+  props: {
+    title: {
+      type: String,
+      default: "",
+    },
+    message: {
+      type: String,
+      default: "",
+    },
+    duration: {
+      type: Number,
+      default: 1000,
+    },
+  },
+  data() {
+    return {
+      isShow: false,
+    };
+  },
+  methods: {
+    show() {
+      this.isShow = true;
+      setTimeout(this.hide, this.duration);
+    },
+    hide() {
+      this.isShow = false;
+      this.remove();
+    },
+  },
+};
+</script>
+<style>
+.box {
+  position: fixed;
+  width: 100%;
+  top: 16px;
+  left: 0;
+  text-align: center;
+  pointer-events: none;
+}
+.box-content {
+  width: 200px;
+  margin: 10px auto;
+  font-size: 14px;
+  border: blue 3px solid;
+  padding: 8px 16px;
+  background: #fff;
+  border-radius: 3px;
+  margin-bottom: 8px;
+}
+</style>
+```
+
+**使用create api**
+测试，components/form/index.vue
+
+```vue
+<script>
+import create from "@/utils/create";
+import Notice from "@/components/Notice";
+
+export default {
+  methods: {
+    login() {
+      this.$refs.form.validate((isValid) => {
+        console.log(isValid);
+        const notice = create(Notice, {
+          title: "提示",
+          message: isValid ? "请求登录!" : "校验失败!",
+          duration: 1000,
+        });
+        notice.show();
+      });
+    },
+  },
+};
+</script>
+```
+
+### 递归组件
+
+递归组件是可以在它们自己模板中调用自身的组件。
+
+#### 实现Tree组件
+
+Tree组件是典型的递归组件，其他的诸如菜单组件都属于这一类，也是相当常见的。
+
+##### 组件设计
+
+Tree组件最适合的结构是无序列表ul，创建一个递归组件Item表示Tree选项，如果当前Item存在
+children，则递归渲染子树，以此类推；同时添加一个标识管理当前层级item的展开状态。
+
+##### 实现Item组件
+
+```vue
+<template>
+  <li>
+    <div @click="toggle">
+      {{ model.title }}
+      <span v-if="isFolder">[{{ open ? "-" : "+" }}]</span>
+    </div>
+    <ul v-show="open" v-if="isFolder">
+      <item
+        class="item"
+        v-for="model in model.children"
+        :model="model"
+        :key="model.title"
+      ></item>
+    </ul>
+  </li>
+</template>
+<script>
+export default {
+  name: "Item",// name对递归组件是必要的
+  props: {
+    model: Object,
+  },
+  data: function () {
+    return {
+      open: false,
+    };
+  },
+  computed: {
+    isFolder: function () {
+      return this.model.children && this.model.children.length;
+    },
+  },
+  methods: {
+    toggle: function () {
+      if (this.isFolder) {
+        this.open = !this.open;
+      }
+    },
+  },
+};
+</script>
+```
+
+**使用**
+
+```vue
+<template>
+  <div>
+    <ul>
+      <item class="item" :model="treeData"></item>
+    </ul>
+  </div>
+</template>
+<script>
+import Item from "@/components/TreeItem";
+export default {
+  name: "app",
+  data() {
+    return {
+      treeData: {
+        title: "Web全栈架构师",
+        children: [
+          {
+            title: "Java架构师",
+          },
+          {
+            title: "JS高级",
+            children: [
+              {
+                title: "ES6",
+              },
+              {
+                title: "动效",
+              },
+            ],
+          }
+        ],
+      },
+    };
+  },
+  components: { Item },
+};
+</script>
+```
+
+### 路由守卫
+
+路由导航过程中有若干生命周期钩子，可以在这里实现逻辑控制。
+**全局的导航守卫**： router.beforeEach、router.beforeResolve、router.afterEach
+
+> 在 2.5.0+ 这三个方法都返回一个移除已注册的守卫/钩子的函数。
+
+**路由独享守卫**
+
+```js
+beforeEnter(to, from, next) {
+	// 路路由内部知道⾃自⼰己需要认证
+    if (!window.isLogin) {
+    	// ...
+    } else {
+    	next();
+    }
+},
+```
+
+**组件内的守卫**
+
+- `beforeRouteEnter`
+- `beforeRouteUpdate` (2.2 新增)
+- `beforeRouteLeave`
+
+```js
+const Foo = {
+  template: `...`,
+  beforeRouteEnter (to, from, next) {
+    // 在渲染该组件的对应路由被 confirm 前调用
+    // 不！能！获取组件实例 `this`
+    // 因为当守卫执行前，组件实例还没被创建
+      next(vm => {
+        // 通过 `vm` 访问组件实例
+      })
+  },
+  beforeRouteUpdate (to, from, next) {
+    // 在当前路由改变，但是该组件被复用时调用
+    // 举例来说，对于一个带有动态参数的路径 /foo/:id，在 /foo/1 和 /foo/2 之间跳转的时候，
+    // 由于会渲染同样的 Foo 组件，因此组件实例会被复用。而这个钩子就会在这个情况下被调用。
+    // 可以访问组件实例 `this`
+  },
+  beforeRouteLeave (to, from, next) {
+    // 导航离开该组件的对应路由时调用
+    // 可以访问组件实例 `this`
+  }
+}
+```
+
+### vue-router拓展
+
+#### 动态路由
+
+利用$router.addRoutes()可以实现动态路由添加，常用于用户权限控制。
+
+```js
+// router.js
+// 返回数据可能是这样的
+//[{
+// path: "/",
+// name: "home",
+// component: "Home", //Home
+//}]
+// 异步获取路路由
+api.getRoutes().then(routes => {
+    const routeConfig = routes.map(route => mapComponent(route));
+    router.addRoutes(routeConfig);
+})
+// 映射关系
+const compMap = {
+	'Home': () => import("./view/Home.vue")
+}
+// 递归替换
+function mapComponent(route) {
+    route.component = compMap[route.component];
+    if(route.children) {
+    	route.children = route.children.map(child => mapComponent(child))
+    }
+    return route
+}
+```
+
+#### 面包屑
+
+利用$route.matched可得到路由匹配数组，按顺序解析可得路由层次关系。
+
+```js
+// Breadcrumb.vue
+watch: {
+    $route() {
+        // [{name:'home',path:'/'},{name:'list',path:'/list'}]
+        console.log(this.$route.matched);
+        // ['home','list']
+        this.crumbData = this.$route.matched.map(m => m.name)
+    }
+}
+```
+
