@@ -35,6 +35,8 @@ module.exports = {
                 path: '/vue/',      // 可选的, 标题的跳转链接，应为绝对路径且必须存在
                 children: [
                   ['/vue/base','vue干货'],
+                  ['/vue/source','源码解析'],
+                  ['/vue/other','补充'],
                 ]
             },
             {

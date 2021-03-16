@@ -493,8 +493,6 @@ console.log(set.values) // []
 
 哈⻄其实就是js⾥的对象，它在实际的键值和存⼊的哈希值之间存在⼀层映射。如下例⼦:
 
-<img src="../.vuepress/public/assets/img/algorithm/4.png" alt="1604728604168" style="zoom:80%;" />
-
 ```js
 class HashTable {
     constructor() {

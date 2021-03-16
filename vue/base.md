@@ -718,7 +718,283 @@ watch: {
         console.log(this.$route.matched);
         // ['home','list']
         this.crumbData = this.$route.matched.map(m => m.name)
-    }
+    },
+    immediate: true
 }
 ```
 
+### vue-router源码实现 
+
+#### 通常用法
+
+```js
+// zrouter.js
+import Home from "./views/Home";
+import About from "./views/About";
+import VueRouter from "./zvue-router";
+Vue.use(VueRouter);
+export default new VueRouter({
+ routes: [
+ { path: "/", component: Home },
+ { path: "/about", component: About }
+ ]
+});
+// main.js
+import router from './zrouter'
+```
+
+#### 具体实现
+
+```js
+let Vue;
+class VueRouter {
+    constructor(options) {
+        this.$options = options;
+        this.routeMap = {};
+        this.app = new Vue({
+            data: {
+                current: "/"
+            }
+        });
+    }
+    // 绑定事件
+    init() {
+        this.bindEvents();
+        this.createRouteMap(this.$options);
+        this.initComponent();
+    }
+    bindEvents() {
+        window.addEventListener("load", this.onHashChange.bind(this), false);
+        window.addEventListener("hashchange", this.onHashChange.bind(this),
+            false);
+    }
+    // 路由映射表
+    createRouteMap(options) {
+        options.routes.forEach(item => {
+            this.routeMap[item.path] = item;
+        });
+    }
+    initComponent() {
+        Vue.component("router-link", {
+            props: {
+                to: String
+            },
+            render(h) {
+                return <a href={this.to}>{this.$slots.default}</a>;
+                // return h('a', {
+                //     attrs: {
+                //         href: '#' + this.to
+                //     }
+                // }, [
+                //     this.$slots.default
+                // ])
+            }
+        });
+        Vue.component("router-view", {
+            render: h => {
+                var component = this.routeMap[this.app.current].component;
+                return h(component);
+            }
+        });
+    }
+    // 设置当前路径
+    onHashChange() {
+        this.app.current = window.location.hash.slice(1) || "/";
+    }
+}
+// 插件逻辑
+VueRouter.install = function (_Vue) {
+    Vue = _Vue;
+
+    Vue.mixin({
+        beforeCreate() {
+            if (this.$options.router) {
+                // 确保是根组件时执⾏⼀次，将router实例放到Vue原型，以后所有组件实例就均有$router
+                Vue.prototype.$router = this.$options.router;
+                this.$options.router.init();
+            }
+        }
+    });
+};
+```
+### vue插件
+
+```js
+// 插件定义
+MyPlugin.install = function (Vue, options) {
+ // 1. 添加全局⽅法或属性
+ Vue.myGlobalMethod = function () {
+ 	// 逻辑...
+ }
+ // 2. 添加全局资源
+ Vue.directive('my-directive', {
+     bind (el, binding, vnode, oldVnode) {
+     	// 逻辑...
+     }
+ })
+ // 3. 注⼊组件选项
+ Vue.mixin({
+     created: function () {
+     	// 逻辑...
+     }
+     ...
+ })
+ // 4. 添加实例⽅法
+ Vue.prototype.$myMethod = function (methodOptions) {
+ 	// 逻辑...
+ }
+}
+// 插件使⽤
+Vue.use(MyPlugin)
+```
+
+### render函数详解
+
+⼀些场景中需要 JavaScript 的完全编程的能⼒，这时可以⽤渲染函数，它⽐模板更接近编译器。
+
+```js
+render(h) {
+	return h(tag, {...}, [children])
+}
+```
+
+createElement函数
+
+```js
+{
+ // 与 `v-bind:class` 的 API 相同，
+ // 接受⼀个字符串、对象或字符串和对象组成的数组
+ 'class': {
+     foo: true,
+     bar: false
+ },
+ // 与 `v-bind:style` 的 API 相同，
+ // 接受⼀个字符串、对象，或对象组成的数组
+ style: {
+     color: 'red',
+     fontSize: '14px'
+ },
+ // 普通的 HTML 特性
+ attrs: {
+ 	id: 'foo'
+ },
+ // 组件 prop
+ props: {
+ 	myProp: 'bar'
+ },
+ // DOM 属性
+ domProps: {
+ 	innerHTML: 'baz'
+ },
+ // 事件监听器在 `on` 属性内，
+ // 但不再⽀持如 `v-on:keyup.enter` 这样的修饰器。
+ // 需要在处理函数中⼿动检查 keyCode。
+ on: {
+ 	click: this.clickHandler
+ },
+}
+```
+
+### 函数式组件
+
+组件若没有管理任何状态，也没有监听任何传递给它的状态，也没有⽣命周期⽅法，只是⼀个接受⼀些prop 的，可标记为函数式组件，此时它没有上下⽂
+
+> - props ：提供所有 prop 的对象 
+> - children : VNode ⼦节点的数组 
+> - slots : ⼀个函数，返回了包含所有插槽的对象 
+> - scopedSlots : (2.6.0+) ⼀个暴露传⼊的作⽤域插槽的对象。也以函数形式暴露普通插槽。 
+> - data ：传递给组件的整个数据对象，作为 createElement 的第⼆个参数传⼊组件 
+> - parent ：对⽗组件的引⽤ 
+> - listeners : (2.3.0+) ⼀个包含了所有⽗组件为当前组件注册的事件监听器的对象。这是data.on 的⼀个别名。 
+> - injections : (2.3.0+) 如果使⽤了 inject 选项，则该对象包含了应当被注⼊的属性。 
+
+[文档](https://cn.vuejs.org/v2/guide/render-function.html#%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BB%84%E4%BB%B6)
+
+### Vuex数据管理 
+
+Vuex 是⼀个专为 Vue.js 应⽤开发的状态管理模式，集中式存储管理应⽤所有组件的状态。 
+
+Vuex遵循“单向数据流”理念，易于问题追踪以及提⾼代码可维护性。 
+
+Vue中多个视图依赖于同⼀状态时，视图间传参和状态同步⽐较困难，Vuex能够很好解决该问题。
+
+#### 核心概念 
+
+- state 状态、数据 
+- mutations 更改状态的函数 
+- actions 异步操作 
+- store 包含以上概念的容器
+
+#### 派生状态 - getters
+
+从state派⽣出新状态，类似计算属性
+
+```js
+export default new Vuex.Store({
+ getters: {
+     score(state) {
+        return `共扔出：${state.count}`
+     }
+ }
+})
+```
+
+### vuex原理解析 
+
+初始化：Store声明、install实现，zvuex.js：
+
+```js
+let Vue;
+function install(_Vue) {
+    Vue = _Vue;
+
+    // 这样store执⾏的时候，就有了Vue，不⽤import
+    // 这也是为啥Vue.use必须在新建store之前
+    Vue.mixin({
+        beforeCreate() {
+            // 这样才能获取到传递进来的store
+            // 只有root元素才有store，所以判断⼀下
+            if (this.$options.store) {
+                Vue.prototype.$store = this.$options.store;
+            }
+        }
+    });
+}
+class Store {
+    constructor(options = {}) {
+        this.state = new Vue({
+            data: options.state
+        });
+        this.mutations = options.mutations || {};
+        this.actions = options.actions;
+        options.getters && this.handleGetters(options.getters);
+    }
+    // 注意这⾥⽤箭头函数形式，后⾯actions实现时会有作⽤
+    commit = (type, arg) => {
+        this.mutations[type](this.state, arg);
+    };
+    dispatch(type, arg) {
+        this.actions[type](
+            {
+                commit: this.commit,
+                state: this.state
+            },
+            arg
+        );
+    }
+    handleGetters(getters) {
+        this.getters = {}; // 定义this.getters
+        // 遍历getters选项，为this.getters定义property
+        // 属性名就是选项中的key，只需定义get函数保证其只读性
+        Object.keys(getters).forEach(key => {
+            // 这样这些属性都是只读的
+            Object.defineProperty(this.getters, key, {
+                get: () => { // 注意依然是箭头函数
+                    return getters[key](this.state);
+                }
+            });
+        });
+    }
+}
+export default { Store, install };
+```
