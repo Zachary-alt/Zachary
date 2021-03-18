@@ -11,13 +11,6 @@ module.exports = {
             { text: 'github', link: 'https://github.com/DavidZhao0618/repositories' },
         ],
         sidebar:[
-            // {
-            //     title: 'webpack',   // 必要的
-            //     path: '/webpack/',      // 可选的, 标题的跳转链接，应为绝对路径且必须存在
-            //     children: [
-            //       ['/webpack/test','test']
-            //     ]
-            // },
             {
                 title: 'Git',   // 必要的
                 path: '/git/',      // 可选的, 标题的跳转链接，应为绝对路径且必须存在
@@ -53,6 +46,13 @@ module.exports = {
             {
                 title: '前端算法和数据结构',   // 必要的
                 path: '/algorithm/'
+            },
+            {
+                title: 'Docker',   // 必要的
+                path: '/docker/',      // 可选的, 标题的跳转链接，应为绝对路径且必须存在
+                children: [
+                  ['/docker/mysql','搭建mysql服务'],
+                ]
             },
         ]
     }
