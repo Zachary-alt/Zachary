@@ -8,7 +8,7 @@ module.exports = {
         nav: [
             { text: '首页', link: './' },
             { text: '最新', link: './guide/' },
-            { text: 'github', link: 'https://github.com/DavidZhao0618/repositories' },
+            { text: 'github', link: 'https://github.com/DavidZhao0618' },
         ],
         sidebar:[
             {
@@ -41,6 +41,17 @@ module.exports = {
                   ['/react/redux','redux'],
                   ['/react/router','router'],
                   ['/react/umi','umi']
+                ]
+            },
+            {
+                title: 'ReactNative',   // 必要的
+                path: '/reactNative/',      // 可选的, 标题的跳转链接，应为绝对路径且必须存在
+            },
+            {
+                title: 'Node',   // 必要的
+                path: '/node/',      // 可选的, 标题的跳转链接，应为绝对路径且必须存在
+                children: [
+                  ['/node/http','网络编程']
                 ]
             },
             {
