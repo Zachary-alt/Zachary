@@ -156,3 +156,299 @@ app.use('/api', proxy({ target: 'http://localhost:4000', changeOrigin: false}));
 module.exports = app
 ```
 
+nginx
+
+```nginx
+server {
+     listen 80;
+     # server_name www.josephxia.com;
+     location / {
+         root /var/www/html;
+         index index.html index.htm;
+         try_files $uri $uri/ /index.html;
+     }
+     location /api {
+         proxy_pass http://127.0.0.1:3000;
+         proxy_redirect off;
+         proxy_set_header Host $host;
+         proxy_set_header X-Real-IP $remote_addr;
+         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+     }
+ }
+```
+
+### 正向代理和反向代理
+
+https://www.zhihu.com/question/24723688
+
+两者的区别在于代理的对象不一样：**正向代理**代理的对象是客户端，**反向代理**代理的对象是服务端
+
+正向代理隐藏真实客户端，反向代理隐藏真实服务端
+
+### Bodyparser
+
+- application/x-www-form-urlencoded
+
+  ```html
+  <form action="/api/save" method="post">
+   <input type="text" name="abc" value="123">
+   <input type="submit" value="save">
+  </form>
+  ```
+
+  ```js
+  // api.js
+  else if (method === "POST" && url === "/api/save") {
+      let reqData = [];
+      let size = 0;
+      req.on('data', data => {
+          console.log('>>>req on', data);
+          reqData.push(data);
+          size += data.length;
+      });
+      req.on('end', function () {
+          console.log('end') 
+          const data = Buffer.concat(reqData, size);
+          console.log('data:', size, data.toString()) 
+          res.end(`formdata:${data.toString()}`)
+      });
+  }
+  ```
+
+- application/json
+
+  ```js
+  await axios.post("/api/save", {
+       a: 1,
+       b: 2
+   })
+  ```
+
+### 实战⼀个爬虫
+
+原理：服务端模拟客户端发送请求到⽬标服务器获取⻚⾯内容并解析，获取其中关注部分的数据。
+
+```js
+const originRequest = require("request");
+const cheerio = require("cheerio");
+const iconv = require("iconv-lite");
+
+function request(url, callback) {
+    const options = {
+        url: url,
+        encoding: null
+    };
+    originRequest(url, options, callback);
+}
+
+for (let i = 100553; i < 100563; i++) {
+    const url = `https://www.dy2018.com/i/${i}.html`;
+    request(url, function (err, res, body) {
+        const html = iconv.decode(body, "gb2312");
+        const $ = cheerio.load(html);
+        console.log($(".title_all h1").text());
+    });
+}
+```
+
+### 实现⼀个即时通讯IM
+
+#### Socket实现
+
+原理：Net模块提供⼀个异步API能够创建基于流的TCP服务器，客户端与服务器建⽴连接后，服务器可以获得⼀个全双⼯Socket对象，服务器可以保存Socket对象列表，在接收某客户端消息时，推送给其他客户端。
+
+```js
+// socket.js
+const net = require('net')
+const chatServer = net.createServer()
+const clientList = []
+chatServer.on('connection',client => {
+     client.write('Hi!\n')
+     clientList.push(client)
+     client.on('data',data => {
+         console.log('receive:',data.toString())
+         clientList.forEach(v => {
+            v.write(data)
+         })
+   	  })
+})
+chatServer.listen(9000)
+```
+
+通过Telnet连接服务器
+
+```
+telnet localhost 9000
+```
+
+
+
+#### Socket.IO实现
+
+- 安装： `npm install --save socket.io` 
+- 两部分：nodejs模块，客户端js
+
+```js
+// 服务端：chat-socketio.js
+var app = require('express')();
+var http = require('http').Server(app);
+var io = require('socket.io')(http);
+app.get('/', function (req, res) {
+    res.sendFile(__dirname + '/index.html');
+});
+io.on('connection', function (socket) {
+    console.log('a user connected');
+    //响应某用户发送消息  
+    socket.on('chat message', function (msg) {
+        console.log('chat message:' + msg);
+        // 广播给所有人    
+        io.emit('chat message', msg);
+        // 广播给除了发送者外所有人    
+        // socket.broadcast.emit('chat message', msg)  
+    });
+    socket.on('disconnect', function () {
+        console.log('user disconnected');
+    });
+});
+http.listen(3000, function () {
+    console.log('listening on *:3000');
+});
+```
+
+```html
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title> Socket.IO chat </title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font:
+                13px Helvetica, Arial;
+        }
+
+        form {
+            background: #000;
+            padding: 3px;
+            position: fixed;
+            bottom: 0;
+            width:
+                100%;
+        }
+
+        form input {
+            border: 0;
+            padding: 10px;
+            width: 90%;
+            margin-right: 0.5%;
+        }
+
+        form button {
+            width: 9%;
+            background: rgb(130, 224, 255);
+            border: none;
+            padding: 10px;
+        }
+
+        #messages {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        #messages li {
+            padding: 5px 10px;
+        }
+
+        #messages li:nth-child(odd) {
+            background: #eee;
+        }
+    </style>
+</head>
+
+<body>
+    <ul id="messages"></ul>
+    <form action="">
+        <input id="m" autocomplete="off" />
+        <button> Send </button> </form>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js">
+    </script>
+    <script src="http:/ / libs.baidu.com / jquery / 2.1 .1 / jquery.min.js ">
+    </script>
+    <script>
+        $(function () {
+            var socket = io();
+            $("form").submit(function (e) {
+                e.preventDefault(); // 避免表单提交行为          
+                socket.emit("chat message", $("#m").val());
+                $("#m").val("");
+                return false;
+            });
+            socket.on("chat message", function (msg) {
+                $("#messages").append($("<li>").text(msg));
+            });
+        });
+    </script>
+</body>
+
+</html>
+```
+
+> Socket.IO库特点： 
+>
+> - 源于HTML5标准 
+>
+> - ⽀持优雅降级 
+>
+>   WebSocket 
+>
+>   WebSocket over FLash 
+>
+>   XHR Polling 
+>
+>   XHR Multipart Streaming 
+>
+>   Forever Iframe 
+>
+>   JSONP Polling
+
+### Https
+
+创建证书
+
+```shell
+# 创建私钥
+openssl genrsa -out privatekey.pem 1024
+# 创建证书签名请求
+openssl req -new -key privatekey.pem -out certrequest.csr
+# 获取证书，线上证书需要经过证书授证中⼼签名的⽂件；下⾯只创建⼀个学习使⽤证书
+openssl x509 -req -in certrequest.csr -signkey privatekey.pem -out
+certificate.pem
+# 创建pfx⽂件
+openssl pkcs12 -export -in certificate.pem -inkey privatekey.pem -out
+certificate.pfx
+```
+
+## Http2
+
+多路复⽤ - 雪碧图、多域名CDN、接⼝合并
+
+- 官⽅演示 - https://http2.akamai.com/demo 
+
+  多路复⽤允许同时通过单⼀的 HTTP/2 连接发起多重的请求-响应消息；⽽HTTP/1.1协议中，浏览器客户端在同⼀时间，针对同⼀域名下的请求有⼀定数量限制。超过限制数⽬的请求会被阻塞** 
+
+- ⾸部压缩 
+
+  http/1.x 的 header 由于 cookie 和 user agent很容易膨胀，⽽且每次都要重复发送。 
+
+  http/2使⽤ encoder 来减少需要传输的 header ⼤⼩，通讯双⽅各⾃ cache⼀份header fields 表，既避免了重复 header 的传输，⼜减⼩了需要传输的⼤⼩。⾼效的压 缩算法可以很⼤的压缩 header，减少发送包的数量从⽽降低延迟 
+
+- 服务端推送 
+
+  在 HTTP/2 中，服务器可以对客户端的⼀个请求发送多个响应。举个例⼦，如果⼀个请求请求的是index.html，服务器很可能会同时响应index.html、logo.jpg 以及 css 和 js ⽂件，因为它知道客户端会⽤到这些东⻄。这相当于在⼀个 HTML ⽂档内集合了所有的资源
