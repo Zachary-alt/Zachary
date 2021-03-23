@@ -160,4 +160,18 @@ mysql2模块基本使⽤
             },
     ```
 
-    
+
+> Restful服务 
+>
+> 实践指南 http://www.ruanyifeng.com/blog/2014/05/restful_api.html 
+>
+> 原理 http://www.ruanyifeng.com/blog/2011/09/restful.html
+
+> TODO List范例 
+>
+> https://github.com/BayliSade/TodoList 
+
+关于新版本的警告问题 
+
+https://segmentfault.com/a/1190000011583806
+
