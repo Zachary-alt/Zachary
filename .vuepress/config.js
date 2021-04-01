@@ -20,6 +20,13 @@ module.exports = {
                 ]
             },
             {
+                title: '可视化',   // 必要的
+                path: '/visualization/',
+                children: [
+                    ['/git/canvas','canvas'],
+                  ]
+            },
+            {
                 title: '前端设计模式',   // 必要的
                 path: '/design/'
             },
