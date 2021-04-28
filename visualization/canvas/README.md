@@ -9,8 +9,19 @@ https://www.runoob.com/tags/ref-canvas.html
 HTML5 <canvas> 元素用于图形的绘制，通过脚本 (通常是JavaScript)来完成.
 
 <canvas> 标签只是图形容器，您必须使用脚本来绘制图形。
-
 你可以通过多种方法使用 canvas 绘制路径,盒、圆、字符以及添加图像。
+
+## canvas 主要应用的领域（了解）
+
+1. 游戏：canvas 在基于 Web 的图像显示方面比 Flash 更加立体、更加精巧，canvas 游戏在流畅度和跨平台方面更牛。
+   [25 超棒的 HTML5 Canvas 游戏](http://www.oschina.net/news/20143/top-25-best-html5-canvas-games-you-love-to-play)
+2. **可视化数据**.数据图表话，比如:[百度的 echart](http://echarts.baidu.com/)
+3. **banner 广告**：Flash 曾经辉煌的时代，智能手机还未曾出现。现在以及未来的智能机时代，HTML5 技术能够在 banner 广告上发挥巨大作用，用 Canvas 实现动态的广告效果再合适不过。
+4. 未来=> 模拟器：无论从视觉效果还是核心功能方面来说，模拟器产品可以完全由 JavaScript 来实现。
+5. 未来=> 远程计算机控制：Canvas 可以让开发者更好地实现基于 Web 的数据传输，构建一个完美的可视化控制界面。
+6. 未来=> 图形编辑器：Photoshop 图形编辑器将能够 100%基于 Web 实现。
+7. 其他可嵌入网站的内容(多用于活动页面、特效)：类似图表、音频、视频，还有许多元素能够更好地与 Web 融合，并且不需要任何插件。
+8. **完整的 canvas 移动化应用**
 
 ## 创建一个画布（Canvas）
 
@@ -60,7 +71,9 @@ canvas 的左上角坐标为 (0,0)
 - stroke() 方法来绘制线条
 
 ```js
+// 画笔移动到0,0坐标
 ctx.moveTo(0, 0);
+// 划线
 ctx.lineTo(200, 100);
 ctx.stroke();
 ```
