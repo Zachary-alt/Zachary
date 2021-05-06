@@ -523,3 +523,126 @@ ctx.fill();
 
     ctx2.drawImage(canvas1, 10, 10);    //将第一个画布整体绘制到第二个画布上
 ```
+
+## 了解：线条样式
+
+- lineCap 设置或返回线条的结束端点(线头、线冒)样式
+
+  - butt ： 默认。向线条的每个末端添加平直的边缘。
+    - 翻译.：屁股；烟头；笑柄；靶垛；粗大的一端 英 [bʌt] 美 [bʌt]
+  - round ： 向线条的每个末端添加圆形线帽。
+  - square： 向线条的每个末端添加正方形线帽。 ![img](https://malun666.github.io/aicoder_vip_doc/images/linecap.png) 
+
+- lineJoin 设置或返回两条线相交时，所创建的拐角类型
+
+  - bevel: 创建斜角。 - 翻译. 斜角；斜面；[测] 斜角规 英 ['bev(ə)l] 美 ['bɛvl]
+
+  - round: 创建圆角。 * miter: 默认。创建尖角
+
+    
+
+- lineWidth 设置或返回当前的线条宽度
+
+- miterLimit 设置或返回最大斜接长度
+
+  - 意思: 斜接 英 ['maɪtə]
+  - 斜接长度指的是在两条线交汇处内角和外角之间的距离。 * 一般用默认值：10 就可以了。除非需要特别长的尖角时，使用此属性。![img](https://malun666.github.io/aicoder_vip_doc/images/MiterLimet.png)
+
+## 了解贝塞尔曲线
+
+### 绘制一条二次方曲线。
+
+- 微软的画图板中的曲线的颜色。
+- `quadratic`：二次方的意思， 英 [kwɒ'drætɪk] 美 [kwɑ'drætɪk]
+- `Curve`：曲线的意思， 英 [kɜːv] 美 [kɝv]
+- 语法： `context.quadraticCurveTo(cpx,cpy,x,y);`
+- 参数：
+  - `cpx`： 贝塞尔控制点的 x 坐标
+  - `cpy`： 贝塞尔控制点的 y 坐标
+  - `x` ： 结束点的 x 坐标
+  - `y` ： 结束点的 y 坐标 ![img](https://malun666.github.io/aicoder_vip_doc/images/quadraticcurve.gif)
+
+```js
+    ctx.beginPath();
+    ctx.moveTo(20,20);
+    //绘制2次方曲线，贝赛尔曲线
+    ctx.quadraticCurveTo(20,100,200,20);
+    ctx.stroke();
+```
+
+### 绘制贝塞尔曲线
+
+- 绘制一条三次贝塞尔曲线
+- 语法：`context.bezierCurveTo(cp1x,cp1y,cp2x,cp2y,x,y);`
+- 提示：三次贝塞尔曲线需要三个点。前两个点是用于三次贝塞尔计算中的控制点，第三个点是曲线的结束点。曲线的开始点是当前路径中最后一个点。如果路径不存在，那么请使用 beginPath() 和 moveTo() 方法来定义开始点。
+- 参数说明：
+  - `cp1x`: 第一个贝塞尔控制点的 x 坐标
+  - `cp1y`: 第一个贝塞尔控制点的 y 坐标
+  - `cp2x`: 第二个贝塞尔控制点的 x 坐标
+  - `cp2y`: 第二个贝塞尔控制点的 y 坐标
+  - `x`: 结束点的 x 坐标
+  - `y`: 结束点的 y 坐标
+
+```js
+//绘制复杂的贝塞尔曲线
+ctx.beginPath();
+ctx.moveTo(400,400);
+//参数说明：context.bezierCurveTo(cp1x,cp1y,cp2x,cp2y,x,y);
+// cp1x： 第一个贝塞尔控制点的 x 坐标
+// cp1y： 第一个贝塞尔控制点的 y 坐标
+// cp2x： 第二个贝塞尔控制点的 x 坐标
+// cp2y： 第二个贝塞尔控制点的 y 坐标
+// x: 结束点的 x 坐标
+// y: 结束点的 y 坐标
+ctx.bezierCurveTo(500, 200, 600, 600, 700, 300);
+ctx.stroke();
+```
+
+-  ![img](https://malun666.github.io/aicoder_vip_doc/images/beziercurve.gif)
+
+## 了解创建两条切线的弧
+
+- 在画布上创建介于当前起点和两个点形成的夹角的切线之间的弧
+- 语法： `context.arcTo(x1,y1,x2,y2,r);` //类比：css3 中的圆角。
+- 例如： `ctx.arcTo(240, 100, 240, 110, 40);`
+- 参数：
+  - `x1`: 弧的端点 1 的 x 坐标
+  - `y1`: 弧的端点 1 的 y 坐标
+  - `x2`: 弧的端点 2(终点)的 x 坐标
+  - `y2`: 弧的端点 2(终点)的 y 坐标
+  - `r` : 弧的半径
+
+```js
+//代码demo：
+ctx.beginPath();
+ctx.moveTo(100,100);
+ctx.lineTo(200,100);
+//context.arcTo(x1,y1,x2,y2,r); //类比：css3中的圆角。
+ctx.arcTo(240, 100, 240, 110, 40);
+ctx.lineTo(240, 300);
+ctx.stroke();Copy to clipboardErrorCopied
+```
+
+![img](https://malun666.github.io/aicoder_vip_doc/images/canvas-arcto-1.png)
+
+## 了解判断点是否在路径中
+
+
+```js
+context.isPointInPath(x,y);
+//isPointInPath() 方法返回 true，如果指定的点位于当前路径中；否则返回 false。
+//判断x,y坐标的点是否在当前的路径中。
+```
+
+## 了解文本宽度计算
+
+```markup
+`context.measureText(text).width;`Copy to clipboardErrorCopied
+```
+
+## 如果以后做 canvas 游戏方向开发深入学习可以扩展内以下容：
+
+- setTransform() 将当前转换重置为单位矩阵。然后运行 transform()
+- transform() 替换绘图的当前转换矩阵
+- globalCompositeOperation 设置或返回新图像如何绘制到已有的图像上
+- 像素操作
