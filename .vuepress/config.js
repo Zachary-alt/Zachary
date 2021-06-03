@@ -8,7 +8,7 @@ module.exports = {
         nav: [
             { text: '首页', link: './' },
             { text: '最新', link: './guide/' },
-            { text: 'github', link: 'https://github.com/DavidZhao0618' },
+            { text: 'github', link: 'https://github.com/Zachary-alt' },
         ],
         sidebar:[
             {
@@ -18,17 +18,6 @@ module.exports = {
                   ['/git/base','git干货'],
                   ['/git/commitizen','git-commit规范']
                 ]
-            },
-            {
-                title: '可视化',   // 必要的
-                path: '/visualization/',
-                children: [
-                    ['/git/canvas','canvas'],
-                  ]
-            },
-            {
-                title: '前端设计模式',   // 必要的
-                path: '/design/'
             },
             {
                 title: 'Vue',   // 必要的
@@ -55,6 +44,25 @@ module.exports = {
                 path: '/reactNative/',      // 可选的, 标题的跳转链接，应为绝对路径且必须存在
             },
             {
+                title: '可视化',   // 必要的
+                path: '/visualization/',
+                children: [
+                    ['/git/canvas','canvas'],
+                  ]
+            },
+            {
+                title: '微前端',
+                path: '/microFrontend/'
+            },
+            {
+                title: '前端设计模式',   // 必要的
+                path: '/design/'
+            },
+            {
+                title: '前端算法和数据结构',   // 必要的
+                path: '/algorithm/'
+            },
+            {
                 title: 'Node',   // 必要的
                 path: '/node/',      // 可选的, 标题的跳转链接，应为绝对路径且必须存在
                 children: [
@@ -62,10 +70,6 @@ module.exports = {
                   ['/node/mySql','mySql'],
                   ['/node/mongodb','mongodb'],
                 ]
-            },
-            {
-                title: '前端算法和数据结构',   // 必要的
-                path: '/algorithm/'
             },
             {
                 title: 'Docker',   // 必要的
