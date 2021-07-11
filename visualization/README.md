@@ -6,9 +6,9 @@ https://www.runoob.com/tags/ref-canvas.html
 
 ## 什么是 canvas?
 
-HTML5 <canvas> 元素用于图形的绘制，通过脚本 (通常是JavaScript)来完成.
+HTML5 `<canvas>` 元素用于图形的绘制，通过脚本 (通常是JavaScript)来完成.
 
-<canvas> 标签只是图形容器，您必须使用脚本来绘制图形。
+`<canvas>` 标签只是图形容器，您必须使用脚本来绘制图形。
 你可以通过多种方法使用 canvas 绘制路径,盒、圆、字符以及添加图像。
 
 ## canvas 主要应用的领域（了解）
@@ -25,11 +25,11 @@ HTML5 <canvas> 元素用于图形的绘制，通过脚本 (通常是JavaScript)�
 
 ## 创建一个画布（Canvas）
 
-一个画布在网页中是一个矩形框，通过 <canvas> 元素来绘制.
+一个画布在网页中是一个矩形框，通过 `<canvas>` 元素来绘制.
 
-**注意:** 默认情况下 <canvas> 元素没有边框和内容。
+**注意:** 默认情况下 `<canvas>` 元素没有边框和内容。
 
-<canvas>简单实例如下:
+`<canvas>`简单实例如下:
 
 ```html
 <canvas id="myCanvas" width="200" height="100" style="border:1px solid #000000;"></canvas>
@@ -37,7 +37,7 @@ HTML5 <canvas> 元素用于图形的绘制，通过脚本 (通常是JavaScript)�
 
 **注意:** 标签通常需要指定一个id属性 (脚本中经常引用), width 和 height 属性定义的画布的大小.
 
-**提示:**你可以在HTML页面中使用多个 <canvas> 元素.
+**提示:**你可以在HTML页面中使用多个 `<canvas>` 元素.
 
 ## 使用 JavaScript 来绘制图像
 

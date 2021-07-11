@@ -7,7 +7,21 @@ module.exports = {
         logo: '/assets/img/logo.jpg',
         nav: [
             { text: '首页', link: './' },
-            { text: '最新', link: './guide/' },
+            { text: '最新', link: '/guide/' },
+            { 
+                text: 'babel', 
+                link: '/babel/',
+                items: [
+                    { text: '概览', link: '/babel/' },
+                    { text: '集成', link: '/babel/integration/' },
+                    { text: 'Presets', link: '/babel/presets/' },
+                    { text: '工具', link: '/babel/tools/' },
+                    { text: 'Babel 用户手册', link: '/babel/user/' },
+                    { text: 'Babel 插件手册', link: '/babel/plugin/' },
+                ]
+            },
+            {text: '前端设计模式',link: '/design/'},
+            {text: '前端算法和数据结构', link: '/algorithm/'},
             { text: 'github', link: 'https://github.com/Zachary-alt' },
         ],
         sidebar:[
@@ -15,10 +29,9 @@ module.exports = {
                 title: 'Git',   // 必要的
                 path: '/git/',      // 可选的, 标题的跳转链接，应为绝对路径且必须存在
                 children: [
-                  ['/git/base','git干货'],
                   ['/git/commitizen','git-commit规范']
                 ]
-            },
+            }, 
             {
                 title: 'Vue',   // 必要的
                 path: '/vue/',      // 可选的, 标题的跳转链接，应为绝对路径且必须存在
@@ -47,20 +60,13 @@ module.exports = {
                 title: '可视化',   // 必要的
                 path: '/visualization/',
                 children: [
-                    ['/git/canvas','canvas'],
+                    ['/visualization/canvas','canvas'],
+                    ['/visualization/konva','konva'],
                   ]
             },
             {
                 title: '微前端',
                 path: '/microFrontend/'
-            },
-            {
-                title: '前端设计模式',   // 必要的
-                path: '/design/'
-            },
-            {
-                title: '前端算法和数据结构',   // 必要的
-                path: '/algorithm/'
             },
             {
                 title: 'Node',   // 必要的
