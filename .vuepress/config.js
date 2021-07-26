@@ -84,6 +84,8 @@ module.exports = {
                   ['/docker/mysql','搭建mysql服务'],
                 ]
             },
-        ]
+        ],
+        // sidebar:'auto',
+        displayAllHeaders: true
     }
 }
