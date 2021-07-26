@@ -119,6 +119,8 @@ class ConsoleLogOnBuildWebpackPlugin {
 
 compiler hook 的 tap 方法的第一个参数，应该是驼峰式命名的插件名称。建议为此使用一个常量，以便它可以在所有 hook 中复用。
 
+### [编写一个插件](https://www.webpackjs.com/contribute/writing-a-plugin/)
+
 ## 模式(mode)
 
 提供 `mode` 配置选项，告知 webpack 使用相应模式的内置优化。
@@ -172,3 +174,13 @@ webpack --mode=production
 ## [缓存](https://www.webpackjs.com/guides/caching/)
 
 此指南的重点在于通过必要的配置，以确保 webpack 编译生成的文件能够被客户端缓存，而在文件内容变化后，能够请求到新的文件。
+
+## [shimming](https://www.webpackjs.com/guides/shimming/)
+
+`webpack` 编译器(compiler)能够识别遵循 ES2015 模块语法、CommonJS 或 AMD 规范编写的模块。然而，一些第三方的库(library)可能会引用一些全局依赖（例如 `jQuery` 中的 `$`）。这些库也可能创建一些需要被导出的全局变量。这些“不符合规范的模块”就是 *shimming* 发挥作用的地方。
+
+*shimming* 另外一个使用场景就是，当你希望 [polyfill](https://en.wikipedia.org/wiki/Polyfill) 浏览器功能以支持更多用户时。在这种情况下，你可能只想要将这些 polyfills 提供给到需要修补(patch)的浏览器（也就是实现按需加载）。
+
+## [渐进式网络应用程序](https://www.webpackjs.com/guides/progressive-web-application/)
+
+渐进式网络应用程序(Progressive Web Application - PWA)，是一种可以提供类似于原生应用程序(native app)体验的网络应用程序(web app)。PWA 可以用来做很多事。其中最重要的是，在**离线(offline)**时应用程序能够继续运行功能。这是通过使用名为 [Service Workers](https://developers.google.com/web/fundamentals/primers/service-workers/) 的网络技术来实现的。
