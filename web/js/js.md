@@ -99,6 +99,140 @@ test(2);
 
 > **但栈内存的释放也有特殊情况：① 函数执行完，但是函数的私有作用域内有内容被栈外的变量还在使用的，栈内存就不能释放里面的基本值也就不会被释放。② 全局下的栈内存只有页面被关闭的时候才会被释放**
 
+## 堆，栈、队列
+
+
+
+![img](https://user-gold-cdn.xitu.io/2019/1/17/16859c984806c78d?imageView2/0/w/1280/h/960/format/webp/ignore-error/1)
+
+
+
+### 堆（Heap）
+
+**堆**是一种数据结构，是利用完全二叉树维护的一组数据，**堆**分为两种，一种为最大**堆**，一种为**最小堆**，将根节点**最大**的**堆**叫做**最大堆**或**大根堆**，根节点**最小**的**堆**叫做**最小堆**或**小根堆**。
+ **堆**是**线性数据结构**，相当于**一维数组**，有唯一后继。
+
+如最大堆
+
+
+
+![img](https://user-gold-cdn.xitu.io/2019/1/17/16859dbb5b9c7ca1?imageView2/0/w/1280/h/960/format/webp/ignore-error/1)
+
+
+
+### 栈（Stack）
+
+**栈**在计算机科学中是限定仅在**表尾**进行**插入**或**删除**操作的线性表。  **栈**是一种数据结构，它按照**后进先出**的原则存储数据，**先进入**的数据被压入**栈底**，**最后的数据**在**栈顶**，需要读数据的时候从**栈顶**开始**弹出数据**。
+ **栈**是只能在**某一端插入**和**删除**的**特殊线性表**。
+
+
+
+![img](https://user-gold-cdn.xitu.io/2019/1/17/16859ed4f6143043?imageView2/0/w/1280/h/960/format/webp/ignore-error/1)
+
+
+
+### 队列（Queue）
+
+特殊之处在于它只允许在表的前端（`front`）进行**删除**操作，而在表的后端（`rear`）进行**插入**操作，和**栈**一样，**队列**是一种操作受限制的线性表。
+ 进行**插入**操作的端称为**队尾**，进行**删除**操作的端称为**队头**。  队列中没有元素时，称为**空队列**。
+
+**队列**的数据元素又称为**队列元素**。在队列中插入一个队列元素称为**入队**，从**队列**中**删除**一个队列元素称为**出队**。因为队列**只允许**在一端**插入**，在另一端**删除**，所以只有**最早**进入**队列**的元素**才能最先从队列中**删除，故队列又称为**先进先出**（`FIFO—first in first out`）
+
+
+
+![img](https://user-gold-cdn.xitu.io/2019/1/17/16859f2f4f5da2a8?imageView2/0/w/1280/h/960/format/webp/ignore-error/1)
+
+
+
+## Event Loop
+
+`Event Loop`即事件循环，是指浏览器或`Node`的一种解决`javaScript`单线程运行时不会阻塞的一种机制，也就是我们经常使用**异步**的原理。
+
+在`JavaScript`中，任务被分为两种，一种宏任务（`MacroTask`）也叫`Task`，一种叫微任务（`MicroTask`）。
+
+### MacroTask（宏任务）
+
+- `script`全部代码、`setTimeout`、`setInterval`、`setImmediate`（浏览器暂时不支持，只有IE10支持，具体可见[`MDN`](https://developer.mozilla.org/zh-CN/docs/Web/API/Window/setImmediate)）、`I/O`、`UI Rendering`。
+
+### MicroTask（微任务）
+
+- `Process.nextTick（Node独有）`、`Promise`、`Object.observe(废弃)`、`MutationObserver`（具体使用方式查看[这里](http://javascript.ruanyifeng.com/dom/mutationobserver.html)）
+
+## 浏览器中的Event Loop
+
+`Javascript` 有一个 `main thread` 主线程和 `call-stack` 调用栈(执行栈)，所有的任务都会被放到调用栈等待主线程执行。
+
+### JS调用栈
+
+JS调用栈采用的是后进先出的规则，当函数执行的时候，会被添加到栈的顶部，当执行栈执行完成后，就会从栈顶移出，直到栈内被清空。
+
+### 同步任务和异步任务
+
+`Javascript`单线程任务被分为**同步任务**和**异步任务**，同步任务会在调用栈中按照顺序等待主线程依次执行，异步任务会在异步任务有了结果后，将注册的回调函数放入任务队列中等待主线程空闲的时候（调用栈被清空），被读取到栈内等待主线程的执行。
+
+
+
+![img](https://user-gold-cdn.xitu.io/2019/1/18/1685f03d7f88792b?imageView2/0/w/1280/h/960/format/webp/ignore-error/1)
+
+ 任务队列`Task Queue`
+
+
+
+
+
+![img](https://user-gold-cdn.xitu.io/2019/1/18/1685f037d48da0de?imageView2/0/w/1280/h/960/format/webp/ignore-error/1)
+
+导图要表达的内容用文字来表述的话：
+
+- 同步和异步任务分别进入不同的执行"场所"，同步的进入主线程，异步的进入Event Table并注册函数。
+- 当指定的事情完成时，Event Table会将这个函数移入Event Queue。
+- 主线程内的任务执行完毕为空，会去Event Queue读取对应的函数，进入主线程执行。
+- 上述过程会不断重复，也就是常说的Event Loop(事件循环)。
+
+### 执行进入microtask检查点时，用户代理会执行以下步骤：
+
+- 设置microtask检查点标志为true。
+- 当事件循环`microtask`执行不为空时：选择一个最先进入的`microtask`队列的`microtask`，将事件循环的`microtask`设置为已选择的`microtask`，运行`microtask`，将已经执行完成的`microtask`为`null`，移出`microtask`中的`microtask`。
+- 清理IndexDB事务
+- 设置进入microtask检查点的标志为false。
+
+上述可能不太好理解，下图是我做的一张图片。
+
+
+
+![img](https://user-gold-cdn.xitu.io/2019/1/18/1686078c7a2f63e5?imageslim)
+
+
+
+执行栈在执行完**同步任务**后，查看**执行栈**是否为空，如果执行栈为空，就会去检查**微任务**(`microTask`)队列是否为空，如果为空的话，就执行`Task`（宏任务），否则就一次性执行完所有微任务。
+ 每次单个**宏任务**执行完毕后，检查**微任务**(`microTask`)队列是否为空，如果不为空的话，会按照**先入先**出的规则全部执行完**微任务**(`microTask`)后，设置**微任务**(`microTask`)队列为`null`，然后再执行**宏任务**，如此循环。
+
+### 举个例子
+
+```js
+console.log('script start');
+
+setTimeout(function() {
+  console.log('setTimeout');
+}, 0);
+
+Promise.resolve().then(function() {
+  console.log('promise1');
+}).then(function() {
+  console.log('promise2');
+});
+console.log('script end');
+```
+
+以上执行帧动画可以查看[Tasks, microtasks, queues and schedules](https://jakearchibald.com/2015/tasks-microtasks-queues-and-schedules/)
+或许这张图也更好理解些。
+
+
+
+![img](https://user-gold-cdn.xitu.io/2019/1/18/16860ae5ad02f993?imageslim)
+
+## [NodeJS的Event Loop](https://juejin.cn/post/6844903764202094606#heading-25)
+
 ## [闭包](https://www.w3school.com.cn/js/pro_js_functions_closures.asp)
 
 > 了解闭包前先来了解一下上级作用域和堆栈内存释放问题。
