@@ -20,7 +20,26 @@ O的概念，来描述算法的复杂度，简⽽⾔之，就是算法执⾏所�
 
 `O(n!)` : 阶乘
 
-<img src="../.vuepress/public/assets/img/algorithm/1.png" alt="1604728604168" style="zoom:80%;" />
+<img src="../.vuepress/public/assets/img/algorithm/algorithm.png" alt="1604728604168" style="zoom:80%;" />
+
+##### 名词解释：
+
+n: 数据规模
+k:“桶”的个数
+In-place: 占用常数内存，不占用额外内存
+Out-place: 占用额外内存
+稳定性：排序后2个相等键值的顺序和排序之前它们的顺序相同
+
+（1）对于评述算法优劣术语的说明
+
+稳定：如果a原本在b前面，而a=b，排序之后a仍然在b的前面；
+不稳定：如果a原本在b的前面，而a=b，排序之后a可能会出现在b的后面；
+
+内排序：所有排序操作都在内存中完成；
+外排序：由于数据太大，因此把数据放在磁盘中，而排序通过磁盘和内存的数据传输才能进行；
+
+时间复杂度: 一个算法执行所耗费的时间。
+空间复杂度: 运行完一个程序所需内存的大小。
 
 ### 稳定性
 
@@ -30,9 +49,11 @@ O的概念，来描述算法的复杂度，简⽽⾔之，就是算法执⾏所�
 
 搜索和排序，是计算机的⼏个基本问题
 
-#### 冒泡
+### **冒泡排序（Bubble Sort）**
 
 最经典和简单粗暴的排序算法，简⽽⾔之，就是挨个对⽐，如果⽐右边的数字⼤，就交换位置 遍历⼀次，最⼤的在最右边，重复步骤，完成排序
+
+<img src="../.vuepress/public/assets/img/algorithm/冒泡.gif" alt="1604728604168" style="zoom:80%;" />
 
 ```js
 function bubleSort(arr) {
@@ -49,13 +70,50 @@ function bubleSort(arr) {
 console.log(bubleSort([4, 3, 6, 1, 9, 6, 2]))
 ```
 
-问题：冒泡复杂度和稳定性如何 
+##### 什么时候最快（Best Cases）：
+
+当输入的数据已经是正序时
+
+##### 什么时候最慢（Worst Cases）：
+
+当输入的数据是反序时
 
 n^2 空间 1 稳定
 
-#### 插⼊
+### 选择排序（Selection Sort）
+
+在时间复杂度上表现最稳定的排序算法之一，因为无论什么数据进去都是O(n²)的时间复杂度。。。所以用到它的时候，数据规模越小越好。唯一的好处可能就是不占用额外的内存空间了吧。
+
+<img src="../.vuepress/public/assets/img/algorithm/选择排序.gif" alt="1604728604168" style="zoom:80%;" />
+
+首先在未排序序列中找到最小（大）元素，存放到排序序列的起始位置，然后，再从剩余未排序元素中继续寻找最小（大）元素，然后放到已排序序列的末尾。
+
+```js
+function selectionSort(arr) {
+  let minIndex, temp;
+  for (let i = 0; i < arr.length - 1; i++) {
+    minIndex = i;
+    for (let j = i + 1; j < arr.length; j++) {
+      if (arr[i] < arr[j]) {
+        minIndex = i;
+      }
+    }
+    temp = arr[i];
+    arr[i] = arr[minIndex];
+    arr[minIndex] = temp;
+  }
+  return arr;
+}
+console.log("选择排序:", selectionSort(arr));
+```
+
+### **插入排序（Insertion Sort）**
 
 插⼊排序逻辑和冒泡类似，只不过没采⽤挨个交换的逻辑，⽽是在⼀个已经排好序的数组⾥，插⼊⼀个元素，让它依然是有序的
+
+插入排序的代码实现虽然没有冒泡排序和选择排序那么简单粗暴，但它的原理应该是最容易理解的了，因为只要打过扑克牌的人都应该能够秒懂。
+
+<img src="../.vuepress/public/assets/img/algorithm/插入排序.gif" alt="1604728604168" style="zoom:80%;" />
 
 ```js
 function insertSort(arr) {
@@ -75,9 +133,87 @@ console.log(insertSort([11, 4, 3, 6, 1, 9, 7, 2, 0]))
 
 n^2 空间 1 稳定
 
+### 希尔排序（Shell Sort）
+
+希尔排序是插入排序的一种更高效率的实现。它与插入排序的不同之处在于，它会优先比较距离较远的元素。希尔排序的核心在于间隔序列的设定。既可以提前设定好间隔序列，也可以动态的定义间隔序列。动态定义间隔序列的算法是《算法（第4版》的合著者Robert Sedgewick提出的。
+
+希尔排序是插入排序的一种更高效率的实现。它与插入排序的不同之处在于，它会优先比较距离较远的元素。
+
+```js
+function shellSort(arr) {
+  let len = arr.length,
+    temp,
+    gap = 1;
+  while (gap < len / 3) {
+    //动态定义间隔序列
+    gap = gap * 3 + 1;
+  }
+  for (gap; gap > 0; gap = Math.floor(gap / 3)) {
+    for (let i = gap; i < len; i++) {
+      temp = arr[i];
+      for (var j = i - gap; j >= 0 && arr[j] > temp; j -= gap) {
+        arr[j + gap] = arr[j];
+      }
+      arr[j + gap] = temp;
+    }
+  }
+  return arr;
+}
+console.log("希尔排序:", shellSort(arr));
+```
+
+先将整个待排序的记录序列分割成为若干子序列分别进行直接插入排序。
+
+### **归并排序（Merge Sort）**
+
+作为一种典型的分而治之思想的算法应用，归并排序的实现由两种方法：
+
+1. 自上而下的递归（所有递归的方法都可以用迭代重写，所以就有了第2种方法）
+2. 自下而上的迭代
+
+和选择排序一样，归并排序的性能不受输入数据的影响，但表现比选择排序好的多，因为始终都是O(n log n）的时间复杂度。代价是需要额外的内存空间。
+
+<img src="../.vuepress/public/assets/img/algorithm/归并排序.gif" alt="1604728604168" style="zoom:80%;" />
+
+解析:归并排序是一种稳定的排序方法。将已有序的子序列合并，得到完全有序的序列；即先使每个子序列有序，再使子序列段间有序。
+
+```js
+function mergeSort(arr) {
+  let len = arr.length;
+  if (len < 2) return arr;
+  let middle = Math.floor(len / 2),
+    left = arr.slice(0, middle),
+    right = arr.slice(middle);
+  return merge(mergeSort(left), mergeSort(right));
+}
+function merge(left, right) {
+  let result = [];
+  while (left.length && right.length) {
+    if (left[0] <= right[0]) {
+      result.push(left.shift());
+    } else {
+      result.push(right.shift());
+    }
+  }
+  while (left.length) {
+    result.push(left.shift());
+  }
+  while (right.length) {
+    result.push(right.shift());
+  }
+  return result;
+}
+console.log("归并排序:", mergeSort(arr));
+```
+
 #### 快速排序
 
-这个逼格略⾼，使⽤了⼆分的思想。可以算最重要的排序算法了 
+这个逼格略高，使⽤了⼆分的思想。是一种分而治之思想在排序算法上的典型应用。本质上来看，快速排序应该算是在冒泡排序基础上的递归分治法。
+快速排序的名字起的是简单粗暴，因为一听到这个名字你就知道它存在的意义，就是快，而且效率高! 它是处理大数据最快的排序算法之一了。虽然Worst Case的时间复杂度达到了O(n²)，但是人家就是优秀，在大多数情况下都比平均时间复杂度为O(n log n) 的排序算法表现要更好，可是这是为什么呢，我也不知道。。。好在我的强迫症又犯了，查了N多资料终于在《算法艺术与信息学竞赛》上找到了满意的答案：
+
+快速排序的最坏运行情况是O(n²)，比如说顺序数列的快排。但它的平摊期望时间是O(n log n) ，且O(n log n)记号中隐含的常数因子很小，比复杂度稳定等于O(n log n)的归并排序要小很多。所以，对绝大多数顺序性较弱的随机数列而言，快速排序总是优于归并排序。
+
+<img src="../.vuepress/public/assets/img/algorithm/快速排序.gif" alt="1604728604168" style="zoom:80%;" />
 
 ⼤概就是找⼀个标志位，先遍历⼀次，所有个头⽐他矮的，都站左边，⽐他个头⾼的，都站右边，遍历⼀次，就把数组分成两部分，然后两遍的数组，递归执⾏相同的逻辑
 
@@ -100,7 +236,7 @@ function quickSort(arr) {
 }
 ```
 
-上⾯⽅便理解，额外占⽤空间, 原地快拍
+上⾯⽅便理解，额外占⽤空间, 原地快排
 
 ```js
 // 原地版
@@ -129,21 +265,199 @@ console.log(quickSort1([11, 4, 3, 6, 1, 9, 7, 2, 0]))
 
 n*logn 空间 不稳定
 
-其他排序算法还有很多，桶排序，堆排序等，还有⼀个容易挨揍的排序
+### **堆排序（Heap Sort）**
+
+堆排序可以说是一种利用堆的概念来排序的选择排序。分为两种方法：
+
+1. 大顶堆：每个节点的值都大于或等于其子节点的值，在堆排序算法中用于升序排列
+2. 小顶堆：每个节点的值都小于或等于其子节点的值，在堆排序算法中用于降序排列
+
+<img src="../.vuepress/public/assets/img/algorithm/堆排序.gif" alt="1604728604168" style="zoom:80%;" />
 
 ```js
-const list = [11, 4, 3, 6, 1, 9, 7, 2, 0]
-const newList = []
-list.forEach(item => {
-    setTimeout(function () {
-        newList.push(item)
-        if (newList.length === list.length) {
-            console.log(newList)
-        }
-    }, item * 100)
-})
+let len; //因为声明的多个函数都需要数据长度，所以把len设置成为全局变量
+function buildMaxHeap(arr) {
+  // 建立大顶堆
+  len = arr.length;
+  for (let i = Math.floor(len / 2); i >= 0; i--) {
+    // 遍历二叉树
+    heapify(arr, i);
+  }
+}
+function heapify(arr, i) {
+  // 堆调整
+  // 对于结点 i ，其子结点为 2i+1 与 2i+2 。
+  let left = 2 * i + 1,
+    right = 2 * i + 2,
+    largest = i;
+  if (left < len && arr[left] > arr[largest]) {
+    largest = left;
+  }
+  if (right < len && arr[right] > arr[largest]) {
+    largest = right;
+  }
+  if (largest != i) {
+    swap(arr, i, largest);
+    heapify(arr, largest);
+  }
+}
+function swap(arr, i, j) {
+  let temp = arr[i];
+  arr[i] = arr[j];
+  arr[j] = temp;
+}
+function heapSort(arr) {
+  buildMaxHeap(arr);
+  for (let i = arr.length - 1; i > 0; i--) {
+    swap(arr, 0, i); // 将顶堆(根节点)与最后一个结点交换
+    len--; // 最后一个不去比较
+    heapify(arr, 0); // 除最后一个最大值，其他重新排序
+  }
+  return arr;
+}
+console.log("堆排序:", heapSort(arr));
 ```
-<img src="../.vuepress/public/assets/img/algorithm/2.png" alt="1604728604168" style="zoom:80%;" />
+
+### 计数排序（Counting Sort）
+
+计数排序的核心在于将输入的数据值转化为键存储在额外开辟的数组空间中。
+作为一种线性时间复杂度的排序，计数排序要求输入的数据必须是有确定范围的整数。
+
+<img src="../.vuepress/public/assets/img/algorithm/计数排序.gif" alt="1604728604168" style="zoom:80%;" />
+
+解析:计数排序使用一个额外的数组C，其中第i个元素是待排序数组A中值等于i的元素的个数。然后根据数组C来将A中的元素排到正确的位置。它只能对整数进行排序。
+
+```js
+function countingSort(arr) {
+  let max = Math.max.apply(Math, arr);
+  let len = arr.length,
+    oArr = [],
+    C = [];
+  for (let i = 0; i <= max; i++) {
+    C[i] = 0;
+  }
+  // 遍历输入数组，填充C
+  for (let j = 0; j < len; j++) {
+    C[arr[j]]++;
+  }
+  // 遍历C，输出数组
+  for (let k = 0; k <= max; k++) {
+    // 按顺序将值推入输出数组，并在比较后将对应标志位减1
+    while (C[k]-- > 0) {
+      oArr.push(k);
+    }
+  }
+  return oArr;
+}
+console.log("计数排序:", countingSort(arr));
+```
+
+### **桶排序（Bucket Sort）**
+
+桶排序是计数排序的升级版。它利用了函数的映射关系，高效与否的关键就在于这个映射函数的确定。
+为了使桶排序更加高效，我们需要做到这两点：
+
+1. 在额外空间充足的情况下，尽量增大桶的数量
+2. 使用的映射函数能够将输入的N个数据均匀的分配到K个桶中
+
+同时，对于桶中元素的排序，选择何种比较排序算法对于性能的影响至关重要。
+
+##### 什么时候最快（Best Cases）：
+
+当输入的数据可以均匀的分配到每一个桶中
+
+##### 什么时候最慢（Worst Cases）：
+
+当输入的数据被分配到了同一个桶中
+
+```js
+function bucketSort(arr, bucketSize = 5) {
+  // bucketSize 桶的长度
+  if (arr.length === 0) {
+    return arr;
+  }
+  let i;
+  let minValue = arr[0];
+  let maxValue = arr[0];
+  for (i = 1; i < arr.length; i++) {
+    if (arr[i] < minValue) {
+      minValue = arr[i]; // 输入数据的最小值
+    } else if (arr[i] > maxValue) {
+      maxValue = arr[i]; // 输入数据的最大值
+    }
+  }
+  //桶的初始化
+  let bucketCount = Math.floor((maxValue - minValue) / bucketSize) + 1; // 桶的数量
+  let buckets = new Array(bucketCount);
+  for (i = 0; i < buckets.length; i++) {
+    buckets[i] = [];
+  }
+  //利用映射函数将数据 分层次分配到各个桶中
+  for (i = 0; i < arr.length; i++) {
+    buckets[Math.floor((arr[i] - minValue) / bucketSize)].push(arr[i]);
+  }
+  arr.length = 0; // 清空
+  for (i = 0; i < buckets.length; i++) {
+    insertionSort(buckets[i]); //对每个桶进行排序，这里使用了插入排序
+    for (let j = 0; j < buckets[i].length; j++) {
+      arr.push(buckets[i][j]);
+    }
+  }
+  return arr;
+}
+console.log("桶排序:", bucketSort(arr));
+```
+
+### **基数排序（Radix Sort）**
+
+基数排序有两种方法：
+
+1. MSD 从高位开始进行排序
+2. LSD 从低位开始进行排序
+
+##### 基数排序 vs 计数排序 vs 桶排序
+
+这三种排序算法都利用了桶的概念，但对桶的使用方法上有明显差异：
+基数排序：根据键值的每位数字来分配桶
+计数排序：每个桶只存储单一键值
+桶排序：每个桶存储一定范围的数值
+
+<img src="../.vuepress/public/assets/img/algorithm/基数排序.gif" alt="1604728604168" style="zoom:80%;" />
+
+```js
+function radixSort(arr, maxDigit) {
+  let counter = [];
+  let mod = 10;
+  let dev = 1;
+  for (let i = 0; i < maxDigit; i++, dev *= 10, mod *= 10) {
+    for (let j = 0; j < arr.length; j++) {
+      // 从个位开始，得到数组中每个数的每一位并保存在 bucket 变量中
+      // bucket 变量的值可能为 0 1 2 3 4 5 6 7 8 9
+      // 与之对应的 counter[bucket] 容器为 0 1 2 3 4 5 6 7 8 9
+      var bucket = parseInt((arr[j] % mod) / dev);
+      if (counter[bucket] == null) {
+        counter[bucket] = [];
+      }
+      // 现在把这个 bucket 变量的值插入对应的 counter[bucket] 容器的尾部
+      counter[bucket].push(arr[j]);
+    }
+    // console.log(i, counter);
+
+    let pos = 0;
+    for (let j = 0; j < counter.length; j++) {
+      // 定义一个变量 value 用于保存conter[j].shift
+      let value = null;
+      if (counter[j] != null) {
+        while ((value = counter[j].shift()) != null) {
+          arr[pos++] = value;
+        }
+      }
+    }
+  }
+  return arr;
+}
+console.log("基数排序:", radixSort(arr, 3));
+```
 
 ### 递归
 
@@ -530,7 +844,9 @@ console.log(table.get('name'))
 哈希的问题也很明显，⽐如两个数的hash值⼀样的时候，会发⽣碰撞，可以⽤存储链表的⽅式来解决(重复的值存在链表⾥) 这些V8帮我们处理的很好了
 
 #### 树
-<img src="../.vuepress/public/assets/img/algorithm/5.png" alt="1604728604168" style="zoom:80%;" />
+
+
+![img](http://c.biancheng.net/uploads/allimg/190427/0944301493-0.png)
 
 我们浏览器的dom 就是经典的树结构 
 
