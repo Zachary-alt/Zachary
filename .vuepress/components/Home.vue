@@ -17,11 +17,11 @@ export default {
                     children:[
                         {
                             title:'html',
-                            path:'/web/html/'
+                            path:'/web/html'
                         },
                         {
                             title:'css',
-                            path:'/web/css/'
+                            path:'/web/css'
                         },
                         {
                             title:'js',
