@@ -1,0 +1,207 @@
+<template>
+  <div class="home">
+      <homeTree :list="list"></homeTree>
+  </div>
+</template>
+
+<script>
+import homeTree from './home-tree.vue'
+export default {
+    components:{homeTree},
+    data(){
+        return {
+            list:[
+                {
+                    title:'Web',
+                    item:true,
+                    children:[
+                        {
+                            title:'html',
+                            path:'/web/html/'
+                        },
+                        {
+                            title:'css',
+                            path:'/web/css/'
+                        },
+                        {
+                            title:'js',
+                            children:[
+                                {
+                                    title:'JavaScript运行机制',
+                                    path:'/web/js/js'
+                                },
+                                {
+                                    title:'类型转换',
+                                    path:'/web/js/typeChange'
+                                },
+                                {
+                                    title:'原型/原型链',
+                                    path:'/web/js/prototype'
+                                },
+                                {
+                                    title:'浅拷贝与深拷贝',
+                                    path:'/web/js/clone'
+                                },
+                                {
+                                    title:'防抖节流',
+                                    path:'/web/js/debounce'
+                                },
+                                {
+                                    title:'正则',
+                                    path:'/web/js/reg'
+                                },
+                                {
+                                    title:'跨域',
+                                    path:'/web/js/cors'
+                                },
+                                {
+                                    title:'设计模式',
+                                    path:'/web/js/design'
+                                },
+                            ]
+                        },
+                    ]
+                },
+                {
+                    title:'Vue',
+                    item:true,
+                    children:[
+                        {
+                            title:'Vue干货',
+                            path:'/vue/base'
+                        },
+                        {
+                            title:'源码解析',
+                            path:'/vue/source'
+                        },
+                        {
+                            title:'补充',
+                            path:'/vue/other'
+                        },
+                    ]
+                },
+                {
+                    title:'React',
+                    item:true,
+                    children:[
+                        {
+                            title:'React干货',
+                            path:'/react/base'
+                        },
+                        {
+                            title:'组件化',
+                            path:'/react/component'
+                        },
+                        {
+                            title:'Redux',
+                            path:'/react/redux'
+                        },
+                        {
+                            title:'路由',
+                            path:'/react/router'
+                        },
+                        {
+                            title:'redux-saga',
+                            path:'/react/umi'
+                        },
+                    ]
+                },
+                {
+                    title:'ReactNative',
+                    item:true,
+                    children:[
+                        {
+                            title:'ReactNative 入门',
+                            path:'/reactNative/'
+                        }
+                    ]
+                },
+                {
+                    title:'Git',
+                    item:true,
+                    children:[
+                        {
+                            title:'Git干货',
+                            path:'/git/'
+                        },
+                        {
+                            title:'git-commit规范',
+                            path:'/git/commitizen'
+                        }
+                    ]
+                },
+                {
+                    title:'可视化',
+                    item:true,
+                    children:[
+                        {
+                            title:'canvas简介',
+                            path:'/visualization/'
+                        },
+                        {
+                            title:'Canvas干货',
+                            path:'/visualization/canvas'
+                        },
+                        {
+                            title:'konva',
+                            path:'/visualization/konva'
+                        }
+                    ]
+                },
+                {
+                    title:'微前端',
+                    item:true,
+                    children:[
+                        {
+                            title:'微前端入坑指南',
+                            path:'/microFrontend/'
+                        }
+                    ]
+                },
+                {
+                    title:'Node',
+                    item:true,
+                    children:[
+                        {
+                            title:'Node简介',
+                            path:'/node/'
+                        },
+                        {
+                            title:'网络编程',
+                            path:'/node/http'
+                        },
+                        {
+                            title:'数据持久化 - MySQL',
+                            path:'/node/mySql'
+                        },
+                        {
+                            title:'数据持久化 - mongodb',
+                            path:'/node/mongodb'
+                        },
+                    ]
+                },
+                {
+                    title:'Docker',
+                    item:true,
+                    children:[
+                        {
+                            title:'Docker 入门教程',
+                            path:'/docker/'
+                        },
+                        {
+                            title:'docker-mysql',
+                            path:'/docker/mysql'
+                        }
+                    ]
+                },
+            ]
+        }
+    }
+}
+</script>
+
+<style>
+.home{
+    width: 100%;
+}
+</style>

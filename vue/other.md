@@ -1,9 +1,9 @@
-### 模板编译
+## 模板编译
 
 模板编译的主要目标是将**模板(template)转换为渲染函数(render)**
 Vue 2.0需要用到VNode描述视图以及各种交互，手写显然不切实际，因此用户只需编写类似HTML代码的Vue模板，通过编译器将模板转换为可返回VNode的render函数。
 
-#### 体验模板编译
+### 体验模板编译
 
 带编译器的版本中，可以使用template或el的方式声明模板
 
@@ -69,7 +69,7 @@ parseHTML(tempalte, {
 })
 ```
 
-#### 优化 - optimize
+### 优化 - optimize
 
 优化器的作用是在AST中找出静态子树并打上标记。静态子树是在AST中永远不不变的节点，如纯文本节点。
 标记静态子树的好处：
@@ -91,7 +91,7 @@ export function optimize (root: ?ASTElement, options: CompilerOptions) {
 }
 ```
 
-#### 代码生成 - generate
+### 代码生成 - generate
 
 将AST转换成渲染函数中的内容，即代码字符串。
 generate方法生成渲染函数代码，src/compiler/codegen/index.js
@@ -115,7 +115,7 @@ _c('p',[_v(_s(foo))])
 ])`
 ```
 
-#### v-if、v-for
+### v-if、v-for
 
 着重观察几个结构性指令的解析过程
 
@@ -207,7 +207,7 @@ const reverseProxy = slotScope ? `` : `,proxy:true`
 return `{key:${el.slotTarget || `"default"`},fn:${fn}${reverseProxy}}`
 ```
 
-### vue.js项目中一些最佳实践
+## vue.js项目中一些最佳实践
 
 范例：项目要使用icon，传统方案是图标字体(字体文件+样式文件)，不便维护；svg方案采用svg-sprite-loader自动加载打包，方便维护。
 

@@ -1,12 +1,12 @@
-### Vue工作机制
+## Vue工作机制
 
-#### 初始化 
+### 初始化 
 
 在 `new Vue()` 时会调⽤_init()进行初始化，会初始化各种实例方法、全局方法、执行⼀些⽣命周期、初始化props、data等状态。其中最重要的是data的「**响应化**」处理。 
 
 初始化之后调⽤ `$mount` 挂载组件，主要执行编译和首次更新
 
-#### 编译 
+### 编译 
 
 编译模块分为三个阶段 
 
@@ -14,7 +14,7 @@
 2. optimize：标记⼀些静态节点，用作后面的性能优化，在diff的时候直接略过 
 3. generate：把第⼀部⽣成的AST 转化为渲染函数 render function
 
-#### 虚拟dom
+### 虚拟dom
 
 Virtual DOM 是react首创，Vue2开始⽀持，就是⽤ JavaScript 对象来描述dom结构，数据修改的时候，我们先修改虚拟dom中的数据，然后数组做diff，最后再汇总所有的diff，力求做最少的dom操作，毕竟js⾥对⽐很快，⽽真实的dom操作太慢
 
@@ -44,11 +44,11 @@ Virtual DOM 是react首创，Vue2开始⽀持，就是⽤ JavaScript 对象来�
 </div>
 ```
 
-#### 更新 
+### 更新 
 
 数据修改触发setter，然后监听器会通知进⾏修改，通过对⽐新旧vdom树，得到最⼩修改，就是 patch ，然后只需要把这些差异修改即可
 
-#### 实现zvue
+### 实现zvue
 
 <img src="../.vuepress/public/assets/img/vue/init.png" alt="1604728604168" style="zoom:80%;" />
 
@@ -303,9 +303,9 @@ app.test = '我⼜又变了了'
 </html>
 ```
 
-### 源码解析
+## 源码解析
 
-#### v-html指令
+### v-html指令
 
 ```js
 html(node, vm, exp) {
@@ -316,7 +316,7 @@ htmlUpdater(node, value) {
 }
 ```
 
-#### v-model指令
+### v-model指令
 
 ```js
 model(node, vm, exp) {
@@ -330,7 +330,7 @@ modelUpdater(node, value) {
 }
 ```
 
-#### 事件监听
+### 事件监听
 
 ```js
 compileElement(node) {
@@ -449,7 +449,7 @@ export default Vue
 - renderMixin(Vue)：_render $nextTick
   
 
-#### 数据响应式
+### 数据响应式
 
 initData src\core\instance\state.js
 
@@ -551,7 +551,7 @@ timerFunc()
 timerFunc指定了vue异步执行策略，根据执行环境，首选Promise，备选依次为：
 MutationObserver、setImmediate、setTimeout
 
-#### 数组响应式
+### 数组响应式
 
 数组比较特别，它的操作方法不会触发setter，需要特别处理
 Observer
@@ -674,9 +674,9 @@ const modules = platformModules.concat(baseModules)
 export const patch: Function = createPatchFunction({ nodeOps, modules })
 ```
 
-#### patch
+### patch
 
-那么patch如何⼯工作的呢？
+那么patch如何工作的呢？
 首先说一下patch的核心diff算法：通过同层的树节点进行比较而非对树进行逐层搜索遍历的方式，所以时间复杂度只有O(n)，是一种相当高效的算法。
 同层级只做三件事：增删改。具体规则是：new VNode不存在就删；old VNode不存在就增；都存在就比较类型，类型不同直接替换、类型相同执行更新；
 
@@ -732,7 +732,7 @@ return function patch(oldVnode, vnode, hydrating, removeOnly, parentElm,
 }
 ```
 
-#### patchVnode
+### patchVnode
 
 两个VNode类型相同，就执行更新操作，包括三种类型操作：**属性更新PROPS、文本更新TEXT、子节点更新REORDER**
 patchVnode具体规则如下：
@@ -813,7 +813,7 @@ function patchVnode(oldVnode, vnode, insertedVnodeQueue,
 }
 ```
 
-#### updateChildren
+### updateChildren
 
 updateChildren主要作用是用一种较高效的方式比对新旧两个VNode的children得出最小操作补丁。执
 行一个双循环是传统方式，vue中针对web场景特点做了了特别的算法优化，我们看图说话：
