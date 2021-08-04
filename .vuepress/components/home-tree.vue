@@ -2,7 +2,7 @@
   <ul>
       <li v-for="(item,index) in list" :key="index">
           <h2 v-if="item.item">{{item.title}}</h2>
-          <a v-else-if="item.path" :href="'/zachary'+item.path+'.html'">{{item.title}}</a>
+          <a v-else-if="item.path" :href="getHref(item.path)">{{item.title}}</a>
           <template v-else>
               {{item.title}}
           </template>
@@ -20,6 +20,17 @@ export default {
             default:()=> {
                 return []
             }
+        }
+    },
+    methods:{
+        getHref(path){
+            let prefix = '/zachary',after=''
+            if(path[path.length-1]==='/'){
+                after=path
+            }else{
+                after=path+'.html'
+            }
+            return prefix+after
         }
     }
 }
