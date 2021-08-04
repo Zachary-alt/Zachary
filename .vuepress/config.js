@@ -7,7 +7,7 @@ module.exports = {
         logo: '/assets/img/logo.jpg',
         nav: [
             { text: '首页', link: './' },
-            { text: '最新', link: '/guide/' },
+            // { text: '最新', link: '/guide/' },
             { 
                 text: 'babel', 
                 link: '/babel/',
