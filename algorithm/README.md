@@ -893,27 +893,155 @@ dom遍历
 </body>
 ```
 
-### 动态规划
+### [动态规划](https://juejin.cn/post/6844903993429196813)
 
-动态规划是⼀种常⻅的「算法设计技巧」，并没有什么⾼深莫测，⾄于各种⾼⼤上的术语，那是吓唬别⼈⽤的，只要你亲⾃体验⼏把，这些名词的含义其实显⽽易⻅，再简单不过了。 ⾄于为什么最终的解法看起来如此精妙，是因为动态规划遵循⼀套固定的流程：递归的暴⼒解法 -> 带 备忘录的递归解法 -> ⾮递归的动态规划解法。这个过程是层层递进的解决问题的过程，你如果没有前⾯的铺垫，直接看最终的⾮递归动态规划解法，当然会觉得⽜逼⽽不可及了。举个⼩栗⼦，斐波那契数列
+动态规划是⼀种常⻅的「算法设计技巧」，并没有什么⾼深莫测，⾄于各种⾼⼤上的术语，那是吓唬别⼈⽤的，只要你亲⾃体验⼏把，这些名词的含义其实显⽽易⻅，再简单不过了。 
 
-#### 暴力递归**fifib**
+⾄于为什么最终的解法看起来如此精妙，是因为动态规划遵循⼀套固定的流程：递归的暴⼒解法 -> 带备忘录的递归解法 -> ⾮递归的动态规划解法。这个过程是层层递进的解决问题的过程，你如果没有前⾯的铺垫，直接看最终的⾮递归动态规划解法，当然会觉得⽜逼⽽不可及了。举个⼩栗⼦，斐波那契数列
+
+#### 暴力递归**fib**
 
 ```js
 function fib(n) {
     if (n == 1 || n == 2) return 1
     return fib(n - 1) + fib(n - 2)
 }
+fib(20)
 ```
 
-递归调⽤很复杂，⽐如fifib(18) 左边和右边就重复计算了 
+递归调⽤很复杂，⽐如fib(18) 左边和右边就重复计算了 
 
 递归算法的时间复杂度怎么计算？⼦问题个数乘以解决⼀个⼦问题需要的时间。
 
 ⼦问题个数，即递归树中节点的总数。显然⼆叉树节点总数为指数级别，所以⼦问题个数为 O(2^n)。解决⼀个⼦问题的时间，在本算法中，没有循环，只有 f(n - 1) + f(n - 2) ⼀个加法操作，时间为 O(1)。所以，这个算法的时间复杂度为 O(2^n)，指数级别，爆炸。 基本上30，40
 
-#### 中间存储**fifib**
+#### 中间存储**fib**
 
 明确了问题，其实就已经把问题解决了⼀半。即然耗时的原因是重复计算，那么我们可以造⼀个「备忘录」，每次算出某个⼦问题的答案后别急着返回，先记到「备忘录」⾥再返回；每次遇到⼀个⼦问题先 去「备忘录」⾥查⼀查，如果发现之前已经解决过这个问题了，直接把答案拿出来⽤，不要再耗时去计算了。 
 
 ⼀般使⽤⼀个数组充当这个「备忘录」，当然你也可以使⽤哈希表（字典），思想都是⼀样的。
+
+```js
+function fib(n){
+    let memo = []
+    return helper(memo, n) 
+}
+function helper(memo,n){
+    if (n == 1 || n == 2) return 1
+    // 如果有缓存，直接返回
+    if(memo[n]) return memo[n]
+    // 没缓存
+    memo[n]=helper(memo,n-1)+helper(memo,n-2)
+    return memo[n]
+}
+console.log(fib(20));
+```
+
+递归算法的时间复杂度怎么算？⼦问题个数乘以解决⼀个⼦问题需要的时间。
+
+本算法的时间复杂度是 O(n)。⽐起暴⼒算法，是降维打击。
+
+实际上，这种解法和动态规划的思想已经差不多了，只不过这种⽅法叫做「⾃顶向下」，动态规划叫做「⾃底向上」。
+
+反过来，我们直接从最底下，最简单，问题规模最⼩的 f(1) 和 f(2) 开始往上推，直到推到我们想要的答案 f(20)，这就是动态规划的思路，这也是为什么动态规划⼀般都脱离了递归，⽽是由循环迭代完成计算。
+
+#### 动态规划fib
+
+我们可以把这个「备忘录」独⽴出来成为⼀张表，就叫做 DP table 吧，在这张表上完成「⾃底向上」的推算
+<img src="../.vuepress/public/assets/img/algorithm/动态规划.png" alt="1604728604168" style="zoom:80%;" />
+
+```js
+function fib(n) {
+    let dp = []
+    dp[1] = dp[2] = 1
+    for (let i = 3; i <= n; i++) {
+        dp[n] = dp[n - 1] + dp[n - 2]
+    }
+    return dp[n]
+}
+console.log(fib(20));
+```
+
+#### **动态规划找零**
+
+再举个找零的⼩栗⼦，:假如有 1, 5, 10, 20 ,50,100的⼈⺠币
+
+```
+4 
+[1, 1, 1, 1] // 需 4 个 1
+5 
+[5] // 需 1 个 5
+36 
+[20, 10, 5, 1] // 需 20、10、5、1各⼀个
+```
+
+```js
+class Change {
+    constructor(changeType) {
+        this.changeType = changeType
+        this.cache = {}
+    }
+    makeChange(amount) {
+        let min = []
+        if (!amount) {
+            return []
+        }
+        if (this.cache[amount]) { // 读缓存
+            return this.cache[amount]
+        }
+
+        for (let i = 0; i < this.changeType.length; i++) {
+            const leftAmount = amount - this.changeType[i]
+            let newMin
+            if (leftAmount >= 0) {
+                newMin = this.makeChange(leftAmount) // 这⼀句是动态规划的体现
+            }
+            if (leftAmount >= 0
+                && (newMin.length < min.length - 1 || !min.length)) { // 如果存在更⼩的找零硬币数, 则执⾏后⾯语句
+                min = [this.changeType[i]].concat(newMin)
+            }
+        }
+        return this.cache[amount] = min
+    }
+}
+const change = new Change([1, 5, 10, 20, 50, 100])
+console.log(change.makeChange(2))
+console.log(change.makeChange(5))
+console.log(change.makeChange(13))
+console.log(change.makeChange(35))
+console.log(change.makeChange(135))
+```
+
+### **贪心算法**
+
+贪⼼算法是⼀种求近似解的思想。当能满⾜⼤部分最优解时就认为符合逻辑要求。
+
+还⽤找零 这个案例为例, 考虑使⽤贪⼼算法解题: ⽐如当找零数为 36 时, 从硬币数的最⼤值 20 开始填充，填充不下后再⽤ 10 来填充, 以此类推, 找到最优解。
+
+```js
+class Change{
+    constructor(changeType){
+        this.changeType=changeType.sort((l,r)=>r-l)
+    }
+    makeChange(amount){
+        const arr=[]
+        for(let i=0;i<=this.changeType.length;i++){
+            while(amount-this.changeType[i]>=0){
+                arr.push(this.changeType[i])
+                amount-=this.changeType[i]
+            }
+        }
+        return arr
+    }
+}
+const change =new Change([1, 5, 10, 20,50,100])
+console.log(change.makeChange(123));
+```
+
+贪⼼算法相对简单，就是先怼最⼤的，⼤部分情况都OK，但是有些情况不是最优解，所以⼈不要太贪⼼哦
+
+```js
+const change1 = new Change([1, 3, 4])
+console.log(change1.makeChange(6)) // 其实33最好
+```
+
