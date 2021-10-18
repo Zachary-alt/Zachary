@@ -180,7 +180,7 @@ class Compile {
                 this.compileElement(node);
             } else if (this.isInterpolation(node)) {
                 // 插值表达式
-                // console.log('编译插值⽂文本'+node.textContent);
+                // console.log('编译插值文文本'+node.textContent);
                 this.compileText(node);
             }
             // 递归子子节点
@@ -190,7 +190,7 @@ class Compile {
         });
     }
     isInterpolation(node) {
-        // 是⽂文本且符合{{}}
+        // 是文文本且符合{{}}
         return node.nodeType === 3 && /\{\{(.*)\}\}/.test(node.textContent);
     }
     compileElement(node) {
@@ -439,9 +439,9 @@ export default Vue
   initLifecycle： children等
   initEvents：事件监听初始化
   initRender：定义$createElement
-  initInjections: 获取注⼊入数据并做响应化
+  initInjections: 获取注入入数据并做响应化
   initState：初始化props,methods,data,computed,watch等
-  initProvide：注⼊入数据处理理
+  initProvide：注入入数据处理理
 
 - stateMixin：实现 set,$delete
 - eventsMixin(Vue)：实现 on..

@@ -109,7 +109,7 @@ console.log("选择排序:", selectionSort(arr));
 
 ### **插入排序（Insertion Sort）**
 
-插⼊排序逻辑和冒泡类似，只不过没采用挨个交换的逻辑，而是在⼀个已经排好序的数组里，插⼊⼀个元素，让它依然是有序的
+插入排序逻辑和冒泡类似，只不过没采用挨个交换的逻辑，而是在⼀个已经排好序的数组里，插入⼀个元素，让它依然是有序的
 
 插入排序的代码实现虽然没有冒泡排序和选择排序那么简单粗暴，但它的原理应该是最容易理解的了，因为只要打过扑克牌的人都应该能够秒懂。
 
@@ -118,7 +118,7 @@ console.log("选择排序:", selectionSort(arr));
 ```js
 function insertSort(arr) {
     for (let i = 1; i < arr.length; i++) { //外循环从1开始，默认arr[0]是有序段
-        for (let j = i; j > 0; j--) { //j = i,将arr[j]依次插⼊有序段中
+        for (let j = i; j > 0; j--) { //j = i,将arr[j]依次插入有序段中
             if (arr[j] < arr[j - 1]) {
                 [arr[j], arr[j - 1]] = [arr[j - 1], arr[j]];
             } else {
@@ -236,7 +236,7 @@ function quickSort(arr) {
 }
 ```
 
-上⾯方便理解，额外占用空间, 原地快排
+上面方便理解，额外占用空间, 原地快排
 
 ```js
 // 原地版
@@ -461,7 +461,7 @@ console.log("基数排序:", radixSort(arr, 3));
 
 ### 递归
 
-快排我们了解到，递归就是自⼰调用自⼰，形成⼀个调用栈，逐渐缩小⽬标，到达截⽌条件返回执行的 
+快排我们了解到，递归就是自⼰调用自⼰，形成⼀个调用栈，逐渐缩小目标，到达截⽌条件返回执行的 
 
 逻辑，talk is cheap，举个小例子
 
@@ -579,7 +579,7 @@ class Stack {
 
 - 索引: O(n) 
 - 搜索: O(n) 
-- 插⼊: O(1) 
+- 插入: O(1) 
 - 移除: O(1)
 
 经典案例： 括号匹配，html标签匹配，表达式计算
@@ -633,7 +633,7 @@ class LinkedList {
     }
     append(element) {
         const node = new Node(element)
-        if (this.head === null) { // 插⼊第⼀个链表
+        if (this.head === null) { // 插入第⼀个链表
             this.head = node
         } else {
             this.current = this.head
@@ -663,24 +663,24 @@ class LinkedList {
             this.length--
         }
     }
-    // 在指定位置加⼊元素
+    // 在指定位置加入元素
     insert(position, element) {
         const node = new Node(element)
         let index = 0
         let current, previous
         if (position > -1 && position < this.length + 1) {
-            if (position === 0) { // 在链表最前插⼊元素
+            if (position === 0) { // 在链表最前插入元素
                 current = this.head
                 this.head = node
                 this.head.next = current
             } else {
                 current = this.head
-                while (index < position) { // 同 removeAt 逻辑, 找到⽬标位置
+                while (index < position) { // 同 removeAt 逻辑, 找到目标位置
                     previous = current
                     current = current.next
                     index++
                 }
-                previous.next = node // 在⽬标位置插⼊相应元素
+                previous.next = node // 在目标位置插入相应元素
                 node.next = current
             }
             this.length++
@@ -751,7 +751,7 @@ linkedList.log()
 
 - 索引: O(n) 
 - 搜索: O(n) 
-- 插⼊: O(1) 
+- 插入: O(1) 
 - 移除: O(1)
 
 #### 集合
@@ -805,7 +805,7 @@ console.log(set.values) // []
 
 #### 哈希表
 
-哈西其实就是js里的对象，它在实际的键值和存⼊的哈希值之间存在⼀层映射。如下例子:
+哈西其实就是js里的对象，它在实际的键值和存入的哈希值之间存在⼀层映射。如下例子:
 
 ```js
 class HashTable {
@@ -853,7 +853,7 @@ console.log(table.get('name'))
 这幅图中有如下概念: 
 
 - 根节点: ⼀棵树最顶部的节点 
-- 内部节点: 在它上⾯还有其它内部节点或者叶节点的节点 
+- 内部节点: 在它上面还有其它内部节点或者叶节点的节点 
 - 叶节点: 处于⼀棵树根部的节点
 - 子树: 由树中的内部节点和叶节点组成 
 
@@ -897,7 +897,7 @@ dom遍历
 
 动态规划是⼀种常见的「算法设计技巧」，并没有什么⾼深莫测，至于各种⾼⼤上的术语，那是吓唬别⼈用的，只要你亲自体验几把，这些名词的含义其实显而易见，再简单不过了。 
 
-至于为什么最终的解法看起来如此精妙，是因为动态规划遵循⼀套固定的流程：递归的暴力解法 -> 带备忘录的递归解法 -> 非递归的动态规划解法。这个过程是层层递进的解决问题的过程，你如果没有前⾯的铺垫，直接看最终的非递归动态规划解法，当然会觉得⽜逼而不可及了。举个小栗子，斐波那契数列
+至于为什么最终的解法看起来如此精妙，是因为动态规划遵循⼀套固定的流程：递归的暴力解法 -> 带备忘录的递归解法 -> 非递归的动态规划解法。这个过程是层层递进的解决问题的过程，你如果没有前面的铺垫，直接看最终的非递归动态规划解法，当然会觉得⽜逼而不可及了。举个小栗子，斐波那契数列
 
 #### 暴力递归**fib**
 
@@ -997,7 +997,7 @@ class Change {
                 newMin = this.makeChange(leftAmount) // 这⼀句是动态规划的体现
             }
             if (leftAmount >= 0
-                && (newMin.length < min.length - 1 || !min.length)) { // 如果存在更小的找零硬币数, 则执行后⾯语句
+                && (newMin.length < min.length - 1 || !min.length)) { // 如果存在更小的找零硬币数, 则执行后面语句
                 min = [this.changeType[i]].concat(newMin)
             }
         }

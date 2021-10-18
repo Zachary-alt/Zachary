@@ -107,7 +107,7 @@ Generator 函数是 ES6 提供的⼀种异步编程解决方案，语法行为�
 
   
 
-- 登录⻚⾯pages/LoginPage.js
+- 登录⻚面pages/LoginPage.js
 
   ```js
   import React, { Component } from 'react'

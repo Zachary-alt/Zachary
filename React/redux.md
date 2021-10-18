@@ -4,11 +4,11 @@
 
 **reducer** 就是⼀个纯函数，接收旧的 **state** 和 **action**，返回新的 **state**。
 
-之所以将这样的函数称之为 reducer，是因为这种函数与被传⼊[Array.prototype.reduce(reducer, ?initialValue)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce) 里的回调函数属 于相同的类型。保持 reducer 纯净非常重要。**永远不要**在 reducer 里做这 
+之所以将这样的函数称之为 reducer，是因为这种函数与被传入[Array.prototype.reduce(reducer, ?initialValue)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce) 里的回调函数属 于相同的类型。保持 reducer 纯净非常重要。**永远不要**在 reducer 里做这 
 
 些操作： 
 
-- 修改传⼊参数； 
+- 修改传入参数； 
 
 - 执行有副作用的操作，如 API 请求和路由跳转； 
 
@@ -83,7 +83,7 @@ redux较难上⼿，是因为上来就有太多的概念需要学习，用⼀个
 
 3. 通过dispatch⼀个action来提交对数据的修改 
 
-4. action提交到reducer函数里，根据传⼊的action的type，返回新的 state
+4. action提交到reducer函数里，根据传入的action的type，返回新的 state
 
 创建store，src/store/ReduxStore.js
 
@@ -272,7 +272,7 @@ export const minus = () => {
 }
 ```
 
-//对应的ReactReduxPage⽂件直接引用
+//对应的ReactReduxPage文件直接引用
 
 ```jsx
 import React, { Component } from 'react';
@@ -448,13 +448,13 @@ export function createStore(reducer,enhancer){
 }
 ```
 
-⻚⾯可以用原来的ReduxPage.js测试以上代码
+⻚面可以用原来的ReduxPage.js测试以上代码
 
 ### 中间件实现 
 
 核心任务是实现函数序列执行 
 
-//把下⾯加⼊zRedux.js
+//把下面加入zRedux.js
 
 ```js
 export function applyMiddleware(...middlewares) {
@@ -486,7 +486,7 @@ function compose(...funcs) {
 }
 ```
 
-logger加⼊MyReduxStore.js
+logger加入MyReduxStore.js
 
 ```js
 import { createStore,applyMiddleware } from '../zRedux'
@@ -506,7 +506,7 @@ function logger(dispatch,getState){
 
 ### **redux-thunk**原理 
 
-thunk增加了处理函数型action的能力，把下⾯加⼊MyReduxStore.js
+thunk增加了处理函数型action的能力，把下面加入MyReduxStore.js
 
 ```js
 function thunk(dispatch,getState){
@@ -556,7 +556,7 @@ export default MyReduxPage;
 
 核心任务：
 
-- 实现⼀个⾼阶函数⼯⼚connect，可以根据传⼊状态映射规则函数和派发器映射规则函数映射需要的属性，可以处理变更检测和刷新任务 
+- 实现⼀个⾼阶函数⼯⼚connect，可以根据传入状态映射规则函数和派发器映射规则函数映射需要的属性，可以处理变更检测和刷新任务 
 
 - 实现⼀个Provider组件可以传递store
 

@@ -5,12 +5,12 @@
 ### 创建项目
 
 ```shell
-# 创建项⽬
+# 创建项目
 npm i egg-init -g
 egg-init egg-server
 cd egg-server
 npm i
-# 启动项⽬
+# 启动项目
 npm run dev
 open localhost:7001
 ```
@@ -146,7 +146,7 @@ config.middleware = ['errorHandler']
 
 Helper 函数用来提供⼀些实用的 utility 函数。 
 
-它的作用在于我们可以将⼀些常用的动作抽离在 helper.js 里⾯成为⼀个独⽴的函数，这样可以用JavaScript 来写复杂的逻辑，避免逻辑分散各处。另外还有⼀个好处是 Helper 这样⼀个简单的函数，可以让我们更容易编写测试用例。 
+它的作用在于我们可以将⼀些常用的动作抽离在 helper.js 里面成为⼀个独⽴的函数，这样可以用JavaScript 来写复杂的逻辑，避免逻辑分散各处。另外还有⼀个好处是 Helper 这样⼀个简单的函数，可以让我们更容易编写测试用例。 
 
 框架内置了⼀些常用的 Helper 函数。我们也可以编写自定义的 Helper 函数。
 
@@ -514,29 +514,29 @@ const dowload = require('image-downloader');
  */
 class UploadController extends Controller {
   /**
-     * @summary 上传单个⽂件
-     * @description 上传单个⽂件
+     * @summary 上传单个文件
+     * @description 上传单个文件
      * @router post /api/upload/single
      */
   async create() {
     const { ctx } = this;
-    // 要通过 ctx.getFileStream 便捷的获取到用户上传的⽂件，需要满⾜两个条件：
-    // 只⽀持上传⼀个⽂件。
-    // 上传⽂件必须在所有其他的 fields 后⾯，否则在拿到⽂件流时可能还获取不到fields。
+    // 要通过 ctx.getFileStream 便捷的获取到用户上传的文件，需要满⾜两个条件：
+    // 只⽀持上传⼀个文件。
+    // 上传文件必须在所有其他的 fields 后面，否则在拿到文件流时可能还获取不到fields。
     const stream = await ctx.getFileStream();
     // 所有表单字段都能通过 `stream.fields` 获取到
-    const filename = path.basename(stream.filename); // ⽂件名称
-    const extname = path.extname(stream.filename).toLowerCase(); // ⽂件扩展名称
+    const filename = path.basename(stream.filename); // 文件名称
+    const extname = path.extname(stream.filename).toLowerCase(); // 文件扩展名称
     const uuid = (Math.random() * 999999).toFixed();
 
     // 组装参数 stream
     const target = path.join(this.config.baseDir, 'app/public/uploads', `${uuid}${extname}`);
     const writeStream = fs.createWriteStream(target);
-    // ⽂件处理，上传到云存储等等
+    // 文件处理，上传到云存储等等
     try {
       await awaitWriteStream(stream.pipe(writeStream));
     } catch (error) {
-      // 必须将上传的⽂件流消费掉，要不然浏览器响应会卡死
+      // 必须将上传的文件流消费掉，要不然浏览器响应会卡死
       await sendToWormhole(writeStream);
       throw error;
     }

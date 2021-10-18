@@ -6,33 +6,33 @@
 
   MySQL：[下载](https://dev.mysql.com/downloads) 
 
-  node驱动：[⽂档](https://dev.mysql.com/downloads) 
+  node驱动：[文档](https://dev.mysql.com/downloads) 
 
-  Sequelize：[⽂档](https://dev.mysql.com/downloads)、[api](http://docs.sequelizejs.com/) 
+  Sequelize：[文档](https://dev.mysql.com/downloads)、[api](http://docs.sequelizejs.com/) 
 
 - mongodb相关： 
 
   MongoDB：[下载](https://www.mongodb.com/download-center/community) 
 
-  node驱动：[⽂档](https://github.com/mongodb/node-mongodb-native) 
+  node驱动：[文档](https://github.com/mongodb/node-mongodb-native) 
 
-  mongoose：[⽂档](https://mongoosejs.com/docs/guide.html) 
+  mongoose：[文档](https://mongoosejs.com/docs/guide.html) 
 
 - redis相关： 
 
   redis：[下载](https://redis.io/download) 
 
-  node_redis：[⽂档](https://github.com/NodeRedis/node_redis)
+  node_redis：[文档](https://github.com/NodeRedis/node_redis)
 
 ### node.js中实现持久化的多种方法
 
-- ⽂件系统 fs 
+- 文件系统 fs 
 
 - 数据库 
 
   关系型数据库-mysql 
 
-  ⽂档型数据库-mongodb 
+  文档型数据库-mongodb 
 
   键值对数据库-redis
 

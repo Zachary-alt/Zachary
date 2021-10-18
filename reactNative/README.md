@@ -12,7 +12,7 @@ React Naitve的简介：Facebook在React.js Conf2015⼤会上推出的⼀个用�
 
 - Native App ：开发原⽣应用自然性能最好，功能强⼤。但多平台版本的开发、维护要花费⼤量的⼈力物力(iOS版本迭代审核需要时间)。 
 - HTML5 ：虽然有 Web 的优势，即灵活的布局能力、免发版的敏捷迭代潜力、优秀的跨平台特性。 在新闻资讯等⼀些强排版、弱交互的展示类 App 上⼤展拳脚。但由于 WebView 在移动设备上的性能制约，始终难成⼤器。
-- Hybrid App ：JS+Native两者相互调用为主，从开发层⾯实现“⼀次开发，多处运行”的机制，成为真正适合跨平台的开发。Hybrid App兼具了Native App良好用户体验的优势，也兼具了Web App使用HTML5跨平台开发低成本的优势，但是这个方法存在诸多问题：无法访问离线数据、无法访问设备、无法远程更新。 
+- Hybrid App ：JS+Native两者相互调用为主，从开发层面实现“⼀次开发，多处运行”的机制，成为真正适合跨平台的开发。Hybrid App兼具了Native App良好用户体验的优势，也兼具了Web App使用HTML5跨平台开发低成本的优势，但是这个方法存在诸多问题：无法访问离线数据、无法访问设备、无法远程更新。 
 - React Native ：底层引擎是 JavaScript Core，但调用的是原⽣的组件而非 HTML5 组件。这样运行时可以做到与 Navive App 相媲美的性能体验，同时因为 JavaScript 代码可以使用后端强⼤的Web 方式管理，既可以做到⾼效开发，也可以实现快速部署和问题热修复。
 
 ### React Native优缺点：
@@ -29,7 +29,7 @@ React Naitve的简介：Facebook在React.js Conf2015⼤会上推出的⼀个用�
 
 1. react native在iOS上仅⽀持 iOS7 以上，Android仅⽀持 Android4.1 以上； 
 2. 开发成本较⾼； 
-3. 部分复杂的界⾯和操作，RN无法实现(可以考虑原⽣+React Native混合开发)；
+3. 部分复杂的界面和操作，RN无法实现(可以考虑原⽣+React Native混合开发)；
 
 **React Native vs Flutter vs Weex**
 
@@ -37,12 +37,12 @@ React Naitve的简介：Facebook在React.js Conf2015⼤会上推出的⼀个用�
 
 ## 构建项目
 
-1. 在相应的路径下执行命令行： react-native init 项⽬名 (名称不可使用连接符等特殊字符,命名 可以参考APP应用名称 比如 FaceBook) 
+1. 在相应的路径下执行命令行： react-native init 项目名 (名称不可使用连接符等特殊字符,命名 可以参考APP应用名称 比如 FaceBook) 
 
-2. 跳转到对应路径下执行相应的移动端项⽬： 
+2. 跳转到对应路径下执行相应的移动端项目： 
 
 ```
-cd 项⽬名
+cd 项目名
 react-native run-ios or react-native run-android
 ```
 
@@ -108,7 +108,7 @@ FlexBox提供了在不通尺⼨设备上都能保持⼀致的布局方式
 
 ### 和而不同
 
-RN中FlexBox和Web Css上FlexBox⼯作方式是⼀样的，但有些地方还是有出⼊的 
+RN中FlexBox和Web Css上FlexBox⼯作方式是⼀样的，但有些地方还是有出入的 
 
 - flexDirection:（主轴方向） 
 
@@ -138,7 +138,7 @@ RN中FlexBox和Web Css上FlexBox⼯作方式是⼀样的，但有些地方还是
 
   ​	alignItems: flex-start | flex-end | center | stretch 
 
-- 项⽬属性 
+- 项目属性 
 
   ​	alignSelf 
 
@@ -154,7 +154,7 @@ flex:定义了⼀个元素可伸缩的能力，默认是0
 
 ### 样式
 
-在RN中样式 需要引⼊StyleSheet API 
+在RN中样式 需要引入StyleSheet API 
 
 写法⼀：
 
@@ -177,7 +177,7 @@ const styles = StyleSheet.create({
 
 ### RN核心组件与API
 
-在RN中使用原⽣组件，是依赖React的，所以在使用过程中需要导⼊react
+在RN中使用原⽣组件，是依赖React的，所以在使用过程中需要导入react
 
 ```js
 import React, { Component } from "react";
@@ -193,10 +193,10 @@ import { Button, Platform, StyleSheet, Text, View } from "react-native";
 ```jsx
 <Button
  onPress={onPressLearnMore} //用户点击此按钮时所调用的处理函数
- title="Learn More" //按钮按钮内显示的⽂本
- color="#841584" //⽂本的颜⾊(iOS)，或是按钮的背景⾊(Android)
+ title="Learn More" //按钮按钮内显示的文本
+ color="#841584" //文本的颜⾊(iOS)，或是按钮的背景⾊(Android)
  disabled={false} //按钮是否可以点击
- accessibilityLabel="Learn more about this purple button" //用于给残障⼈⼠显示的⽂本（比如读屏应用可能会读取这⼀内容
+ accessibilityLabel="Learn more about this purple button" //用于给残障⼈⼠显示的文本（比如读屏应用可能会读取这⼀内容
 />
 ```
 
@@ -207,7 +207,7 @@ import { Button, Platform, StyleSheet, Text, View } from "react-native";
 ```jsx
 <View style={[styles.container, styles.horizontal]}>
  <ActivityIndicator
- size="large" //指示器的⼤小，默认为'small'[enum('small', 'large'), number]。⽬前只能在 Android 上设定具体的数值
+ size="large" //指示器的⼤小，默认为'small'[enum('small', 'large'), number]。目前只能在 Android 上设定具体的数值
  animating={true} //是否要显示指示器动画，默认为 true 表示显示，false 则隐藏。
  hidesWhenStopped={false} //在animating为 false 的时候，是否要隐藏指示器（默认为true）。如果animating和hidesWhenStopped都为 false，则显示⼀个静⽌的指示器。
  color="#0000ff" //滚轮的前景颜⾊（默认为灰⾊）。
@@ -219,7 +219,7 @@ import { Button, Platform, StyleSheet, Text, View } from "react-native";
 
 用于显示多种不同类型图⽚的 React 组件，包括⽹络图⽚、静态资源、临时的本地图⽚、以及本地磁盘上的图⽚（如相册）等。 
 
-下⾯的例子分别演示了如何显示从本地缓存、⽹络甚至是以 'data:' 的 base64 uri 形式提供的图⽚。
+下面的例子分别演示了如何显示从本地缓存、⽹络甚至是以 'data:' 的 base64 uri 形式提供的图⽚。
 
 ```jsx
 <Image
@@ -239,7 +239,7 @@ import { Button, Platform, StyleSheet, Text, View } from "react-native";
 
 ### 在 Android 上⽀持 GIF 和 WebP 格式图片
 
-> 默认情况下 Android 是不⽀持 GIF 和 WebP 格式的。你需要在 android/app/build.gradle ⽂件中根据需要⼿动添加以下模块：
+> 默认情况下 Android 是不⽀持 GIF 和 WebP 格式的。你需要在 android/app/build.gradle 文件中根据需要⼿动添加以下模块：
 
 ```js
 dependencies {
@@ -257,27 +257,27 @@ dependencies {
 
 ### SafeAreaView
 
-SafeAreaView 的⽬的是在⼀个“安全”的可视区域内渲染内容。具体来说就是因为⽬前有 iPhone X 这样的带有“刘海”的全⾯屏设备，所以需要避免内容渲染到不可见的“刘海”范围内。本组件⽬前仅⽀持 iOS 设备以及 iOS 11 或更⾼版本。
+SafeAreaView 的目的是在⼀个“安全”的可视区域内渲染内容。具体来说就是因为目前有 iPhone X 这样的带有“刘海”的全面屏设备，所以需要避免内容渲染到不可见的“刘海”范围内。本组件目前仅⽀持 iOS 设备以及 iOS 11 或更⾼版本。
 
 SafeAreaView 会自动根据系统的各种导航栏、⼯具栏等预留出空间来渲染内部内容。更重要的是，它还会考虑到设备屏幕的局限，比如屏幕四周的圆⻆或是顶部中间不可显示的“刘海”区域。
 
 ### Text
 
-⼀个用于显示⽂本的React组件，并且它也⽀持嵌套、样式，以及触摸处理，在Text内部的元素不再使用flflexbox布局，而是采用⽂本布局。这意味着 <Text> 内部的元素不再是⼀个个矩形，而可能会在行末进行折叠
+⼀个用于显示文本的React组件，并且它也⽀持嵌套、样式，以及触摸处理，在Text内部的元素不再使用flflexbox布局，而是采用文本布局。这意味着 <Text> 内部的元素不再是⼀个个矩形，而可能会在行末进行折叠
 
 ```jsx
 <Text
-ellipsizeMode={"tail"} //这个属性通常和下⾯的 numberOfLines 属性配合使用,⽂本超出numberOfLines设定的行数时，截取方式：head- 从⽂本内容头部截取显示省略号。例如："...efg"，middle - 在⽂本内容中间截取显示省略号。例如： "ab...yz"，tail - 从⽂本内容尾部截取显示省略号。例如： "abcd..."，clip - 不显示省略号，直接从尾部截断。
+ellipsizeMode={"tail"} //这个属性通常和下面的 numberOfLines 属性配合使用,文本超出numberOfLines设定的行数时，截取方式：head- 从文本内容头部截取显示省略号。例如："...efg"，middle - 在文本内容中间截取显示省略号。例如： "ab...yz"，tail - 从文本内容尾部截取显示省略号。例如： "abcd..."，clip - 不显示省略号，直接从尾部截断。
 numberOfLines={1} //配合ellipsizeMode设置行数
 onPress={} //点击事件
-selectable={true}//决定用户是否可以⻓按选择⽂本，以便复制和粘贴。
+selectable={true}//决定用户是否可以⻓按选择文本，以便复制和粘贴。
 >
 </Text>
 ```
 
 ### TextInput
 
-是⼀个允许用户在应用中通过键盘输⼊⽂本的基本组件。本组件的属性提供了多种特性的配置，譬如自动完成、自动⼤小写、占位⽂字，以及多种不同的键盘类型（如纯数字键 盘）,TextInput 在安卓上默认有⼀个底边框，同时会有⼀些padding。如果要想使其看起来和iOS上尽量⼀致，则需要设置 padding: 0
+是⼀个允许用户在应用中通过键盘输入文本的基本组件。本组件的属性提供了多种特性的配置，譬如自动完成、自动⼤小写、占位文字，以及多种不同的键盘类型（如纯数字键 盘）,TextInput 在安卓上默认有⼀个底边框，同时会有⼀些padding。如果要想使其看起来和iOS上尽量⼀致，则需要设置 padding: 0
 
 ```jsx
 <TextInput
@@ -288,12 +288,12 @@ selectable={true}//决定用户是否可以⻓按选择⽂本，以便复制和�
  borderColor: "blue"
  }}
  keyboardType={"default"} //决定弹出何种软键盘类型，譬如numeric（纯数字键盘),default,number-pad,decimal-pad,numeric,email-address,phone-pad
- maxLength={20} //限制⽂本框中最多的字符数。使用这个属性而不用JS逻辑去实现，可以避免闪烁的现象。
- editable={true} //如果为false，⽂本框是不可编辑的。默认值为true。
- defaultValue={"xxxx"} //提供⼀个⽂本框中的初始值
+ maxLength={20} //限制文本框中最多的字符数。使用这个属性而不用JS逻辑去实现，可以避免闪烁的现象。
+ editable={true} //如果为false，文本框是不可编辑的。默认值为true。
+ defaultValue={"xxxx"} //提供⼀个文本框中的初始值
  caretHidden={true} //如果为true，则隐藏光标。默认值为false。
  autoCapitalize={"none"} //控制TextInput是否要自动将特定字符切换为⼤写:characters:所有的字符,words: 每个单词的第⼀个字符,sentences: 每句话的第⼀个字符（默认）,none: 不切换。
- //当⽂本框内容变化时调用此回调函数。改变后的⽂字内容会作为参数传递。从TextInput里取值这就是⽬前唯⼀的做法！
+ //当文本框内容变化时调用此回调函数。改变后的文字内容会作为参数传递。从TextInput里取值这就是目前唯⼀的做法！
  onChangeText={text => {
      this.setState({
      	text: text
@@ -354,7 +354,7 @@ ListView底层实现，渲染组件Item是全量渲染，而且没有复用机�
 
 ### FlatList
 
-在RN0.43版本中引⼊了FlatList，SectionList与VirtualizedList，其中VirtualizedList是FlatList和SectionList的底层实现。 
+在RN0.43版本中引入了FlatList，SectionList与VirtualizedList，其中VirtualizedList是FlatList和SectionList的底层实现。 
 
 缺点：（1）为了优化内存占用同时保持滑动的流畅，列表内容会在屏幕外异步绘制。这意味着如果用户滑动的速度超过渲染的速度，则会先看到空⽩的内容。（2）不⽀持分组列表
 
@@ -369,7 +369,7 @@ renderItem={({item}) => <Text>{item.key}</Text>}
 
 **RefreshControl** ：这⼀组件可以用在ScrollView或FlatList内部，为其添加下拉刷新的功能。当ScrollView处于竖直方向的起点位置（scrollY: 0），此时下拉会触发⼀个 onRefresh 事件 
 
-**SwipeableFlatList** ：侧滑效果列表组件，在RN0.50版本中引⼊了SwipeableFlatList，官方⽂档 还没有这个介绍 
+**SwipeableFlatList** ：侧滑效果列表组件，在RN0.50版本中引入了SwipeableFlatList，官方文档 还没有这个介绍 
 
 **SectionList**：⾼性能的分组列表组件 
 
@@ -394,7 +394,7 @@ import { Platform, StyleSheet } from "react-native";
 const styles = StyleSheet.create({
  height: Platform.OS === "ios" ? 200 : 100
 });
-// Platform.select()，以Platform.OS为 key，从传⼊的对象中返回对应平台的值：
+// Platform.select()，以Platform.OS为 key，从传入的对象中返回对应平台的值：
 const Component = Platform.select({
  ios: () => require("ComponentIOS"),
  android: () => require("ComponentAndroid")

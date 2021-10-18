@@ -82,7 +82,7 @@ curl -v http://www.baidu.com
 
   2. 代理服务器 
 
-  > 请求同源服务器，通过该服务器转发请求至⽬标服务器，得到结果再转发给前端。 
+  > 请求同源服务器，通过该服务器转发请求至目标服务器，得到结果再转发给前端。 
   >
   > 前端开发中测试服务器的代理功能就是采用的该解决方案，但是最终发布上线时如果web应用和接⼝服务器不在⼀起仍会跨域。 
 
@@ -226,7 +226,7 @@ https://www.zhihu.com/question/24723688
 
 ### 实战⼀个爬虫
 
-原理：服务端模拟客户端发送请求到⽬标服务器获取⻚⾯内容并解析，获取其中关注部分的数据。
+原理：服务端模拟客户端发送请求到目标服务器获取⻚面内容并解析，获取其中关注部分的数据。
 
 ```js
 const originRequest = require("request");
@@ -427,10 +427,10 @@ http.listen(3000, function () {
 openssl genrsa -out privatekey.pem 1024
 # 创建证书签名请求
 openssl req -new -key privatekey.pem -out certrequest.csr
-# 获取证书，线上证书需要经过证书授证中心签名的⽂件；下⾯只创建⼀个学习使用证书
+# 获取证书，线上证书需要经过证书授证中心签名的文件；下面只创建⼀个学习使用证书
 openssl x509 -req -in certrequest.csr -signkey privatekey.pem -out
 certificate.pem
-# 创建pfx⽂件
+# 创建pfx文件
 openssl pkcs12 -export -in certificate.pem -inkey privatekey.pem -out
 certificate.pfx
 ```
@@ -441,7 +441,7 @@ certificate.pfx
 
 - 官方演示 - https://http2.akamai.com/demo 
 
-  多路复用允许同时通过单⼀的 HTTP/2 连接发起多重的请求-响应消息；而HTTP/1.1协议中，浏览器客户端在同⼀时间，针对同⼀域名下的请求有⼀定数量限制。超过限制数⽬的请求会被阻塞** 
+  多路复用允许同时通过单⼀的 HTTP/2 连接发起多重的请求-响应消息；而HTTP/1.1协议中，浏览器客户端在同⼀时间，针对同⼀域名下的请求有⼀定数量限制。超过限制数目的请求会被阻塞** 
 
 - ⾸部压缩 
 
@@ -451,4 +451,4 @@ certificate.pfx
 
 - 服务端推送 
 
-  在 HTTP/2 中，服务器可以对客户端的⼀个请求发送多个响应。举个例子，如果⼀个请求请求的是index.html，服务器很可能会同时响应index.html、logo.jpg 以及 css 和 js ⽂件，因为它知道客户端会用到这些东西。这相当于在⼀个 HTML ⽂档内集合了所有的资源
+  在 HTTP/2 中，服务器可以对客户端的⼀个请求发送多个响应。举个例子，如果⼀个请求请求的是index.html，服务器很可能会同时响应index.html、logo.jpg 以及 css 和 js 文件，因为它知道客户端会用到这些东西。这相当于在⼀个 HTML 文档内集合了所有的资源

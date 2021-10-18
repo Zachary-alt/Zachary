@@ -6,7 +6,7 @@
 
 - 配置环境变量 
 
-- 创建dbpath⽂件夹 
+- 创建dbpath文件夹 
 
 - 启动：
 
@@ -22,7 +22,7 @@
   show dbs
   // 切换/创建数据库,当创建⼀个集合(table)的时候会自动创建当前数据库
   use test
-  // 插⼊⼀条数据
+  // 插入⼀条数据
   db.fruits.save({name:'苹果',price:5})
   // 条件查询
   db.fruits.find({price:5})
@@ -38,7 +38,7 @@
 
   参考资料 
 
-  菜⻦⽂档 
+  菜⻦文档 
 
   http://www.runoob.com/mongodb/mongodb-create-database.html 
 
@@ -76,23 +76,23 @@
 
      const fruits = db.collection('fruits')
 
-     // 添加⽂档
+     // 添加文档
      ret = await fruits.insertOne({
          name: '芒果',
          price: 20.1
      })
-     console.log('插⼊成功', JSON.stringify(ret))
-     // 查询⽂档
+     console.log('插入成功', JSON.stringify(ret))
+     // 查询文档
      ret = await fruits.findOne()
-     console.log('查询⽂档:', ret)
+     console.log('查询文档:', ret)
 
-     // 更新⽂档
+     // 更新文档
      // 更新的操作符 $set
      ret = await fruits.updateOne({ name: '芒果' },
      { $set: { name: '苹果' } })
-     console.log('更新⽂档', JSON.stringify(ret.result))
+     console.log('更新文档', JSON.stringify(ret.result))
 
-     // 删除⽂档
+     // 删除文档
      ret = await fruits.deleteOne({name: '苹果'})
 
      await fruits.deleteMany()

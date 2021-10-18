@@ -64,7 +64,7 @@ new Vue({
 parseHTML(tempalte, {
     start(tag, attrs, unary){}, // 遇到开始标签的处理
     end(){},// 遇到结束标签的处理
-    chars(text){},// 遇到⽂文本标签的处理
+    chars(text){},// 遇到文文本标签的处理
     comment(text){}// 遇到注释标签的处理
 })
 ```

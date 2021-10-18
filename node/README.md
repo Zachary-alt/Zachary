@@ -40,7 +40,7 @@ node历史 — 为性能而⽣
 
   运行： node 01-run.js
 
-  每次修改js⽂件需重新执行才能⽣效，安装nodemon可以监视⽂件改动，自动重启: 
+  每次修改js文件需重新执行才能⽣效，安装nodemon可以监视文件改动，自动重启: 
 
   `npm i -g nodemon`
 
@@ -55,7 +55,7 @@ node历史 — 为性能而⽣
 node内建模块
 
 ```js
-// 内建模块直接引⼊
+// 内建模块直接引入
 const os = require('os')
 const mem = os.freemem() / os.totalmem() * 100
 console.log(`内存占用率${mem.toFixed(2)}%`)
@@ -69,7 +69,7 @@ npm i download-git-repo -s
 ```
 
 ```js
-// 导⼊并使用
+// 导入并使用
 const download = require('download-git-repo')
 download('github:su37josephxia/vue-template', 'test', err => {
  console.log(err ? 'Error' : 'Success')
@@ -81,7 +81,7 @@ download('github:su37josephxia/vue-template', 'test', err => {
 ```js
 const download = require('download-git-repo')
 const ora = require('ora')
-const process = ora(`下载.....项⽬`)
+const process = ora(`下载.....项目`)
 process.start()
 download('github:su37josephxia/vue-template', 'test', err => {
  if(err){
@@ -156,7 +156,7 @@ fsp
 
 ### Buffer
 
-用于在 TCP 流、⽂件系统操作、以及其他上下⽂中与⼋位字节流进行交互。 ⼋位字节组成的数组，可以有效的在JS中存储⼆进制数据
+用于在 TCP 流、文件系统操作、以及其他上下文中与⼋位字节流进行交互。 ⼋位字节组成的数组，可以有效的在JS中存储⼆进制数据
 
 ```js
 // 创建⼀个⻓度为10字节以0填充的Buffer
@@ -175,7 +175,7 @@ fsp
  const buf3 = Buffer.from('Buffer创建方法');
  console.log(buf3);
  
- // 写⼊Buffer数据
+ // 写入Buffer数据
  buf1.write('hello');
  console.log(buf1);
 
@@ -249,7 +249,7 @@ const server = http.createServer((req, res) => {
     } else {
         res.statusCode = 404;
         res.setHeader('Content-Type', 'text/plain;charset=utf-8');
-        res.end('404, ⻚页⾯面没有找到');
+        res.end('404, ⻚页面面没有找到');
     }
 
 })
@@ -306,7 +306,7 @@ rm /usr/local/bin/kkb
 
 ### kkb文件
 
-引⼊commander
+引入commander
 
 ```js
 #!/usr/bin/env node 

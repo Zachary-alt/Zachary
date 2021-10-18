@@ -359,7 +359,7 @@ export default {
 v-model和.sync
 <!--v-model是语法糖-->
 <Input v-model="username">
-<!--默认等效于下⾯面这行行行-->
+<!--默认等效于下面面这行行行-->
 <Input :value="username" @input="username=$event">
 // 但是你也可以通过设置model选项修改默认行行行为，Checkbox.vue
 {
@@ -368,14 +368,14 @@ v-model和.sync
         event: 'change'
     }
 }
-// 上⾯面这样设置会导致上级使用用v-model时行行行为变化，相当于
+// 上面面这样设置会导致上级使用用v-model时行行行为变化，相当于
 <KCheckBox :checked="model.remember" @change="model.remember = $event">
 </KCheckBox>
 // 场景：v-model通常用用于表单控件，它有默认行行行为，同时属性名和事件名均可在子子组件定义
-<!-- sync修饰符添加于v2.4，类似于v-model，它能用用于修改传递到子子组件的属性，如果像下⾯面
+<!-- sync修饰符添加于v2.4，类似于v-model，它能用用于修改传递到子子组件的属性，如果像下面面
 这样写 -->
 <Input :value.sync="model.username">
-<!-- 等效于下⾯面这行行行，那么和v-model的区别只有事件名称的变化 -->
+<!-- 等效于下面面这行行行，那么和v-model的区别只有事件名称的变化 -->
 <Input :value="username" @update:value="username=$event">
 <!-- 这里里里绑定属性名称更更改，相应的属性名也会变化 -->
 <Input :foo="username" @update:foo="username=$event">
@@ -832,7 +832,7 @@ MyPlugin.install = function (Vue, options) {
      	// 逻辑...
      }
  })
- // 3. 注⼊组件选项
+ // 3. 注入组件选项
  Vue.mixin({
      created: function () {
      	// 逻辑...
@@ -897,16 +897,16 @@ createElement函数
 
 ### 函数式组件
 
-组件若没有管理任何状态，也没有监听任何传递给它的状态，也没有⽣命周期方法，只是⼀个接受⼀些prop 的，可标记为函数式组件，此时它没有上下⽂
+组件若没有管理任何状态，也没有监听任何传递给它的状态，也没有⽣命周期方法，只是⼀个接受⼀些prop 的，可标记为函数式组件，此时它没有上下文
 
 > - props ：提供所有 prop 的对象 
 > - children : VNode 子节点的数组 
 > - slots : ⼀个函数，返回了包含所有插槽的对象 
-> - scopedSlots : (2.6.0+) ⼀个暴露传⼊的作用域插槽的对象。也以函数形式暴露普通插槽。 
-> - data ：传递给组件的整个数据对象，作为 createElement 的第⼆个参数传⼊组件 
+> - scopedSlots : (2.6.0+) ⼀个暴露传入的作用域插槽的对象。也以函数形式暴露普通插槽。 
+> - data ：传递给组件的整个数据对象，作为 createElement 的第⼆个参数传入组件 
 > - parent ：对⽗组件的引用 
 > - listeners : (2.3.0+) ⼀个包含了所有⽗组件为当前组件注册的事件监听器的对象。这是data.on 的⼀个别名。 
-> - injections : (2.3.0+) 如果使用了 inject 选项，则该对象包含了应当被注⼊的属性。 
+> - injections : (2.3.0+) 如果使用了 inject 选项，则该对象包含了应当被注入的属性。 
 
 [文档](https://cn.vuejs.org/v2/guide/render-function.html#%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BB%84%E4%BB%B6)
 
@@ -969,7 +969,7 @@ class Store {
         this.actions = options.actions;
         options.getters && this.handleGetters(options.getters);
     }
-    // 注意这里用箭头函数形式，后⾯actions实现时会有作用
+    // 注意这里用箭头函数形式，后面actions实现时会有作用
     commit = (type, arg) => {
         this.mutations[type](this.state, arg);
     };

@@ -42,7 +42,7 @@ webpack 在执行npx webpack进行打包后，都干了什么事情？
             });
 ```
 
-⼤概的意思就是，我们实现了⼀个webpack_require 来实现自己的模块化，把代码都缓存在installedModules里，代码⽂件以对象传递进来，key是路径，value是包裹的代码字符串，并且代码内部的require，都被替换成了webpack_require
+⼤概的意思就是，我们实现了⼀个webpack_require 来实现自己的模块化，把代码都缓存在installedModules里，代码文件以对象传递进来，key是路径，value是包裹的代码字符串，并且代码内部的require，都被替换成了webpack_require
 
 ### 自己实现⼀个bundle.js
 
@@ -59,7 +59,7 @@ const fenximokuai = filename => {
 fenximokuai("./index.js");
 ```
 
-拿到⽂件中依赖，这里我们不推荐使用字符串截取，引⼊的模块名越多，就越麻烦，不灵活，这里我们推荐使用@babel/parser，这是babel7的⼯具，来帮助我们分析内部的语法，包括es6，返回⼀个ast抽象语法树
+拿到文件中依赖，这里我们不推荐使用字符串截取，引入的模块名越多，就越麻烦，不灵活，这里我们推荐使用@babel/parser，这是babel7的⼯具，来帮助我们分析内部的语法，包括es6，返回⼀个ast抽象语法树
 
 ```js
 //安装@babel/parser
@@ -77,7 +77,7 @@ const fenximokuai = filename => {
 fenximokuai("./index.js");
 ```
 
-接下来我们就可以根据body里⾯的分析结果，遍历出所有的引⼊模块，但是比较麻烦，这里还是推荐babel推荐的⼀个模块@babel/traverse，来帮我们处理。
+接下来我们就可以根据body里面的分析结果，遍历出所有的引入模块，但是比较麻烦，这里还是推荐babel推荐的⼀个模块@babel/traverse，来帮我们处理。
 
 ```js
 const fs = require("fs");
@@ -106,9 +106,9 @@ fenximokuai("./index.js");
 我们要分析出信息：
 
 - 入口文件
-- 入口文件引⼊的模块
-  - 引⼊路径
-  - 在项⽬中里的路径
+- 入口文件引入的模块
+  - 引入路径
+  - 在项目中里的路径
 - 可以在浏览器里执行的代码
 
 处理现在的路径问题：
@@ -118,7 +118,7 @@ fenximokuai("./index.js");
 const parser = require("@babel/parser");
 //修改 dependencies 为对象，保存更多的信息
 const dependencies = {};
-//分析出引⼊模块，在项⽬中的路径
+//分析出引入模块，在项目中的路径
 const newfilename =
  "./" + path.join(path.dirname(filename),
 node.source.value);
@@ -175,7 +175,7 @@ const moduleAnalyser = filename => {
             CallExpression({ node }) {
                 // console.log(11,node.callee.name,node.arguments[0].value);
                 if (node.callee.name === 'require') {
-                    //分析出引⼊模块，在项⽬中的路径
+                    //分析出引入模块，在项目中的路径
                     const newfilename =
                         "./" + path.join(path.dirname(filename),
                             node.arguments[0].value);
@@ -184,7 +184,7 @@ const moduleAnalyser = filename => {
                 }
             },
             ImportDeclaration({ node }) {
-                //分析出引⼊模块，在项⽬中的路径
+                //分析出引入模块，在项目中的路径
                 const newfilename =
                     "./" + path.join(path.dirname(filename),
                         node.source.value);
@@ -206,7 +206,7 @@ console.log(moduleInfo);
 
 #### 分析依赖
 
-上⼀步我们已经完成了⼀个模块的分析，接下来我们要完成项⽬里所有模块的分析：
+上⼀步我们已经完成了⼀个模块的分析，接下来我们要完成项目里所有模块的分析：
 
 ```js
 // 分析依赖

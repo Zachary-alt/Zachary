@@ -32,7 +32,7 @@ npm install react-app-rewired customize-cra babel-plugin-import -D
 ```
 
 ```js
-//根⽬目录创建config-overrides.js 
+//根目目录创建config-overrides.js 
 const { override, fixBabelImports,addDecoratorsLegacy } = require('customize-cra');
 
 module.exports = override(
@@ -412,7 +412,7 @@ export default class CommentList extends Component {
     componentDidMount() {
         setInterval(() => {
             this.setState({
-                comments: [{ author: "小小明", body: "这是小小明写的⽂文章", }, { author: "小小红", body: "这是小小红写的⽂文章", },],
+                comments: [{ author: "小小明", body: "这是小小明写的文文章", }, { author: "小小红", body: "这是小小红写的文文章", },],
             });
         }, 1000);
     }
@@ -438,7 +438,7 @@ class Comment extends Component {
         const { body, author } = this.props.data;
         return (<div>
             <p>作者： {author}</p>
-            <p>正⽂：{body}</p>
+            <p>正文：{body}</p>
             <p>---------------------------------</p>
         </div>);
     }
