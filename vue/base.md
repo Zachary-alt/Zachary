@@ -359,29 +359,29 @@ export default {
 v-model和.sync
 <!--v-model是语法糖-->
 <Input v-model="username">
-<!--默认等效于下⾯面这⾏行行-->
+<!--默认等效于下⾯面这行行行-->
 <Input :value="username" @input="username=$event">
-// 但是你也可以通过设置model选项修改默认⾏行行为，Checkbox.vue
+// 但是你也可以通过设置model选项修改默认行行行为，Checkbox.vue
 {
     model: {
         prop: 'checked',
         event: 'change'
     }
 }
-// 上⾯面这样设置会导致上级使⽤用v-model时⾏行行为变化，相当于
+// 上⾯面这样设置会导致上级使用用v-model时行行行为变化，相当于
 <KCheckBox :checked="model.remember" @change="model.remember = $event">
 </KCheckBox>
-// 场景：v-model通常⽤用于表单控件，它有默认⾏行行为，同时属性名和事件名均可在⼦子组件定义
-<!-- sync修饰符添加于v2.4，类似于v-model，它能⽤用于修改传递到⼦子组件的属性，如果像下⾯面
+// 场景：v-model通常用用于表单控件，它有默认行行行为，同时属性名和事件名均可在子子组件定义
+<!-- sync修饰符添加于v2.4，类似于v-model，它能用用于修改传递到子子组件的属性，如果像下⾯面
 这样写 -->
 <Input :value.sync="model.username">
-<!-- 等效于下⾯面这⾏行行，那么和v-model的区别只有事件名称的变化 -->
+<!-- 等效于下⾯面这行行行，那么和v-model的区别只有事件名称的变化 -->
 <Input :value="username" @update:value="username=$event">
-<!-- 这⾥里里绑定属性名称更更改，相应的属性名也会变化 -->
+<!-- 这里里里绑定属性名称更更改，相应的属性名也会变化 -->
 <Input :foo="username" @update:foo="username=$event">
-// 场景：⽗父组件传递的属性⼦子组件想修改
-// 所以sync修饰符的控制能⼒力力都在⽗父级，事件名称也相对固定update:xx
-// 习惯上表单元素⽤用v-model
+// 场景：⽗父组件传递的属性子子组件想修改
+// 所以sync修饰符的控制能力力力都在⽗父级，事件名称也相对固定update:xx
+// 习惯上表单元素用用v-model
 ```
 
 ### 实现弹窗组件
@@ -634,7 +634,7 @@ export default {
 
 ```js
 beforeEnter(to, from, next) {
-	// 路路由内部知道⾃自⼰己需要认证
+	// 路路由内部知道自自⼰己需要认证
     if (!window.isLogin) {
     	// ...
     } else {
@@ -809,7 +809,7 @@ VueRouter.install = function (_Vue) {
     Vue.mixin({
         beforeCreate() {
             if (this.$options.router) {
-                // 确保是根组件时执⾏⼀次，将router实例放到Vue原型，以后所有组件实例就均有$router
+                // 确保是根组件时执行⼀次，将router实例放到Vue原型，以后所有组件实例就均有$router
                 Vue.prototype.$router = this.$options.router;
                 this.$options.router.init();
             }
@@ -822,7 +822,7 @@ VueRouter.install = function (_Vue) {
 ```js
 // 插件定义
 MyPlugin.install = function (Vue, options) {
- // 1. 添加全局⽅法或属性
+ // 1. 添加全局方法或属性
  Vue.myGlobalMethod = function () {
  	// 逻辑...
  }
@@ -839,18 +839,18 @@ MyPlugin.install = function (Vue, options) {
      }
      ...
  })
- // 4. 添加实例⽅法
+ // 4. 添加实例方法
  Vue.prototype.$myMethod = function (methodOptions) {
  	// 逻辑...
  }
 }
-// 插件使⽤
+// 插件使用
 Vue.use(MyPlugin)
 ```
 
 ### render函数详解
 
-⼀些场景中需要 JavaScript 的完全编程的能⼒，这时可以⽤渲染函数，它⽐模板更接近编译器。
+⼀些场景中需要 JavaScript 的完全编程的能力，这时可以用渲染函数，它比模板更接近编译器。
 
 ```js
 render(h) {
@@ -897,26 +897,26 @@ createElement函数
 
 ### 函数式组件
 
-组件若没有管理任何状态，也没有监听任何传递给它的状态，也没有⽣命周期⽅法，只是⼀个接受⼀些prop 的，可标记为函数式组件，此时它没有上下⽂
+组件若没有管理任何状态，也没有监听任何传递给它的状态，也没有⽣命周期方法，只是⼀个接受⼀些prop 的，可标记为函数式组件，此时它没有上下⽂
 
 > - props ：提供所有 prop 的对象 
-> - children : VNode ⼦节点的数组 
+> - children : VNode 子节点的数组 
 > - slots : ⼀个函数，返回了包含所有插槽的对象 
-> - scopedSlots : (2.6.0+) ⼀个暴露传⼊的作⽤域插槽的对象。也以函数形式暴露普通插槽。 
+> - scopedSlots : (2.6.0+) ⼀个暴露传⼊的作用域插槽的对象。也以函数形式暴露普通插槽。 
 > - data ：传递给组件的整个数据对象，作为 createElement 的第⼆个参数传⼊组件 
-> - parent ：对⽗组件的引⽤ 
+> - parent ：对⽗组件的引用 
 > - listeners : (2.3.0+) ⼀个包含了所有⽗组件为当前组件注册的事件监听器的对象。这是data.on 的⼀个别名。 
-> - injections : (2.3.0+) 如果使⽤了 inject 选项，则该对象包含了应当被注⼊的属性。 
+> - injections : (2.3.0+) 如果使用了 inject 选项，则该对象包含了应当被注⼊的属性。 
 
 [文档](https://cn.vuejs.org/v2/guide/render-function.html#%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BB%84%E4%BB%B6)
 
 ### Vuex数据管理 
 
-Vuex 是⼀个专为 Vue.js 应⽤开发的状态管理模式，集中式存储管理应⽤所有组件的状态。 
+Vuex 是⼀个专为 Vue.js 应用开发的状态管理模式，集中式存储管理应用所有组件的状态。 
 
 Vuex遵循“单向数据流”理念，易于问题追踪以及提⾼代码可维护性。 
 
-Vue中多个视图依赖于同⼀状态时，视图间传参和状态同步⽐较困难，Vuex能够很好解决该问题。
+Vue中多个视图依赖于同⼀状态时，视图间传参和状态同步比较困难，Vuex能够很好解决该问题。
 
 #### 核心概念 
 
@@ -948,7 +948,7 @@ let Vue;
 function install(_Vue) {
     Vue = _Vue;
 
-    // 这样store执⾏的时候，就有了Vue，不⽤import
+    // 这样store执行的时候，就有了Vue，不用import
     // 这也是为啥Vue.use必须在新建store之前
     Vue.mixin({
         beforeCreate() {
@@ -969,7 +969,7 @@ class Store {
         this.actions = options.actions;
         options.getters && this.handleGetters(options.getters);
     }
-    // 注意这⾥⽤箭头函数形式，后⾯actions实现时会有作⽤
+    // 注意这里用箭头函数形式，后⾯actions实现时会有作用
     commit = (type, arg) => {
         this.mutations[type](this.state, arg);
     };

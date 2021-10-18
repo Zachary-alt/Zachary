@@ -51,7 +51,7 @@ curl -v http://www.baidu.com
 
 ### 协议 端口 host
 
-- 跨域：浏览器同源策略引起的接⼝调⽤问题
+- 跨域：浏览器同源策略引起的接⼝调用问题
 
   ```js
   // proxy.js
@@ -68,39 +68,39 @@ curl -v http://www.baidu.com
   ```
 
   ```js
-  // 或者通过baseURL⽅式
+  // 或者通过baseURL方式
   axios.defaults.baseURL = 'http://localhost:4000'
   ```
 
   浏览器抛出跨域错误
 
-- 常⽤解决方案：
+- 常用解决方案：
 
-  1. JSONP(JSON with Padding)，前端+后端⽅案，绕过跨域 
+  1. JSONP(JSON with Padding)，前端+后端方案，绕过跨域 
 
-  > 前端构造script标签请求指定URL（由script标签发出的GET请求不受同源策略限制），服务器返回⼀个函数执⾏语句，该函数名称通常由查询参callback的值决定，函数的参数为服务器返回的json数据。该函数在前端执⾏后即可获取数据。 
+  > 前端构造script标签请求指定URL（由script标签发出的GET请求不受同源策略限制），服务器返回⼀个函数执行语句，该函数名称通常由查询参callback的值决定，函数的参数为服务器返回的json数据。该函数在前端执行后即可获取数据。 
 
   2. 代理服务器 
 
-  > 请求同源服务器，通过该服务器转发请求⾄⽬标服务器，得到结果再转发给前端。 
+  > 请求同源服务器，通过该服务器转发请求至⽬标服务器，得到结果再转发给前端。 
   >
-  > 前端开发中测试服务器的代理功能就是采⽤的该解决⽅案，但是最终发布上线时如果web应⽤和接⼝服务器不在⼀起仍会跨域。 
+  > 前端开发中测试服务器的代理功能就是采用的该解决方案，但是最终发布上线时如果web应用和接⼝服务器不在⼀起仍会跨域。 
 
-  3. CORS(Cross Origin Resource Share) - 跨域资源共享，后端⽅案，解决跨域
+  3. CORS(Cross Origin Resource Share) - 跨域资源共享，后端方案，解决跨域
 
-  > 原理：cors是w3c规范，真正意义上解决跨域问题。它需要服务器对请求进⾏检查并对响应头做相应处理，从⽽允许跨域请求。
+  > 原理：cors是w3c规范，真正意义上解决跨域问题。它需要服务器对请求进行检查并对响应头做相应处理，从而允许跨域请求。
 
 ### 预检请求
 
 具体实现：
 
-响应简单请求: 动词为get/post/head，没有⾃定义请求头，Content-Type是application/x-www-form-urlencoded，multipart/form-data或text/plain之⼀，通过添加以下响应头解决：
+响应简单请求: 动词为get/post/head，没有自定义请求头，Content-Type是application/x-www-form-urlencoded，multipart/form-data或text/plain之⼀，通过添加以下响应头解决：
 
 ```js
 res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000')
 ```
 
-> 该案例中可以通过添加⾃定义的x-token请求头使请求变为preflight请求
+> 该案例中可以通过添加自定义的x-token请求头使请求变为preflight请求
 
 ```js
 // index.html
@@ -427,7 +427,7 @@ http.listen(3000, function () {
 openssl genrsa -out privatekey.pem 1024
 # 创建证书签名请求
 openssl req -new -key privatekey.pem -out certrequest.csr
-# 获取证书，线上证书需要经过证书授证中⼼签名的⽂件；下⾯只创建⼀个学习使⽤证书
+# 获取证书，线上证书需要经过证书授证中心签名的⽂件；下⾯只创建⼀个学习使用证书
 openssl x509 -req -in certrequest.csr -signkey privatekey.pem -out
 certificate.pem
 # 创建pfx⽂件
@@ -437,18 +437,18 @@ certificate.pfx
 
 ## Http2
 
-多路复⽤ - 雪碧图、多域名CDN、接⼝合并
+多路复用 - 雪碧图、多域名CDN、接⼝合并
 
-- 官⽅演示 - https://http2.akamai.com/demo 
+- 官方演示 - https://http2.akamai.com/demo 
 
-  多路复⽤允许同时通过单⼀的 HTTP/2 连接发起多重的请求-响应消息；⽽HTTP/1.1协议中，浏览器客户端在同⼀时间，针对同⼀域名下的请求有⼀定数量限制。超过限制数⽬的请求会被阻塞** 
+  多路复用允许同时通过单⼀的 HTTP/2 连接发起多重的请求-响应消息；而HTTP/1.1协议中，浏览器客户端在同⼀时间，针对同⼀域名下的请求有⼀定数量限制。超过限制数⽬的请求会被阻塞** 
 
 - ⾸部压缩 
 
-  http/1.x 的 header 由于 cookie 和 user agent很容易膨胀，⽽且每次都要重复发送。 
+  http/1.x 的 header 由于 cookie 和 user agent很容易膨胀，而且每次都要重复发送。 
 
-  http/2使⽤ encoder 来减少需要传输的 header ⼤⼩，通讯双⽅各⾃ cache⼀份header fields 表，既避免了重复 header 的传输，⼜减⼩了需要传输的⼤⼩。⾼效的压 缩算法可以很⼤的压缩 header，减少发送包的数量从⽽降低延迟 
+  http/2使用 encoder 来减少需要传输的 header ⼤小，通讯双方各自 cache⼀份header fields 表，既避免了重复 header 的传输，又减小了需要传输的⼤小。⾼效的压 缩算法可以很⼤的压缩 header，减少发送包的数量从而降低延迟 
 
 - 服务端推送 
 
-  在 HTTP/2 中，服务器可以对客户端的⼀个请求发送多个响应。举个例⼦，如果⼀个请求请求的是index.html，服务器很可能会同时响应index.html、logo.jpg 以及 css 和 js ⽂件，因为它知道客户端会⽤到这些东⻄。这相当于在⼀个 HTML ⽂档内集合了所有的资源
+  在 HTTP/2 中，服务器可以对客户端的⼀个请求发送多个响应。举个例子，如果⼀个请求请求的是index.html，服务器很可能会同时响应index.html、logo.jpg 以及 css 和 js ⽂件，因为它知道客户端会用到这些东西。这相当于在⼀个 HTML ⽂档内集合了所有的资源

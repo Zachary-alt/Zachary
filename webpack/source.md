@@ -59,7 +59,7 @@ const fenximokuai = filename => {
 fenximokuai("./index.js");
 ```
 
-拿到⽂件中依赖，这⾥我们不推荐使⽤字符串截取，引⼊的模块名越多，就越麻烦，不灵活，这⾥我们推荐使⽤@babel/parser，这是babel7的⼯具，来帮助我们分析内部的语法，包括es6，返回⼀个ast抽象语法树
+拿到⽂件中依赖，这里我们不推荐使用字符串截取，引⼊的模块名越多，就越麻烦，不灵活，这里我们推荐使用@babel/parser，这是babel7的⼯具，来帮助我们分析内部的语法，包括es6，返回⼀个ast抽象语法树
 
 ```js
 //安装@babel/parser
@@ -77,7 +77,7 @@ const fenximokuai = filename => {
 fenximokuai("./index.js");
 ```
 
-接下来我们就可以根据body⾥⾯的分析结果，遍历出所有的引⼊模块，但是⽐较麻烦，这⾥还是推荐babel推荐的⼀个模块@babel/traverse，来帮我们处理。
+接下来我们就可以根据body里⾯的分析结果，遍历出所有的引⼊模块，但是比较麻烦，这里还是推荐babel推荐的⼀个模块@babel/traverse，来帮我们处理。
 
 ```js
 const fs = require("fs");
@@ -108,13 +108,13 @@ fenximokuai("./index.js");
 - 入口文件
 - 入口文件引⼊的模块
   - 引⼊路径
-  - 在项⽬中⾥的路径
-- 可以在浏览器⾥执⾏的代码
+  - 在项⽬中里的路径
+- 可以在浏览器里执行的代码
 
 处理现在的路径问题：
 
 ```js
-//需要⽤到path模块
+//需要用到path模块
 const parser = require("@babel/parser");
 //修改 dependencies 为对象，保存更多的信息
 const dependencies = {};
@@ -122,11 +122,11 @@ const dependencies = {};
 const newfilename =
  "./" + path.join(path.dirname(filename),
 node.source.value);
-//保存在dependencies⾥
+//保存在dependencies里
 dependencies[node.source.value] = newfilename;
 ```
 
-把代码处理成浏览器可运⾏的代码，需要借助@babel/core，和@babel/preset-env，把ast语法树转换成合适的代码
+把代码处理成浏览器可运行的代码，需要借助@babel/core，和@babel/preset-env，把ast语法树转换成合适的代码
 
 ```js
 const babel = require("@babel/core");
@@ -179,7 +179,7 @@ const moduleAnalyser = filename => {
                     const newfilename =
                         "./" + path.join(path.dirname(filename),
                             node.arguments[0].value);
-                    //保存在dependencies⾥
+                    //保存在dependencies里
                     dependencies[node.arguments[0].value] = newfilename;
                 }
             },
@@ -188,7 +188,7 @@ const moduleAnalyser = filename => {
                 const newfilename =
                     "./" + path.join(path.dirname(filename),
                         node.source.value);
-                //保存在dependencies⾥
+                //保存在dependencies里
                 dependencies[node.source.value] = newfilename;
             }
         });
@@ -206,7 +206,7 @@ console.log(moduleInfo);
 
 #### 分析依赖
 
-上⼀步我们已经完成了⼀个模块的分析，接下来我们要完成项⽬⾥所有模块的分析：
+上⼀步我们已经完成了⼀个模块的分析，接下来我们要完成项⽬里所有模块的分析：
 
 ```js
 // 分析依赖

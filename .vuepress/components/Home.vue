@@ -181,6 +181,16 @@ export default {
                     ]
                 },
                 {
+                    title:'算法和数据结构',
+                    item:true,
+                    children:[
+                        {
+                            title:'算法和数据结构',
+                            path:'/algorithm/'
+                        }
+                    ]
+                },
+                {
                     title:'Docker',
                     item:true,
                     children:[

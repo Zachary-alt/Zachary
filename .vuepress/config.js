@@ -20,8 +20,13 @@ module.exports = {
                     { text: 'Babel 插件手册', link: '/babel/plugin/' },
                 ]
             },
-            {text: 'webpack',link: '/webpack/'},
-            {text: '前端算法和数据结构', link: '/algorithm/'},
+            {
+                text: 'webpack',link: '/webpack/',
+                items: [
+                    { text: '概览', link: '/webpack/' },
+                    { text: '原理分析', link: '/webpack/source/' },
+                ]
+            },
             { text: 'github', link: 'https://github.com/Zachary-alt' },
         ],
         sidebar:'auto',

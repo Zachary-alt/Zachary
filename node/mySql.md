@@ -40,7 +40,7 @@
 
 安装mysql模块： `npm i mysql2 --save` 
 
-mysql2模块基本使⽤
+mysql2模块基本使用
 
 ```js
 (async ()=>{
@@ -73,7 +73,7 @@ mysql2模块基本使⽤
 
 - 安装： `npm i sequelize mysql2 -S`
 
-- 基本使⽤：
+- 基本使用：
 
   ```js
   (async ()=>{
@@ -126,7 +126,7 @@ mysql2模块基本使⽤
     Fruit.sync({force: true})
     ```
 
-  - 避免⾃动⽣成时间戳字段
+  - 避免自动⽣成时间戳字段
 
     ```js
     const Fruit = sequelize.define("Fruit", {}, {

@@ -66,7 +66,7 @@ require("@babel/polyfill");
 
 ### Usage in Browser
 
-可以从@babel/polyfill npm发行版中的dist/polyfill.js文件中获得。这需要在所有编译后的Babel代码之前包含在内。您可以将其添加到已编译代码中，也可以将其包含在前面的<script>中。
+可以从@babel/polyfill npm发行版中的dist/polyfill.js文件中获得。这需要在所有编译后的Babel代码之前包含在内。您可以将其添加到已编译代码中，也可以将其包含在前面的`<script>`中。
 
 注意:不需要通过browserify等，使用@babel/polyfill。
 

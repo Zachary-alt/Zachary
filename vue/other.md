@@ -194,7 +194,7 @@ if (el.tag === 'slot') {
 生成相关代码：
 
 ```js
-// genScopedSlot：这⾥里把slotScope作为形参转换为⼯⼚函数返回内容
+// genScopedSlot：这里里把slotScope作为形参转换为⼯⼚函数返回内容
 const fn = `function(${slotScope}){` +
     `return ${el.tag === 'template'
         ? el.if && isLegacySyntax

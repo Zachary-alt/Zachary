@@ -117,7 +117,7 @@ function HomeHandle(props) {
 
 ##### V16.4之后的生命周期：
 
-V17可能会废弃的三个⽣生命周期函数⽤用getDerivedStateFromProps 替代，⽬目前使⽤用的话加上UNSAFE_：componentWillMount，componentWillReceiveProps，componentWillUpdate
+V17可能会废弃的三个⽣生命周期函数用用getDerivedStateFromProps 替代，⽬目前使用用的话加上UNSAFE_：componentWillMount，componentWillReceiveProps，componentWillUpdate
 
 引⼊入两个新的⽣生命周期函数：
 static getDerivedStateFromProps，getSnapshotBeforeUpdate
@@ -126,11 +126,11 @@ static getDerivedStateFromProps，getSnapshotBeforeUpdate
 
 原来（React v16.0前）的生命周期在React v16推出的Fiber之后就 不合适了，因为如果要开启async rendering，在render函数之前 的所有函数，都有可能被执行多次。
 
-⽤一个静态函数getDerivedStateFromProps来取代被 deprecate的⼏个生命周期函数，就是强制开发者在render之前只 做无副作用的操作，而且能做的操作局限在根据props和state决定 新的state
+用一个静态函数getDerivedStateFromProps来取代被 deprecate的几个生命周期函数，就是强制开发者在render之前只 做无副作用的操作，而且能做的操作局限在根据props和state决定 新的state
 
 ```js
 static getDerivedStateFromProps(props, state) {
-        // getDerivedStateFromProps 会在调⽤ render ⽅法之 前调用，   
+        // getDerivedStateFromProps 会在调用 render 方法之 前调用，   
         //并且在初始挂载及后续更新时都会被调用。    
         //它应返回⼀个对象来更新 state，如果返回 null 则不更新 任何内容。    
         const { counter } = state;
@@ -237,8 +237,8 @@ export default consumerHandle(UserHandle)
 高阶组件本身是对装饰器模式的应用，自然可以利用ES7中出现的 装饰器语法来更优雅的书写代码。 CRA项目中默认不支持js代码使 用装饰器语法，可修改后缀名为tsx则可以直接支持
 
 ```tsx
-// 装饰器器只能⽤用在class上 
-// 执⾏行行顺序从下往上 
+// 装饰器器只能用用在class上 
+// 执行行行顺序从下往上 
 @withLog 
 @withContent 
 class Lesson2 extends React.Component {

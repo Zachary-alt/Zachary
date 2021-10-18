@@ -321,7 +321,7 @@ import TreeNode from './components/TreeNode'
 const treeData = {
     key: 0,//标识唯⼀一性  
     title: "全国", //节点名称显示  
-    children: [    //⼦子节点数组    
+    children: [    //子子节点数组    
         {
             key: 6, title: "北方区域",
             children: [
@@ -412,7 +412,7 @@ export default class CommentList extends Component {
     componentDidMount() {
         setInterval(() => {
             this.setState({
-                comments: [{ author: "⼩小明", body: "这是⼩小明写的⽂文章", }, { author: "⼩小红", body: "这是⼩小红写的⽂文章", },],
+                comments: [{ author: "小小明", body: "这是小小明写的⽂文章", }, { author: "小小红", body: "这是小小红写的⽂文章", },],
             });
         }, 1000);
     }

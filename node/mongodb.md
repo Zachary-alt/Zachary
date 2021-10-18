@@ -20,7 +20,7 @@
   ```js
   // 查询所有数db据库
   show dbs
-  // 切换/创建数据库,当创建⼀个集合(table)的时候会⾃动创建当前数据库
+  // 切换/创建数据库,当创建⼀个集合(table)的时候会自动创建当前数据库
   use test
   // 插⼊⼀条数据
   db.fruits.save({name:'苹果',price:5})
@@ -34,7 +34,7 @@
   db.fruits.find()
   ```
 
-  > [mongo命令⾏操作](https://docs.mongodb.com/manual/reference/method/) 
+  > [mongo命令行操作](https://docs.mongodb.com/manual/reference/method/) 
 
   参考资料 
 

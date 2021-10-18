@@ -1,15 +1,15 @@
 ## NodeJS是什么
 
-node.js是⼀个异步的事件驱动的JavaScript运⾏时 
+node.js是⼀个异步的事件驱动的JavaScript运行时 
 
 > https://nodejs.org/en/ 
 
 node.js特性其实是JS的特性： 
 
-- [⾮阻塞I/O](https://nodejs.org/en/docs/guides/blocking-vs-non-blocking/) 
+- [非阻塞I/O](https://nodejs.org/en/docs/guides/blocking-vs-non-blocking/) 
 - [事件驱动](https://nodejs.org/en/docs/guides/event-loop-timers-and-nexttick/) 
 
-node历史 — 为性能⽽⽣ 
+node历史 — 为性能而⽣ 
 
 > 并发处理 
 
@@ -24,13 +24,13 @@ node历史 — 为性能⽽⽣
 
 ### 与前端的不同
 
-- JS核⼼语法不变 
+- JS核心语法不变 
 
 - 前端 BOM DOM 
 
 - 后端 fs http buffffer event os
 
-- 运⾏node程序
+- 运行node程序
 
   ```js
   // 01-run.js
@@ -38,9 +38,9 @@ node历史 — 为性能⽽⽣
   console.log('run me use: node 01-runnode!');
   ```
 
-  运⾏： node 01-run.js
+  运行： node 01-run.js
 
-  每次修改js⽂件需重新执⾏才能⽣效，安装nodemon可以监视⽂件改动，⾃动重启: 
+  每次修改js⽂件需重新执行才能⽣效，安装nodemon可以监视⽂件改动，自动重启: 
 
   `npm i -g nodemon`
 
@@ -58,18 +58,18 @@ node内建模块
 // 内建模块直接引⼊
 const os = require('os')
 const mem = os.freemem() / os.totalmem() * 100
-console.log(`内存占⽤率${mem.toFixed(2)}%`)
+console.log(`内存占用率${mem.toFixed(2)}%`)
 ```
 
-第三⽅模块
+第三方模块
 
 ```shell
-// 同级CPU占⽤率，先安装
+// 同级CPU占用率，先安装
 npm i download-git-repo -s
 ```
 
 ```js
-// 导⼊并使⽤
+// 导⼊并使用
 const download = require('download-git-repo')
 download('github:su37josephxia/vue-template', 'test', err => {
  console.log(err ? 'Error' : 'Success')
@@ -94,7 +94,7 @@ download('github:su37josephxia/vue-template', 'test', err => {
 
 promisefy
 
-> 如何让异步任务串⾏化
+> 如何让异步任务串行化
 
 ```js
 const repo = 'github:su37josephxia/vue-template';
@@ -124,7 +124,7 @@ async function clone(repo,desc){
 const fs =require('fs');
 
 //同步调用
-const data = fs.readFileSync('./01.js') //代码会阻塞在这⾥
+const data = fs.readFileSync('./01.js') //代码会阻塞在这里
 console.log(data.toString());
 
 // 异步读取
@@ -133,7 +133,7 @@ fs.readFile('./01.js',(err,data)=>{
     console.log(data.toString());
 })
 
-// fs常常搭配path api使⽤
+// fs常常搭配path api使用
 const path = require('path')
 fs.readFile(path.resolve(path.resolve(__dirname,'./app.js')), (err, data)
 => {
@@ -156,7 +156,7 @@ fsp
 
 ### Buffer
 
-⽤于在 TCP 流、⽂件系统操作、以及其他上下⽂中与⼋位字节流进⾏交互。 ⼋位字节组成的数组，可以有效的在JS中存储⼆进制数据
+用于在 TCP 流、⽂件系统操作、以及其他上下⽂中与⼋位字节流进行交互。 ⼋位字节组成的数组，可以有效的在JS中存储⼆进制数据
 
 ```js
 // 创建⼀个⻓度为10字节以0填充的Buffer
@@ -169,10 +169,10 @@ fsp
  console.log(buf2,buf2.toString())
  
  // 创建Buffer包含UTF-8字节
- // UFT-8：⼀种变⻓的编码⽅案，使⽤ 1~6 个字节来存储；
- // UFT-32：⼀种固定⻓度的编码⽅案，不管字符编号⼤⼩，始终使⽤ 4 个字节来存储；
- // UTF-16：介于 UTF-8 和 UTF-32 之间，使⽤ 2 个或者 4 个字节来存储，⻓度既固定⼜可变。
- const buf3 = Buffer.from('Buffer创建⽅法');
+ // UFT-8：⼀种变⻓的编码方案，使用 1~6 个字节来存储；
+ // UFT-32：⼀种固定⻓度的编码方案，不管字符编号⼤小，始终使用 4 个字节来存储；
+ // UTF-16：介于 UTF-8 和 UTF-32 之间，使用 2 个或者 4 个字节来存储，⻓度既固定又可变。
+ const buf3 = Buffer.from('Buffer创建方法');
  console.log(buf3);
  
  // 写⼊Buffer数据
@@ -189,7 +189,7 @@ fsp
 
 ### http
 
-⽤于创建web服务的模块
+用于创建web服务的模块
 
 ```js
 const http = require('http');
@@ -258,7 +258,7 @@ server.listen(3000)
 
 ### stream 
 
-是⽤于与node中流数据交互的接⼝
+是用于与node中流数据交互的接⼝
 
 ```js
 // 流
@@ -274,9 +274,9 @@ else if (method === 'GET' && headers.accept.indexOf('image/*') !== -1) {
 }
 ```
 
-> Accept代表发送端（客户端）希望接受的数据类型。 ⽐如：Accept：text/xml; 代表客户端希望接受的数据类型是xml类型。 
+> Accept代表发送端（客户端）希望接受的数据类型。 比如：Accept：text/xml; 代表客户端希望接受的数据类型是xml类型。 
 >
-> Content-Type代表发送端（客户端|服务器）发送的实体数据的数据类型。 ⽐如：Content-Type：text/html; 代表发送端发送的数据格式是html。 
+> Content-Type代表发送端（客户端|服务器）发送的实体数据的数据类型。 比如：Content-Type：text/html; 代表发送端发送的数据格式是html。 
 >
 > ⼆者合起来， Accept:text/xml； Content-Type:text/html ，即代表希望接受的数据类型是xml格式，本次请求发送的数据的数据格式是html。
 
@@ -382,7 +382,7 @@ function compile(meta, filePath, templatePath) {
 #!/usr/bin/env bash
 npm config get registry # 检查仓库镜像库
 npm config set registry=http://registry.npmjs.org
-echo '请进⾏登录相关操作：'
+echo '请进行登录相关操作：'
 npm login # 登陆
 echo "-------publishing-------"
 npm publish # 发布

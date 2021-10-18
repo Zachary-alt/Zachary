@@ -17,21 +17,21 @@ open localhost:7001
 
 ### 添加swagger-doc
 
-添加Controller⽅法
+添加Controller方法
 
 ```js
 // app/controller/user.js
 const Controller = require('egg').Controller
 /**
- * @Controller ⽤户管理
+ * @Controller 用户管理
  */
 class UserController extends Controller {
  constructor(ctx) {
  	super(ctx)
  }
  /**
- * @summary 创建⽤户
- * @description 创建⽤户，记录⽤户账户/密码/类型
+ * @summary 创建用户
+ * @description 创建用户，记录用户账户/密码/类型
  * @router post /api/user
  * @request body createUserRequest *body
  * @response 200 baseResponse 创建成功
@@ -144,11 +144,11 @@ config.middleware = ['errorHandler']
 
 ### helper方法实现统⼀响应格式
 
-Helper 函数⽤来提供⼀些实⽤的 utility 函数。 
+Helper 函数用来提供⼀些实用的 utility 函数。 
 
-它的作⽤在于我们可以将⼀些常⽤的动作抽离在 helper.js ⾥⾯成为⼀个独⽴的函数，这样可以⽤JavaScript 来写复杂的逻辑，避免逻辑分散各处。另外还有⼀个好处是 Helper 这样⼀个简单的函数，可以让我们更容易编写测试⽤例。 
+它的作用在于我们可以将⼀些常用的动作抽离在 helper.js 里⾯成为⼀个独⽴的函数，这样可以用JavaScript 来写复杂的逻辑，避免逻辑分散各处。另外还有⼀个好处是 Helper 这样⼀个简单的函数，可以让我们更容易编写测试用例。 
 
-框架内置了⼀些常⽤的 Helper 函数。我们也可以编写⾃定义的 Helper 函数。
+框架内置了⼀些常用的 Helper 函数。我们也可以编写自定义的 Helper 函数。
 
 ```js
 'use strict';
@@ -251,7 +251,7 @@ const Service = require('egg').Service
 class UserService extends Service {
  
  /**
- * 创建⽤户
+ * 创建用户
  * @param {*} payload
  */
  async create(payload) {
@@ -520,7 +520,7 @@ class UploadController extends Controller {
      */
   async create() {
     const { ctx } = this;
-    // 要通过 ctx.getFileStream 便捷的获取到⽤户上传的⽂件，需要满⾜两个条件：
+    // 要通过 ctx.getFileStream 便捷的获取到用户上传的⽂件，需要满⾜两个条件：
     // 只⽀持上传⼀个⽂件。
     // 上传⽂件必须在所有其他的 fields 后⾯，否则在拿到⽂件流时可能还获取不到fields。
     const stream = await ctx.getFileStream();
@@ -540,7 +540,7 @@ class UploadController extends Controller {
       await sendToWormhole(writeStream);
       throw error;
     }
-    // 调⽤ Service 进⾏业务处理
+    // 调用 Service 进行业务处理
     // 设置响应内容和响应状态码
     ctx.helper.success({ ctx });
   }

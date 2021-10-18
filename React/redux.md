@@ -4,19 +4,19 @@
 
 **reducer** 就是⼀个纯函数，接收旧的 **state** 和 **action**，返回新的 **state**。
 
-之所以将这样的函数称之为 reducer，是因为这种函数与被传⼊[Array.prototype.reduce(reducer, ?initialValue)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce) ⾥的回调函数属 于相同的类型。保持 reducer 纯净⾮常重要。**永远不要**在 reducer ⾥做这 
+之所以将这样的函数称之为 reducer，是因为这种函数与被传⼊[Array.prototype.reduce(reducer, ?initialValue)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce) 里的回调函数属 于相同的类型。保持 reducer 纯净非常重要。**永远不要**在 reducer 里做这 
 
 些操作： 
 
 - 修改传⼊参数； 
 
-- 执⾏有副作⽤的操作，如 API 请求和路由跳转； 
+- 执行有副作用的操作，如 API 请求和路由跳转； 
 
-- 调⽤⾮纯函数，如 Date.now() 或 Math.random()。
+- 调用非纯函数，如 Date.now() 或 Math.random()。
 
 ### 什么是reduce
 
-此例来⾃https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce
+此例来自https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce
 
 ```js
 const array1 = [1, 2, 3, 4];
@@ -65,7 +65,7 @@ function compose(...funcs) {
 
 ## Redux 上手
 
-Redux是JavaScript应⽤的状态容器。它保证程序⾏为⼀致性且易于测试。 
+Redux是JavaScript应用的状态容器。它保证程序行为⼀致性且易于测试。 
 
 ### 安装redux
 
@@ -75,15 +75,15 @@ npm install redux --save
 
 ### redux上手
 
-redux较难上⼿，是因为上来就有太多的概念需要学习，⽤⼀个累加器举例
+redux较难上⼿，是因为上来就有太多的概念需要学习，用⼀个累加器举例
 
 1. 需要⼀个store来存储数据 
 
-2. store⾥的reducer初始化state并定义state修改规则 
+2. store里的reducer初始化state并定义state修改规则 
 
 3. 通过dispatch⼀个action来提交对数据的修改 
 
-4. action提交到reducer函数⾥，根据传⼊的action的type，返回新的 state
+4. action提交到reducer函数里，根据传⼊的action的type，返回新的 state
 
 创建store，src/store/ReduxStore.js
 
@@ -134,7 +134,7 @@ export default ReduxPage;
 
 ## react-redux
 
-每次都重新调⽤render和getState太low了，想⽤更react的⽅式来写，需要react-redux的⽀持
+每次都重新调用render和getState太low了，想用更react的方式来写，需要react-redux的⽀持
 
 ```shell
 npm install react-redux --save
@@ -144,7 +144,7 @@ npm install react-redux --save
 
 1. Provider 为后代组件提供store 
 
-2. connect 为组件提供数据和变更⽅法
+2. connect 为组件提供数据和变更方法
 
 全局提供store，index.js
 
@@ -213,13 +213,13 @@ export default connect(
 
 ## 异步 
 
-Redux只是个纯粹的状态管理器，默认只⽀持同步，实现异步任务 ⽐如延 迟，⽹络请求，需要中间件的⽀持，⽐如我们试⽤最简单的redux-thunk和 redux-logger
+Redux只是个纯粹的状态管理器，默认只⽀持同步，实现异步任务 比如延 迟，⽹络请求，需要中间件的⽀持，比如我们试用最简单的redux-thunk和 redux-logger
 
 ```shell
 npm install redux-thunk redux-logger --save
 ```
 
-应⽤中间件，store.js
+应用中间件，store.js
 
 ```js
 import { createStore,applyMiddleware } from 'redux'
@@ -232,7 +232,7 @@ const store = createStore(counterReducer,applyMiddleware(logger,thunk))
 export default store
 ```
 
-使⽤异步操作时的变化
+使用异步操作时的变化
 
 ```js
 const mapDispatchToProps =  {
@@ -272,13 +272,13 @@ export const minus = () => {
 }
 ```
 
-//对应的ReactReduxPage⽂件直接引⽤
+//对应的ReactReduxPage⽂件直接引用
 
 ```jsx
 import React, { Component } from 'react';
 import { connect } from "react-redux";
 import { add, minus, asyncAdd } from
-"../action/reactReduxPage";//此处直接引⽤
+"../action/reactReduxPage";//此处直接引用
 
 class ReduxPage extends Component {
     render() {
@@ -343,7 +343,7 @@ export const counterReducer = (state = 0, action) => {
 }
 ```
 
-store/index.js也是直接引⽤counterReducer即可
+store/index.js也是直接引用counterReducer即可
 
 ```js
 import { createStore,applyMiddleware } from 'redux'
@@ -377,7 +377,7 @@ ReactReduxPage.js
 import React, { Component } from 'react';
 import { connect } from "react-redux";
 import { add, minus, asyncAdd } from
-"../action/reactReduxPage";//此处直接引⽤
+"../action/reactReduxPage";//此处直接引用
 
 class ReduxPage extends Component {
     render() {
@@ -448,11 +448,11 @@ export function createStore(reducer,enhancer){
 }
 ```
 
-⻚⾯可以⽤原来的ReduxPage.js测试以上代码
+⻚⾯可以用原来的ReduxPage.js测试以上代码
 
 ### 中间件实现 
 
-核⼼任务是实现函数序列执⾏ 
+核心任务是实现函数序列执行 
 
 //把下⾯加⼊zRedux.js
 
@@ -506,7 +506,7 @@ function logger(dispatch,getState){
 
 ### **redux-thunk**原理 
 
-thunk增加了处理函数型action的能⼒，把下⾯加⼊MyReduxStore.js
+thunk增加了处理函数型action的能力，把下⾯加⼊MyReduxStore.js
 
 ```js
 function thunk(dispatch,getState){
@@ -554,7 +554,7 @@ export default MyReduxPage;
 
 ### 实现zreact-redux
 
-核⼼任务：
+核心任务：
 
 - 实现⼀个⾼阶函数⼯⼚connect，可以根据传⼊状态映射规则函数和派发器映射规则函数映射需要的属性，可以处理变更检测和刷新任务 
 

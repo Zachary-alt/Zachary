@@ -2,21 +2,21 @@
 
 ### 初始化 
 
-在 `new Vue()` 时会调⽤_init()进行初始化，会初始化各种实例方法、全局方法、执行⼀些⽣命周期、初始化props、data等状态。其中最重要的是data的「**响应化**」处理。 
+在 `new Vue()` 时会调用_init()进行初始化，会初始化各种实例方法、全局方法、执行⼀些⽣命周期、初始化props、data等状态。其中最重要的是data的「**响应化**」处理。 
 
-初始化之后调⽤ `$mount` 挂载组件，主要执行编译和首次更新
+初始化之后调用 `$mount` 挂载组件，主要执行编译和首次更新
 
 ### 编译 
 
 编译模块分为三个阶段 
 
-1. parse：使⽤正则解析template中的vue的指令(v-xxx) 变量等等 形成抽象语法树AST 
+1. parse：使用正则解析template中的vue的指令(v-xxx) 变量等等 形成抽象语法树AST 
 2. optimize：标记⼀些静态节点，用作后面的性能优化，在diff的时候直接略过 
 3. generate：把第⼀部⽣成的AST 转化为渲染函数 render function
 
 ### 虚拟dom
 
-Virtual DOM 是react首创，Vue2开始⽀持，就是⽤ JavaScript 对象来描述dom结构，数据修改的时候，我们先修改虚拟dom中的数据，然后数组做diff，最后再汇总所有的diff，力求做最少的dom操作，毕竟js⾥对⽐很快，⽽真实的dom操作太慢
+Virtual DOM 是react首创，Vue2开始⽀持，就是用 JavaScript 对象来描述dom结构，数据修改的时候，我们先修改虚拟dom中的数据，然后数组做diff，最后再汇总所有的diff，力求做最少的dom操作，毕竟js里对比很快，而真实的dom操作太慢
 
 ```json
 // vdom
@@ -46,14 +46,14 @@ Virtual DOM 是react首创，Vue2开始⽀持，就是⽤ JavaScript 对象来�
 
 ### 更新 
 
-数据修改触发setter，然后监听器会通知进⾏修改，通过对⽐新旧vdom树，得到最⼩修改，就是 patch ，然后只需要把这些差异修改即可
+数据修改触发setter，然后监听器会通知进行修改，通过对比新旧vdom树，得到最小修改，就是 patch ，然后只需要把这些差异修改即可
 
 ### 实现zvue
 
 <img src="../.vuepress/public/assets/img/vue/init.png" alt="1604728604168" style="zoom:80%;" />
 
 ```js
-// 期待⽤法
+// 期待用法
 // new ZVue({
 // data:{msg:'hello'}
 // })
@@ -157,7 +157,7 @@ class Compile {
         if (this.$el) {
             // 提取宿主中模板内容到Fragment标签，dom操作会提⾼高效率
             this.$fragment = this.node2Fragment(this.$el);
-            // 编译模板内容，同时进⾏行行依赖收集
+            // 编译模板内容，同时进行行行依赖收集
             this.compile(this.$fragment);
             this.$el.appendChild(this.$fragment);
         }
@@ -183,7 +183,7 @@ class Compile {
                 // console.log('编译插值⽂文本'+node.textContent);
                 this.compileText(node);
             }
-            // 递归⼦子节点
+            // 递归子子节点
             if (node.childNodes && node.childNodes.length > 0) {
                 this.compile(node);
             }
@@ -296,7 +296,7 @@ foo: {bar:'bar'}
 })
 app.$data.test = '我变了了'
 app.$data.foo.bar = '我变了了'
-app.test = '我⼜又变了了'
+app.test = '我又又变了了'
 </script> -->
 </body>
 
@@ -563,7 +563,7 @@ if (Array.isArray(value)) {
         //数组存在原型就覆盖其原型
         protoAugment(value, arrayMethods)
     } else {
-        //不存在就直接定义拦截⽅方法
+        //不存在就直接定义拦截方方法
         copyAugment(value, arrayMethods, arrayKeys)
     }
     this.observeArray(value)
@@ -668,7 +668,7 @@ createPatchFunction src\core\vdom\patch.js
 创建浏览器平台特有patch函数，主要负责dom更新操作
 
 ```js
-// 扩展操作：把通⽤模块和浏览器中特有模块合并
+// 扩展操作：把通用模块和浏览器中特有模块合并
 const modules = platformModules.concat(baseModules)
 // ⼯⼚函数：创建浏览器器特有的patch函数，这里主要解决跨平台问题
 export const patch: Function = createPatchFunction({ nodeOps, modules })
@@ -726,7 +726,7 @@ return function patch(oldVnode, vnode, hydrating, removeOnly, parentElm,
             }
         }
     }
-    /*调用insert钩⼦*/
+    /*调用insert钩子*/
     invokeInsertHook(vnode, insertedVnodeQueue, isInitialPatch)
     return vnode.elm
 }
@@ -739,7 +739,7 @@ patchVnode具体规则如下：
 
 1. 如果新旧VNode都是静态的，同时它们的key相同（代表同一节点），并且新的VNode是clone或者是标记了v-once，那么只需要替换elm以及componentInstance即可。
 2. 新老节点均有children子节点，则对子节点进行diff操作，调用updateChildren，这个updateChildren也是diff的核心。
-3. 如果老节点没有子节点⽽而新节点存在子节点，先清空老节点DOM的文本内容，然后为当前DOM节点加入子节点。
+3. 如果老节点没有子节点而而新节点存在子节点，先清空老节点DOM的文本内容，然后为当前DOM节点加入子节点。
 4. 当新节点没有子节点而老节点有子节点的时候，则移除该DOM节点的所有子节点。
 5. 当新老节点都无子节点的时候，只是文本的替换
 
@@ -806,7 +806,7 @@ function patchVnode(oldVnode, vnode, insertedVnodeQueue,
         /*当新老节点text不一样时，直接替换这段文本*/
         nodeOps.setTextContent(elm, vnode.text)
     }
-    /*调⽤用postpatch钩子*/
+    /*调用用postpatch钩子*/
     if (isDef(data)) {
         if (isDef(i = data.hook) && isDef(i = i.postpatch)) i(oldVnode, vnode)
     }
@@ -855,7 +855,7 @@ function updateChildren(parentElm, oldCh, newCh, insertedVnodeQueue,
     let newStartVnode = newCh[0]
     let newEndVnode = newCh[newEndIdx]
     let oldKeyToIdx, idxInOld, elmToMove, refElm
-    // 确保移除元素在过度动画过程中待在正确的相对位置，仅⽤用于<transition-group>
+    // 确保移除元素在过度动画过程中待在正确的相对位置，仅用用于<transition-group>
     const canMove = !removeOnly
     // 循环条件：任意起始索引超过结束索引就结束
     while (oldStartIdx <= oldEndIdx && newStartIdx <= newEndIdx) {
@@ -913,7 +913,7 @@ function updateChildren(parentElm, oldCh, newCh, insertedVnodeQueue,
                         oldStartVnode.elm)
                     newStartVnode = newCh[++newStartIdx]
                 } else {
-                    /*当新的VNode与找到的同样key的VNode不是sameVNode的时候（⽐比如说tag不一样或
+                    /*当新的VNode与找到的同样key的VNode不是sameVNode的时候（比比如说tag不一样或
                     者是有不一样type的input标签），创建一个新的节点*/
                     createElm(newStartVnode, insertedVnodeQueue, parentElm,
                         oldStartVnode.elm)

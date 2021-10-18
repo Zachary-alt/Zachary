@@ -2,11 +2,11 @@
 
 react-router包含3个库，react-router、react-router-dom和react-router-native。react-router提供最 
 
-基本的路由功能，实际使⽤的时候我们不会直接安装react-router，⽽是根据应⽤运⾏的环境选择安装 
+基本的路由功能，实际使用的时候我们不会直接安装react-router，而是根据应用运行的环境选择安装 
 
-react-router-dom（在浏览器中使⽤）或react-router-native（在rn中使⽤）。react-router-dom和 
+react-router-dom（在浏览器中使用）或react-router-native（在rn中使用）。react-router-dom和 
 
-react-router-native都依赖react-router，所以在安装时，react-router也会⾃动安装，创建web应⽤。
+react-router-native都依赖react-router，所以在安装时，react-router也会自动安装，创建web应用。
 
 ### 安装
 
@@ -16,7 +16,7 @@ npm install --save react-router-dom
 
 ### 基本使用
 
-react-router中奉⾏⼀切皆组件的思想，路由器-**Router**、链接-**Link**、路由-**Route**、独占-**Switch**、重 
+react-router中奉行⼀切皆组件的思想，路由器-**Router**、链接-**Link**、路由-**Route**、独占-**Switch**、重 
 
 定向-**Redirect**都以组件形式存在 
 
@@ -199,11 +199,11 @@ export const loginReducer = (state = {...initalLogin}, action) => {
 
 需要服务器端对不同的URL返回不同的HTML，后端配置可[参考](https://react-guide.github.io/react-router-cn/docs/guides/basics/Histories.html)。 
 
-2. BrowserRouter使⽤HTML5历史API（ pushState，replaceState和popstate事件），让⻚⾯的UI同步与URL。 
+2. BrowserRouter使用HTML5历史API（ pushState，replaceState和popstate事件），让⻚⾯的UI同步与URL。 
 3. HashRouter不⽀持location.key和location.state，动态路由跳转需要通过?传递参数。 
-4. Hash history 不需要服务器任何配置就可以运⾏，如果你刚刚⼊⻔，那就使⽤它吧。但是我们不推荐在实际线上环境中⽤到它，因为每⼀个 web 应⽤都应该渴望使⽤ browserHistory 。
+4. Hash history 不需要服务器任何配置就可以运行，如果你刚刚⼊⻔，那就使用它吧。但是我们不推荐在实际线上环境中用到它，因为每⼀个 web 应用都应该渴望使用 browserHistory 。
 
-react-router秉承⼀切皆组件，因此实现的核⼼就是BrowserRouter、Route、Link
+react-router秉承⼀切皆组件，因此实现的核心就是BrowserRouter、Route、Link
 
 ### 实现**BrowserRouter** 
 
