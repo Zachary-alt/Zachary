@@ -72,21 +72,21 @@ Reload 选项，单击 Reload 让React Native重新加载js。对于iOS模拟器
 
 ### Enable Live Reload
 
-该选项提供了React Native动态加载的功能。当你的js代码发⽣变化后，React Native会自动⽣成bundle然后传输到模拟器或⼿机上
+该选项提供了React Native动态加载的功能。当你的js代码发⽣变化后，React Native会自动⽣成bundle然后传输到模拟器或手机上
 
 ### Errors and Warnings
 
-在development模式下，js部分的Errors 和 Warnings会直接打印在⼿机或模拟器屏幕上，以红屏和⻩屏展示。
+在development模式下，js部分的Errors 和 Warnings会直接打印在手机或模拟器屏幕上，以红屏和⻩屏展示。
 
 ### Errors
 
 React Native程序运行时出现的Errors会被直接显示在屏幕上，以红⾊的背景显示，并会打印出错误信 
 
-息。 你也可以通过 `console.error()` 来⼿动触发Errors。
+息。 你也可以通过 `console.error()` 来手动触发Errors。
 
 ### Warnings
 
-React Native程序运行时出现的Warnings也会被直接显示在屏幕上，以⻩⾊的背景显示，并会打印出警 告信息。 你也可以通过 `console.warn()` 来⼿动触发Warnings。 你也可以通过 `console.disableYellowBox = true` 来⼿动禁用Warnings的显示，或者通过 `console.ignoredYellowBox = ['Warning: ...'];` 来忽略相应的Warning
+React Native程序运行时出现的Warnings也会被直接显示在屏幕上，以⻩⾊的背景显示，并会打印出警 告信息。 你也可以通过 `console.warn()` 来手动触发Warnings。 你也可以通过 `console.disableYellowBox = true` 来手动禁用Warnings的显示，或者通过 `console.ignoredYellowBox = ['Warning: ...'];` 来忽略相应的Warning
 
 ## **RN**布局与样式
 
@@ -104,7 +104,7 @@ FlexBox提供了在不通尺⼨设备上都能保持⼀致的布局方式
 </View>
 ```
 
-上述代码，运行在Android上时，View的⻓宽被解释成：100dp 100dp，字体被解释成16sp，运行在ios上时尺⼨单位被解释成pt,这些单位确保了布局在任何不通DPI的⼿机屏幕上，显示效果⼀致
+上述代码，运行在Android上时，View的⻓宽被解释成：100dp 100dp，字体被解释成16sp，运行在ios上时尺⼨单位被解释成pt,这些单位确保了布局在任何不通DPI的手机屏幕上，显示效果⼀致
 
 ### 和而不同
 
@@ -227,19 +227,19 @@ import { Button, Platform, StyleSheet, Text, View } from "react-native";
 />
 <Image
  style={{width: 50, height: 50}}
- //⽹络和 base64 数据的图⽚需要⼿动指定尺⼨
+ //⽹络和 base64 数据的图⽚需要手动指定尺⼨
  source={{uri: 'https://facebook.github.io/react-native/docs/assets/favicon.png'}}
 />
 <Image
  style={{width: 66, height: 58}}
- //⽹络和 base64 数据的图⽚需要⼿动指定尺⼨
+ //⽹络和 base64 数据的图⽚需要手动指定尺⼨
  source={{uri:'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADMAAAAzCAYAAAA6oTAqAAAAEXRFWHRTb2Z0d2FyZQBwbmdjcnVzaEB1SfMAAABQSURBVGje7dSxCQBACARB+2/ab8BEeQNhFi6WSYzYLYudDQYGBgYGBgYGBgYGBgYGBgZmcvDqYGBgmhivGQYGBgYGBgYGBgYGBgYGBgbmQw+P/eMrC5UTVAAAAABJRU5ErkJggg=='}}
 />
 ```
 
 ### 在 Android 上⽀持 GIF 和 WebP 格式图片
 
-> 默认情况下 Android 是不⽀持 GIF 和 WebP 格式的。你需要在 android/app/build.gradle 文件中根据需要⼿动添加以下模块：
+> 默认情况下 Android 是不⽀持 GIF 和 WebP 格式的。你需要在 android/app/build.gradle 文件中根据需要手动添加以下模块：
 
 ```js
 dependencies {
@@ -344,7 +344,7 @@ import { WebView } from "react-native-webview";
 ListView底层实现，渲染组件Item是全量渲染，而且没有复用机制，这就不可避免的当渲染较⼤数据量时，会发现以下情况： 
 
 - 第⼀次打开与切换Tab时会出现卡顿或⽩屏的情况，比如ListView中有100个Item，只能等这100条Item都渲染完成，ListView中的内容才会展示 
-- 滑动列表时会出现卡顿不跟⼿，listVIew渲染⼤量数据，需要占用较多的内存用于计算
+- 滑动列表时会出现卡顿不跟手，listVIew渲染⼤量数据，需要占用较多的内存用于计算
 
 **未来有很大可能性会被移除**
 

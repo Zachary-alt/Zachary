@@ -888,7 +888,7 @@ createElement函数
  },
  // 事件监听器在 `on` 属性内，
  // 但不再⽀持如 `v-on:keyup.enter` 这样的修饰器。
- // 需要在处理函数中⼿动检查 keyCode。
+ // 需要在处理函数中手动检查 keyCode。
  on: {
  	click: this.clickHandler
  },

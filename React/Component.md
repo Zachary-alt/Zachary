@@ -32,7 +32,7 @@ npm install react-app-rewired customize-cra babel-plugin-import -D
 ```
 
 ```js
-//根目目录创建config-overrides.js 
+//根目录创建config-overrides.js 
 const { override, fixBabelImports,addDecoratorsLegacy } = require('customize-cra');
 
 module.exports = override(

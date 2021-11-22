@@ -117,7 +117,7 @@ function HomeHandle(props) {
 
 ##### V16.4之后的生命周期：
 
-V17可能会废弃的三个⽣生命周期函数用用getDerivedStateFromProps 替代，目目前使用用的话加上UNSAFE_：componentWillMount，componentWillReceiveProps，componentWillUpdate
+V17可能会废弃的三个⽣生命周期函数用用getDerivedStateFromProps 替代，目前使用用的话加上UNSAFE_：componentWillMount，componentWillReceiveProps，componentWillUpdate
 
 引入入两个新的⽣生命周期函数：
 static getDerivedStateFromProps，getSnapshotBeforeUpdate
