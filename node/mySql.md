@@ -69,7 +69,7 @@ mysql2模块基本使用
 
 ### Node.js ORM - Sequelize
 
-- 概述：基于Promise的ORM(Object Relation Mapping)，⽀持多种数据库、事务、关联等
+- 概述：基于Promise的ORM(Object Relation Mapping)，支持多种数据库、事务、关联等
 
 - 安装： `npm i sequelize mysql2 -S`
 
@@ -126,7 +126,7 @@ mysql2模块基本使用
     Fruit.sync({force: true})
     ```
 
-  - 避免自动⽣成时间戳字段
+  - 避免自动生成时间戳字段
 
     ```js
     const Fruit = sequelize.define("Fruit", {}, {

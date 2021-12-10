@@ -69,7 +69,7 @@ export default class RouterPage extends Component {
 
 ### 路由守卫 
 
-思路：创建⾼阶组件包装Route使其具有权限判断功能 
+思路：创建高阶组件包装Route使其具有权限判断功能 
 
 创建PrivateRoute
 
@@ -200,7 +200,7 @@ export const loginReducer = (state = {...initalLogin}, action) => {
 需要服务器端对不同的URL返回不同的HTML，后端配置可[参考](https://react-guide.github.io/react-router-cn/docs/guides/basics/Histories.html)。 
 
 2. BrowserRouter使用HTML5历史API（ pushState，replaceState和popstate事件），让⻚面的UI同步与URL。 
-3. HashRouter不⽀持location.key和location.state，动态路由跳转需要通过?传递参数。 
+3. HashRouter不支持location.key和location.state，动态路由跳转需要通过?传递参数。 
 4. Hash history 不需要服务器任何配置就可以运行，如果你刚刚入⻔，那就使用它吧。但是我们不推荐在实际线上环境中用到它，因为每⼀个 web 应用都应该渴望使用 browserHistory 。
 
 react-router秉承⼀切皆组件，因此实现的核心就是BrowserRouter、Route、Link

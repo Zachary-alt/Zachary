@@ -359,29 +359,29 @@ export default {
 v-model和.sync
 <!--v-model是语法糖-->
 <Input v-model="username">
-<!--默认等效于下面面这行行行-->
+<!--默认等效于下面这行-->
 <Input :value="username" @input="username=$event">
-// 但是你也可以通过设置model选项修改默认行行行为，Checkbox.vue
+// 但是你也可以通过设置model选项修改默认行为，Checkbox.vue
 {
     model: {
         prop: 'checked',
         event: 'change'
     }
 }
-// 上面面这样设置会导致上级使用用v-model时行行行为变化，相当于
+// 上面这样设置会导致上级使用v-model时行为变化，相当于
 <KCheckBox :checked="model.remember" @change="model.remember = $event">
 </KCheckBox>
-// 场景：v-model通常用用于表单控件，它有默认行行行为，同时属性名和事件名均可在子子组件定义
+// 场景：v-model通常用于表单控件，它有默认行为，同时属性名和事件名均可在子组件定义
 <!-- sync修饰符添加于v2.4，类似于v-model，它能用用于修改传递到子子组件的属性，如果像下面面
 这样写 -->
 <Input :value.sync="model.username">
-<!-- 等效于下面面这行行行，那么和v-model的区别只有事件名称的变化 -->
+<!-- 等效于下面这行，那么和v-model的区别只有事件名称的变化 -->
 <Input :value="username" @update:value="username=$event">
-<!-- 这里里里绑定属性名称更更改，相应的属性名也会变化 -->
+<!-- 这里绑定属性名称更改，相应的属性名也会变化 -->
 <Input :foo="username" @update:foo="username=$event">
-// 场景：⽗父组件传递的属性子子组件想修改
-// 所以sync修饰符的控制能力力力都在⽗父级，事件名称也相对固定update:xx
-// 习惯上表单元素用用v-model
+// 场景：父组件传递的属性子组件想修改
+// 所以sync修饰符的控制能力都在父级，事件名称也相对固定update:xx
+// 习惯上表单元素用v-model
 ```
 
 ### 实现弹窗组件
@@ -634,7 +634,7 @@ export default {
 
 ```js
 beforeEnter(to, from, next) {
-	// 路路由内部知道自自⼰己需要认证
+	// 路由内部知道自己需要认证
     if (!window.isLogin) {
     	// ...
     } else {
@@ -887,7 +887,7 @@ createElement函数
  	innerHTML: 'baz'
  },
  // 事件监听器在 `on` 属性内，
- // 但不再⽀持如 `v-on:keyup.enter` 这样的修饰器。
+ // 但不再支持如 `v-on:keyup.enter` 这样的修饰器。
  // 需要在处理函数中手动检查 keyCode。
  on: {
  	click: this.clickHandler
@@ -897,7 +897,7 @@ createElement函数
 
 ### 函数式组件
 
-组件若没有管理任何状态，也没有监听任何传递给它的状态，也没有⽣命周期方法，只是⼀个接受⼀些prop 的，可标记为函数式组件，此时它没有上下文
+组件若没有管理任何状态，也没有监听任何传递给它的状态，也没有生命周期方法，只是⼀个接受⼀些prop 的，可标记为函数式组件，此时它没有上下文
 
 > - props ：提供所有 prop 的对象 
 > - children : VNode 子节点的数组 
@@ -914,7 +914,7 @@ createElement函数
 
 Vuex 是⼀个专为 Vue.js 应用开发的状态管理模式，集中式存储管理应用所有组件的状态。 
 
-Vuex遵循“单向数据流”理念，易于问题追踪以及提⾼代码可维护性。 
+Vuex遵循“单向数据流”理念，易于问题追踪以及提高代码可维护性。 
 
 Vue中多个视图依赖于同⼀状态时，视图间传参和状态同步比较困难，Vuex能够很好解决该问题。
 
@@ -927,7 +927,7 @@ Vue中多个视图依赖于同⼀状态时，视图间传参和状态同步比�
 
 #### 派生状态 - getters
 
-从state派⽣出新状态，类似计算属性
+从state派生出新状态，类似计算属性
 
 ```js
 export default new Vuex.Store({

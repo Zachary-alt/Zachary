@@ -134,7 +134,7 @@ export default ReduxPage;
 
 ## react-redux
 
-每次都重新调用render和getState太low了，想用更react的方式来写，需要react-redux的⽀持
+每次都重新调用render和getState太low了，想用更react的方式来写，需要react-redux的支持
 
 ```shell
 npm install react-redux --save
@@ -213,7 +213,7 @@ export default connect(
 
 ## 异步 
 
-Redux只是个纯粹的状态管理器，默认只⽀持同步，实现异步任务 比如延 迟，⽹络请求，需要中间件的⽀持，比如我们试用最简单的redux-thunk和 redux-logger
+Redux只是个纯粹的状态管理器，默认只支持同步，实现异步任务 比如延 迟，网络请求，需要中间件的支持，比如我们试用最简单的redux-thunk和 redux-logger
 
 ```shell
 npm install redux-thunk redux-logger --save
@@ -556,7 +556,7 @@ export default MyReduxPage;
 
 核心任务：
 
-- 实现⼀个⾼阶函数⼯⼚connect，可以根据传入状态映射规则函数和派发器映射规则函数映射需要的属性，可以处理变更检测和刷新任务 
+- 实现⼀个高阶函数工⼚connect，可以根据传入状态映射规则函数和派发器映射规则函数映射需要的属性，可以处理变更检测和刷新任务 
 
 - 实现⼀个Provider组件可以传递store
 

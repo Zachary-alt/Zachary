@@ -58,6 +58,10 @@ export default {
                                     title:'设计模式',
                                     path:'/web/js/design'
                                 },
+                                {
+                                    title:'手写async await',
+                                    path:'/web/js/generator'
+                                },
                             ]
                         },
                     ]

@@ -118,10 +118,10 @@ module.exports = (options, app) => {
     try {
       await next();
     } catch (err) {
-      // 所有的异常都在 app 上触发⼀个 error 事件，框架会记录⼀条错误⽇志
+      // 所有的异常都在 app 上触发⼀个 error 事件，框架会记录⼀条错误日志
       app.emit('error', err, this);
       const status = err.status || 500;
-      // ⽣产环境时 500 错误的详细错误内容不返回给客户端，因为可能包含敏感信息
+      // 生产环境时 500 错误的详细错误内容不返回给客户端，因为可能包含敏感信息
       const error = status === 500 && app.config.env === 'prod' ? 'Internal Server Error' : err.message;
       // 从 error 对象上读出各个属性，设置到响应中
       ctx.body = {
@@ -521,7 +521,7 @@ class UploadController extends Controller {
   async create() {
     const { ctx } = this;
     // 要通过 ctx.getFileStream 便捷的获取到用户上传的文件，需要满⾜两个条件：
-    // 只⽀持上传⼀个文件。
+    // 只支持上传⼀个文件。
     // 上传文件必须在所有其他的 fields 后面，否则在拿到文件流时可能还获取不到fields。
     const stream = await ctx.getFileStream();
     // 所有表单字段都能通过 `stream.fields` 获取到

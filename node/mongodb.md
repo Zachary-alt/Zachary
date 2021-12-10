@@ -42,7 +42,7 @@
 
   http://www.runoob.com/mongodb/mongodb-create-database.html 
 
-  官⽹ 
+  官网 
 
   https://docs.mongodb.com/manual/reference/method/
 
@@ -50,7 +50,7 @@
 
 > http://mongodb.github.io/node-mongodb-native/3.1/quick-start/quick-start/ 
 >
-> 官⽹API
+> 官网API
 
 安装mysql模块： `npm install mongodb --save` 
 

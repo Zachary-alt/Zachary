@@ -42,7 +42,7 @@ webpack 在执行npx webpack进行打包后，都干了什么事情？
             });
 ```
 
-⼤概的意思就是，我们实现了⼀个webpack_require 来实现自己的模块化，把代码都缓存在installedModules里，代码文件以对象传递进来，key是路径，value是包裹的代码字符串，并且代码内部的require，都被替换成了webpack_require
+大概的意思就是，我们实现了⼀个webpack_require 来实现自己的模块化，把代码都缓存在installedModules里，代码文件以对象传递进来，key是路径，value是包裹的代码字符串，并且代码内部的require，都被替换成了webpack_require
 
 ### 自己实现⼀个bundle.js
 
@@ -59,7 +59,7 @@ const fenximokuai = filename => {
 fenximokuai("./index.js");
 ```
 
-拿到文件中依赖，这里我们不推荐使用字符串截取，引入的模块名越多，就越麻烦，不灵活，这里我们推荐使用@babel/parser，这是babel7的⼯具，来帮助我们分析内部的语法，包括es6，返回⼀个ast抽象语法树
+拿到文件中依赖，这里我们不推荐使用字符串截取，引入的模块名越多，就越麻烦，不灵活，这里我们推荐使用@babel/parser，这是babel7的工具，来帮助我们分析内部的语法，包括es6，返回⼀个ast抽象语法树
 
 ```js
 //安装@babel/parser

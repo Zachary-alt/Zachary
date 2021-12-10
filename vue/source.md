@@ -2,7 +2,7 @@
 
 ### 初始化 
 
-在 `new Vue()` 时会调用_init()进行初始化，会初始化各种实例方法、全局方法、执行⼀些⽣命周期、初始化props、data等状态。其中最重要的是data的「**响应化**」处理。 
+在 `new Vue()` 时会调用_init()进行初始化，会初始化各种实例方法、全局方法、执行⼀些生命周期、初始化props、data等状态。其中最重要的是data的「**响应化**」处理。 
 
 初始化之后调用 `$mount` 挂载组件，主要执行编译和首次更新
 
@@ -12,11 +12,11 @@
 
 1. parse：使用正则解析template中的vue的指令(v-xxx) 变量等等 形成抽象语法树AST 
 2. optimize：标记⼀些静态节点，用作后面的性能优化，在diff的时候直接略过 
-3. generate：把第⼀部⽣成的AST 转化为渲染函数 render function
+3. generate：把第⼀部生成的AST 转化为渲染函数 render function
 
 ### 虚拟dom
 
-Virtual DOM 是react首创，Vue2开始⽀持，就是用 JavaScript 对象来描述dom结构，数据修改的时候，我们先修改虚拟dom中的数据，然后数组做diff，最后再汇总所有的diff，力求做最少的dom操作，毕竟js里对比很快，而真实的dom操作太慢
+Virtual DOM 是react首创，Vue2开始支持，就是用 JavaScript 对象来描述dom结构，数据修改的时候，我们先修改虚拟dom中的数据，然后数组做diff，最后再汇总所有的diff，力求做最少的dom操作，毕竟js里对比很快，而真实的dom操作太慢
 
 ```json
 // vdom
@@ -155,7 +155,7 @@ class Compile {
         this.$vm = vm;
         this.$el = document.querySelector(el);
         if (this.$el) {
-            // 提取宿主中模板内容到Fragment标签，dom操作会提⾼高效率
+            // 提取宿主中模板内容到Fragment标签，dom操作会提高高效率
             this.$fragment = this.node2Fragment(this.$el);
             // 编译模板内容，同时进行行行依赖收集
             this.compile(this.$fragment);
@@ -670,7 +670,7 @@ createPatchFunction src\core\vdom\patch.js
 ```js
 // 扩展操作：把通用模块和浏览器中特有模块合并
 const modules = platformModules.concat(baseModules)
-// ⼯⼚函数：创建浏览器器特有的patch函数，这里主要解决跨平台问题
+// 工⼚函数：创建浏览器器特有的patch函数，这里主要解决跨平台问题
 export const patch: Function = createPatchFunction({ nodeOps, modules })
 ```
 

@@ -9,7 +9,7 @@ node.js特性其实是JS的特性：
 - [非阻塞I/O](https://nodejs.org/en/docs/guides/blocking-vs-non-blocking/) 
 - [事件驱动](https://nodejs.org/en/docs/guides/event-loop-timers-and-nexttick/) 
 
-node历史 — 为性能而⽣ 
+node历史 — 为性能而生 
 
 > 并发处理 
 
@@ -40,7 +40,7 @@ node历史 — 为性能而⽣
 
   运行： node 01-run.js
 
-  每次修改js文件需重新执行才能⽣效，安装nodemon可以监视文件改动，自动重启: 
+  每次修改js文件需重新执行才能生效，安装nodemon可以监视文件改动，自动重启: 
 
   `npm i -g nodemon`
 
@@ -170,7 +170,7 @@ fsp
  
  // 创建Buffer包含UTF-8字节
  // UFT-8：⼀种变⻓的编码方案，使用 1~6 个字节来存储；
- // UFT-32：⼀种固定⻓度的编码方案，不管字符编号⼤小，始终使用 4 个字节来存储；
+ // UFT-32：⼀种固定⻓度的编码方案，不管字符编号大小，始终使用 4 个字节来存储；
  // UTF-16：介于 UTF-8 和 UTF-32 之间，使用 2 个或者 4 个字节来存储，⻓度既固定又可变。
  const buf3 = Buffer.from('Buffer创建方法');
  console.log(buf3);
@@ -267,7 +267,7 @@ const rs=fs.createReadStream('./pic.jpg')
 const ws=fs.createWriteStream('./pic2.jpg')
 rs.pipe(ws) //导管连接--复制
 
-//响应图⽚请求
+//响应图片请求
 const {url, method, headers} = request;
 else if (method === 'GET' && headers.accept.indexOf('image/*') !== -1) {
  fs.createReadStream('.'+url).pipe(response);

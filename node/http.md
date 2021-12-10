@@ -255,7 +255,7 @@ for (let i = 100553; i < 100563; i++) {
 
 #### Socket实现
 
-原理：Net模块提供⼀个异步API能够创建基于流的TCP服务器，客户端与服务器建⽴连接后，服务器可以获得⼀个全双⼯Socket对象，服务器可以保存Socket对象列表，在接收某客户端消息时，推送给其他客户端。
+原理：Net模块提供⼀个异步API能够创建基于流的TCP服务器，客户端与服务器建⽴连接后，服务器可以获得⼀个全双工Socket对象，服务器可以保存Socket对象列表，在接收某客户端消息时，推送给其他客户端。
 
 ```js
 // socket.js
@@ -404,7 +404,7 @@ http.listen(3000, function () {
 >
 > - 源于HTML5标准 
 >
-> - ⽀持优雅降级 
+> - 支持优雅降级 
 >
 >   WebSocket 
 >
@@ -447,7 +447,7 @@ certificate.pfx
 
   http/1.x 的 header 由于 cookie 和 user agent很容易膨胀，而且每次都要重复发送。 
 
-  http/2使用 encoder 来减少需要传输的 header ⼤小，通讯双方各自 cache⼀份header fields 表，既避免了重复 header 的传输，又减小了需要传输的⼤小。⾼效的压 缩算法可以很⼤的压缩 header，减少发送包的数量从而降低延迟 
+  http/2使用 encoder 来减少需要传输的 header 大小，通讯双方各自 cache⼀份header fields 表，既避免了重复 header 的传输，又减小了需要传输的大小。高效的压 缩算法可以很大的压缩 header，减少发送包的数量从而降低延迟 
 
 - 服务端推送 
 

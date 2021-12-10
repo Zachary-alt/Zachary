@@ -57,7 +57,7 @@ http.createServer((req, res) => {
 
 **实现原理**： 
 
-1. 服务器在接受客户端⾸次访问时在服务器端创建seesion，然后保存seesion(我们可以将 seesion保存在内存中，也可以保存在redis中，推荐使用后者)，然后给这个session⽣成⼀个唯⼀的标识字符串,然后在响应头中种下这个唯⼀标识字符串。 
+1. 服务器在接受客户端⾸次访问时在服务器端创建seesion，然后保存seesion(我们可以将 seesion保存在内存中，也可以保存在redis中，推荐使用后者)，然后给这个session生成⼀个唯⼀的标识字符串,然后在响应头中种下这个唯⼀标识字符串。 
 2. 签名。这⼀步通过秘钥对sid进行签名处理，避免客户端修改sid。（非必需步骤） 
 3. 浏览器中收到请求响应的时候会解析响应头，然后将sid保存在本地cookie中，浏览器在下次http请求的请求头中会带上该域名下的cookie信息， 
 4. 服务器在接受客户端请求时会去解析请求头cookie中的sid，然后根据这个sid去找服务器端保存的该客户端的session，然后判断该请求是否合法。
@@ -114,7 +114,7 @@ router.post("/users/login-token", async ctx => {
  ctx.body = {
  message: "登录成功",
  user: userinfo,
- // ⽣成 token 返回给客户端
+ // 生成 token 返回给客户端
  token: jwt.sign(
  {
      data: userinfo,
@@ -154,13 +154,13 @@ app.listen(3000);
 
    eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7InVzZXJuYW1lIjoiYWJjIiwicGFzc3dvcmQiOiIxMTExMTEifSwiZXhwIjoxNTU3MTU1NzMwLCJpYXQiOjE1NTcxNTIxMzB9.pjGaxzX2srG_MEZizzmFEy7JM3t8tjkiu3yULgzFwUk 
 
-2. 签名：默认使用base64对payload编码，使用hs256算法对令牌头、payload和密钥进行签名⽣成哈希 
+2. 签名：默认使用base64对payload编码，使用hs256算法对令牌头、payload和密钥进行签名生成哈希 
 
 3. 验证：默认使用hs256算法对hs256算法对令牌中数据签名并将结果和令牌中哈希比对
 
-> HMAC SHA256 HMAC(Hash Message Authentication Code，散列消息鉴别码，基于密钥的Hash算法的认证协议。消息鉴别码实现鉴别的原理是，用公开函数和密钥产⽣⼀个固定⻓度的值 作为认证标识，用这个标识鉴别消息的完整性。使用⼀个密钥⽣成⼀个固定⼤小的小数据块，即MAC，并将其加入到消息中，然后传输。接收方利用与发送方共享的密钥进行鉴别认证等。 
+> HMAC SHA256 HMAC(Hash Message Authentication Code，散列消息鉴别码，基于密钥的Hash算法的认证协议。消息鉴别码实现鉴别的原理是，用公开函数和密钥产生⼀个固定⻓度的值 作为认证标识，用这个标识鉴别消息的完整性。使用⼀个密钥生成⼀个固定大小的小数据块，即MAC，并将其加入到消息中，然后传输。接收方利用与发送方共享的密钥进行鉴别认证等。 
 >
-> **BASE64** 按照RFC2045的定义，Base64被定义为：Base64内容传送编码被设计用来把任意序列的8位字节描述为⼀种不易被⼈直接识别的形式。（The Base64 Content-Transfer-Encoding is designed to represent arbitrary sequences of octets in a form that need not be humanly readable.） 常见于邮件、http加密，截取http信息，你就会发现登录操作的用户名、密码字段通 过BASE64编码的 
+> **BASE64** 按照RFC2045的定义，Base64被定义为：Base64内容传送编码被设计用来把任意序列的8位字节描述为⼀种不易被人直接识别的形式。（The Base64 Content-Transfer-Encoding is designed to represent arbitrary sequences of octets in a form that need not be humanly readable.） 常见于邮件、http加密，截取http信息，你就会发现登录操作的用户名、密码字段通 过BASE64编码的 
 >
 > **Beare** 
 >

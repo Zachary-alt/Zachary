@@ -108,7 +108,7 @@ export function generate(
         staticRenderFns: state.staticRenderFns
     }
 }
-//⽣成的code长这样
+//生成的code长这样
 `_c('div',{attrs:{"id":"demo"}},[
 _c('h1',[_v("Vue.js测试")]),
 _c('p',[_v(_s(foo))])
@@ -194,7 +194,7 @@ if (el.tag === 'slot') {
 生成相关代码：
 
 ```js
-// genScopedSlot：这里里把slotScope作为形参转换为⼯⼚函数返回内容
+// genScopedSlot：这里里把slotScope作为形参转换为工⼚函数返回内容
 const fn = `function(${slotScope}){` +
     `return ${el.tag === 'template'
         ? el.if && isLegacySyntax
