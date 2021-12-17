@@ -182,7 +182,7 @@ mongodb.once('connect', async () => {
 })
 ```
 
-接⼝编写，index.js
+接口编写，index.js
 
 ```js
 const express = require("express")
@@ -196,7 +196,7 @@ app.get("/", (req, res) => {
 })
 
 app.get("/api/list", async (req, res) => {
-    // 分⻚查询
+    // 分页查询
     const { page, category, keyword } = req.query
     // 构造条件
     const condition = {}

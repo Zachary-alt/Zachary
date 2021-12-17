@@ -220,7 +220,7 @@ console.log("归并排序:", mergeSort(arr));
 ```js
 function quickSort(arr) {
     if (arr.length <= 1) {
-        return arr; //递归出⼝
+        return arr; //递归出口
     }
     var left = [],
         right = [],
@@ -477,7 +477,7 @@ Array.prototype.flat = function () {
             arr.push(item) //非数组直接push进去
         }
     })
-    return arr; //递归出⼝
+    return arr; //递归出口
 }
 arr = [1, 2, 3, [4, 5, [6, 7, [8, 9]]], [10, 11]]
 console.log(arr.flat())

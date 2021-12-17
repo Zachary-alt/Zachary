@@ -308,7 +308,7 @@ selectable={true}//决定用户是否可以⻓按选择文本，以便复制和�
 
 ### WebView
 
- WebView 创建⼀个原生的 WebView，可以用于访问⼀个网⻚。
+ WebView 创建⼀个原生的 WebView，可以用于访问⼀个网页。
 
 ```jsx
 class MyWeb extends Component {
@@ -350,7 +350,7 @@ ListView底层实现，渲染组件Item是全量渲染，而且没有复用机�
 
 ### VirtualizedList
 
-[FlatList](https://reactnative.cn/docs/flatlist) 和 [SectionList](https://reactnative.cn/docs/sectionlist) 的底层实现，VirtualizedList通过维护⼀个有限的渲染窗⼝(其中包含可见的元素)，并将渲染窗⼝之外的元素全部用合适的定⻓空⽩空间代替的方 式，极大的改善了内存使用，提高了大量数据情况下的渲染性能。这个渲染窗⼝能响应滚动行为，元素离可视区越远优先级越低，越近优先级越高，当用户滑动速度过快时，会出现短暂空⽩的情况。
+[FlatList](https://reactnative.cn/docs/flatlist) 和 [SectionList](https://reactnative.cn/docs/sectionlist) 的底层实现，VirtualizedList通过维护⼀个有限的渲染窗口(其中包含可见的元素)，并将渲染窗口之外的元素全部用合适的定⻓空⽩空间代替的方 式，极大的改善了内存使用，提高了大量数据情况下的渲染性能。这个渲染窗口能响应滚动行为，元素离可视区越远优先级越低，越近优先级越高，当用户滑动速度过快时，会出现短暂空⽩的情况。
 
 ### FlatList
 

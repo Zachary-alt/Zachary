@@ -9,7 +9,7 @@ curl -v http://www.baidu.com
 
 - [http协议详解](https://blog.csdn.net/weixin_38087538/article/details/82838762) 
 
-- 创建接⼝，api.js
+- 创建接口，api.js
 
   ```js
   // /http/api.js
@@ -51,7 +51,7 @@ curl -v http://www.baidu.com
 
 ### 协议 端口 host
 
-- 跨域：浏览器同源策略引起的接⼝调用问题
+- 跨域：浏览器同源策略引起的接口调用问题
 
   ```js
   // proxy.js
@@ -84,7 +84,7 @@ curl -v http://www.baidu.com
 
   > 请求同源服务器，通过该服务器转发请求至目标服务器，得到结果再转发给前端。 
   >
-  > 前端开发中测试服务器的代理功能就是采用的该解决方案，但是最终发布上线时如果web应用和接⼝服务器不在⼀起仍会跨域。 
+  > 前端开发中测试服务器的代理功能就是采用的该解决方案，但是最终发布上线时如果web应用和接口服务器不在⼀起仍会跨域。 
 
   3. CORS(Cross Origin Resource Share) - 跨域资源共享，后端方案，解决跨域
 
@@ -134,7 +134,7 @@ else if ((method == "GET" || method == "POST") && url == "/users") {}
 
 ```js
 // index.js
-// 预检options中和/users接⼝中均需添加
+// 预检options中和/users接口中均需添加
 res.setHeader('Access-Control-Allow-Credentials', 'true');
 // 设置cookie
 res.setHeader('Set-Cookie', 'cookie1=va222;')
@@ -226,7 +226,7 @@ https://www.zhihu.com/question/24723688
 
 ### 实战⼀个爬虫
 
-原理：服务端模拟客户端发送请求到目标服务器获取⻚面内容并解析，获取其中关注部分的数据。
+原理：服务端模拟客户端发送请求到目标服务器获取页面内容并解析，获取其中关注部分的数据。
 
 ```js
 const originRequest = require("request");
@@ -437,7 +437,7 @@ certificate.pfx
 
 ## Http2
 
-多路复用 - 雪碧图、多域名CDN、接⼝合并
+多路复用 - 雪碧图、多域名CDN、接口合并
 
 - 官方演示 - https://http2.akamai.com/demo 
 

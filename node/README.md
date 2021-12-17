@@ -249,7 +249,7 @@ const server = http.createServer((req, res) => {
     } else {
         res.statusCode = 404;
         res.setHeader('Content-Type', 'text/plain;charset=utf-8');
-        res.end('404, ⻚页面面没有找到');
+        res.end('404, 页页面面没有找到');
     }
 
 })
@@ -258,7 +258,7 @@ server.listen(3000)
 
 ### stream 
 
-是用于与node中流数据交互的接⼝
+是用于与node中流数据交互的接口
 
 ```js
 // 流

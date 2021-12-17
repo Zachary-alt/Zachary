@@ -90,8 +90,8 @@ swaggerdoc : {
 config.swaggerdoc = {
     dirScanner: './app/controller',
     apiInfo: {
-      title: '测试接⼝',
-      description: '测试接⼝ swagger-ui for egg',
+      title: '测试接口',
+      description: '测试接口 swagger-ui for egg',
       version: '1.0.0',
     },
     schemes: [ 'http', 'https' ],

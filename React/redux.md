@@ -448,7 +448,7 @@ export function createStore(reducer,enhancer){
 }
 ```
 
-⻚面可以用原来的ReduxPage.js测试以上代码
+页面可以用原来的ReduxPage.js测试以上代码
 
 ### 中间件实现 
 

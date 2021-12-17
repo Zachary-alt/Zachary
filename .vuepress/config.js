@@ -25,6 +25,7 @@ module.exports = {
                 items: [
                     { text: '概览', link: '/webpack/' },
                     { text: '原理分析', link: '/webpack/source/' },
+                    { text: '同中有异的Rollup', link: '/webpack/diff2rollup/' },
                 ]
             },
             { text: 'github', link: 'https://github.com/Zachary-alt' },
