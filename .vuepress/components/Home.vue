@@ -82,6 +82,10 @@ export default {
                             title:'补充',
                             path:'/vue/other'
                         },
+                        {
+                            title:'Vue3快速上手',
+                            path:'/vue/vue3Base'
+                        },
                     ]
                 },
                 {
@@ -105,7 +109,7 @@ export default {
                             path:'/react/router'
                         },
                         {
-                            title:'redux-saga',
+                            title:'umi',
                             path:'/react/umi'
                         },
                     ]
@@ -181,6 +185,10 @@ export default {
                         {
                             title:'数据持久化 - mongodb',
                             path:'/node/mongodb'
+                        },
+                        {
+                            title:'egg实战',
+                            path:'/node/egg'
                         },
                     ]
                 },
