@@ -24,7 +24,7 @@ export default {
     },
     methods:{
         getHref(path){
-            let prefix = '/zachary',after=''
+            let prefix = '/Zachary',after=''
             if(path[path.length-1]==='/'){
                 after=path
             }else{
