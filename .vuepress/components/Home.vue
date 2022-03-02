@@ -94,23 +94,23 @@ export default {
                     children:[
                         {
                             title:'React干货',
-                            path:'/react/base'
+                            path:'/React/base'
                         },
                         {
                             title:'组件化',
-                            path:'/react/component'
+                            path:'/React/component'
                         },
                         {
                             title:'Redux',
-                            path:'/react/redux'
+                            path:'/React/redux'
                         },
                         {
                             title:'路由',
-                            path:'/react/router'
+                            path:'/React/router'
                         },
                         {
                             title:'umi',
-                            path:'/react/umi'
+                            path:'/React/umi'
                         },
                     ]
                 },
