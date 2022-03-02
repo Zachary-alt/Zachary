@@ -1,5 +1,13 @@
 ## 原型/原型链
 
+### **JavaScript数据类型：**
+
+值类型(基本类型)：字符串（String）、数字(Number)、布尔(Boolean)、对空（Null）、未定义（Undefined）、Symbol。
+
+引用数据类型：对象(Object)、数组(Array)、函数(Function)。
+
+注：Symbol 是 ES6 引入了一种新的原始数据类型，表示独一无二的值。
+
 ### typeof
 
 typeof 返回一个表达式的数据类型的字符串，返回结果为javascript中的基本数据类型，包括：number、boolean、string、object、undefined、function等6种数据类型。
@@ -57,7 +65,7 @@ new Person instanceof Object;//true
 原型是`function`的一个属性，它定义了构造函数制造出的对象实例的公共祖先，通过该构造函数产生的实例，可以继承该原型的属性和方法
 
 ```js
-unction Person(name, age) {
+function Person(name, age) {
   this.name = name;
   this.age = age; 
 }
