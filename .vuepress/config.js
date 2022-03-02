@@ -1,5 +1,5 @@
 module.exports = {
-    // base:'/zachary/',
+    base:'/Zachary/',
     title: 'Zachary',
     dest:'docs',
     description: '前端学习笔记',
