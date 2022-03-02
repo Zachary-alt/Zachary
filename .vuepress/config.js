@@ -1,6 +1,7 @@
 module.exports = {
-    base:'/zachary/',
+    // base:'/zachary/',
     title: 'Zachary',
+    dest:'docs',
     description: '前端学习笔记',
     themeConfig: {
         lastUpdated: 'Last Updated',

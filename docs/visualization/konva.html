@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Konva 的使用快速上手 | Zachary</title>
+    <meta name="generator" content="VuePress 1.7.1">
+    
+    <meta name="description" content="前端学习笔记">
+    
+    <link rel="preload" href="/assets/css/0.styles.1fa053aa.css" as="style"><link rel="preload" href="/assets/js/app.9602f2b3.js" as="script"><link rel="preload" href="/assets/js/2.10e03947.js" as="script"><link rel="preload" href="/assets/js/39.33cb8774.js" as="script"><link rel="prefetch" href="/assets/js/10.d282350d.js"><link rel="prefetch" href="/assets/js/11.47e52921.js"><link rel="prefetch" href="/assets/js/12.883931d6.js"><link rel="prefetch" href="/assets/js/13.dc0644fb.js"><link rel="prefetch" href="/assets/js/14.0c158d85.js"><link rel="prefetch" href="/assets/js/15.5a57096f.js"><link rel="prefetch" href="/assets/js/16.fac896a5.js"><link rel="prefetch" href="/assets/js/17.41c1a054.js"><link rel="prefetch" href="/assets/js/18.672f4f7d.js"><link rel="prefetch" href="/assets/js/19.d5832c35.js"><link rel="prefetch" href="/assets/js/20.52dfb943.js"><link rel="prefetch" href="/assets/js/21.2304572a.js"><link rel="prefetch" href="/assets/js/22.03a4797a.js"><link rel="prefetch" href="/assets/js/23.895fe62d.js"><link rel="prefetch" href="/assets/js/24.f1acf19c.js"><link rel="prefetch" href="/assets/js/25.112ea51d.js"><link rel="prefetch" href="/assets/js/26.7226c84b.js"><link rel="prefetch" href="/assets/js/27.e6fcf2ab.js"><link rel="prefetch" href="/assets/js/28.af02f9a6.js"><link rel="prefetch" href="/assets/js/29.c26740bb.js"><link rel="prefetch" href="/assets/js/3.1d1c5862.js"><link rel="prefetch" href="/assets/js/30.0a35f588.js"><link rel="prefetch" href="/assets/js/31.3d7ff5dd.js"><link rel="prefetch" href="/assets/js/32.d4d41104.js"><link rel="prefetch" href="/assets/js/33.f44ca488.js"><link rel="prefetch" href="/assets/js/34.2380b0e7.js"><link rel="prefetch" href="/assets/js/35.bddd633e.js"><link rel="prefetch" href="/assets/js/36.b722a7c3.js"><link rel="prefetch" href="/assets/js/37.77333030.js"><link rel="prefetch" href="/assets/js/38.7558aa25.js"><link rel="prefetch" href="/assets/js/4.0222c010.js"><link rel="prefetch" href="/assets/js/40.564a584c.js"><link rel="prefetch" href="/assets/js/41.407953a2.js"><link rel="prefetch" href="/assets/js/42.e1ed73d2.js"><link rel="prefetch" href="/assets/js/43.640ba476.js"><link rel="prefetch" href="/assets/js/44.54f5c580.js"><link rel="prefetch" href="/assets/js/45.3ff513b5.js"><link rel="prefetch" href="/assets/js/46.991be6e1.js"><link rel="prefetch" href="/assets/js/47.3e95db90.js"><link rel="prefetch" href="/assets/js/48.437b180b.js"><link rel="prefetch" href="/assets/js/49.5fb361ea.js"><link rel="prefetch" href="/assets/js/5.dfe6aeb3.js"><link rel="prefetch" href="/assets/js/50.de2b35c1.js"><link rel="prefetch" href="/assets/js/51.e23d0831.js"><link rel="prefetch" href="/assets/js/52.357e0e1a.js"><link rel="prefetch" href="/assets/js/53.55490309.js"><link rel="prefetch" href="/assets/js/54.dcafdb46.js"><link rel="prefetch" href="/assets/js/55.e198df19.js"><link rel="prefetch" href="/assets/js/56.515ce078.js"><link rel="prefetch" href="/assets/js/57.ab0990db.js"><link rel="prefetch" href="/assets/js/58.6787c716.js"><link rel="prefetch" href="/assets/js/6.5acee334.js"><link rel="prefetch" href="/assets/js/7.7a1c67b0.js"><link rel="prefetch" href="/assets/js/8.f4ac18fa.js"><link rel="prefetch" href="/assets/js/9.2b6dec57.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.1fa053aa.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><img src="/assets/img/logo.jpg" alt="Zachary" class="logo"> <span class="site-name can-hide">Zachary</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/visualization/" class="nav-link router-link-active">
+  首页
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="babel" class="dropdown-title"><span class="title">babel</span> <span class="arrow down"></span></button> <button type="button" aria-label="babel" class="mobile-dropdown-title"><span class="title">babel</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/babel/" class="nav-link">
+  概览
+</a></li><li class="dropdown-item"><!----> <a href="/babel/integration/" class="nav-link">
+  集成
+</a></li><li class="dropdown-item"><!----> <a href="/babel/presets/" class="nav-link">
+  Presets
+</a></li><li class="dropdown-item"><!----> <a href="/babel/tools/" class="nav-link">
+  工具
+</a></li><li class="dropdown-item"><!----> <a href="/babel/user/" class="nav-link">
+  Babel 用户手册
+</a></li><li class="dropdown-item"><!----> <a href="/babel/plugin/" class="nav-link">
+  Babel 插件手册
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="webpack" class="dropdown-title"><span class="title">webpack</span> <span class="arrow down"></span></button> <button type="button" aria-label="webpack" class="mobile-dropdown-title"><span class="title">webpack</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/webpack/" class="nav-link">
+  概览
+</a></li><li class="dropdown-item"><!----> <a href="/webpack/source/" class="nav-link">
+  原理分析
+</a></li><li class="dropdown-item"><!----> <a href="/webpack/diff2rollup/" class="nav-link">
+  同中有异的Rollup
+</a></li></ul></div></div><div class="nav-item"><a href="https://github.com/Zachary-alt" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  github
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/visualization/" class="nav-link router-link-active">
+  首页
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="babel" class="dropdown-title"><span class="title">babel</span> <span class="arrow down"></span></button> <button type="button" aria-label="babel" class="mobile-dropdown-title"><span class="title">babel</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/babel/" class="nav-link">
+  概览
+</a></li><li class="dropdown-item"><!----> <a href="/babel/integration/" class="nav-link">
+  集成
+</a></li><li class="dropdown-item"><!----> <a href="/babel/presets/" class="nav-link">
+  Presets
+</a></li><li class="dropdown-item"><!----> <a href="/babel/tools/" class="nav-link">
+  工具
+</a></li><li class="dropdown-item"><!----> <a href="/babel/user/" class="nav-link">
+  Babel 用户手册
+</a></li><li class="dropdown-item"><!----> <a href="/babel/plugin/" class="nav-link">
+  Babel 插件手册
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="webpack" class="dropdown-title"><span class="title">webpack</span> <span class="arrow down"></span></button> <button type="button" aria-label="webpack" class="mobile-dropdown-title"><span class="title">webpack</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/webpack/" class="nav-link">
+  概览
+</a></li><li class="dropdown-item"><!----> <a href="/webpack/source/" class="nav-link">
+  原理分析
+</a></li><li class="dropdown-item"><!----> <a href="/webpack/diff2rollup/" class="nav-link">
+  同中有异的Rollup
+</a></li></ul></div></div><div class="nav-item"><a href="https://github.com/Zachary-alt" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  github
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>Konva 的使用快速上手</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/visualization/konva.html#konva-的整体理念" class="sidebar-link">Konva 的整体理念</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/visualization/konva.html#konva-矩形案例" class="sidebar-link">Konva 矩形案例</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/visualization/konva.html#创建一个矩形-konva-rect-option" class="sidebar-link">创建一个矩形： Konva.Rect(option);</a></li></ul></li><li><a href="/visualization/konva.html#konva-的动画系统" class="sidebar-link">Konva 的动画系统</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/visualization/konva.html#tween-对象-重点" class="sidebar-link">tween 对象(重点)</a></li><li class="sidebar-sub-header"><a href="/visualization/konva.html#动画-to-的使用" class="sidebar-link">动画 to 的使用</a></li><li class="sidebar-sub-header"><a href="/visualization/konva.html#animate-的应用" class="sidebar-link">Animate 的应用</a></li><li class="sidebar-sub-header"><a href="/visualization/konva.html#循环播放动画的实现" class="sidebar-link">循环播放动画的实现</a></li><li class="sidebar-sub-header"><a href="/visualization/konva.html#回放且循环播放动画" class="sidebar-link">回放且循环播放动画</a></li></ul></li><li><a href="/visualization/konva.html#konva-的事件-重要" class="sidebar-link">Konva 的事件（重要）</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/visualization/konva.html#konva-的选择器" class="sidebar-link">Konva 的选择器</a><ul class="sidebar-sub-headers"></ul></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="konva-的使用快速上手"><a href="#konva-的使用快速上手" class="header-anchor">#</a> Konva 的使用快速上手</h1> <h2 id="konva-的整体理念"><a href="#konva-的整体理念" class="header-anchor">#</a> Konva 的整体理念</h2> <ul><li>舞台的概念的引入。整个视图看做是一个舞台 stage</li> <li>舞台中可以绘制很多个层 layer</li> <li>layer 下面可以有很多的 group</li> <li>group 下面可以有 矩形、图片、其他形状等</li> <li>参考：<a href="http://konvajs-doc.bluehymn.com/docs/" target="_blank" rel="noopener noreferrer">快速上手文档<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul> <div class="language- extra-class"><pre class="language-text"><code>                  Stage
+                    |
+             +------+------+
+             |             |
+           Layer         Layer
+             |             |
+       +-----+-----+     Shape
+       |           |
+     Group       Group
+       |           |
+       +       +---+---+
+       |       |       |
+    Shape   Group    Shape
+               |
+               +
+               |
+             ShapeCopy to clipboardErrorCopied
+</code></pre></div><h2 id="konva-矩形案例"><a href="#konva-矩形案例" class="header-anchor">#</a> Konva 矩形案例</h2> <h3 id="创建一个矩形-konva-rect-option"><a href="#创建一个矩形-konva-rect-option" class="header-anchor">#</a> 创建一个矩形： Konva.Rect(option);</h3> <div class="language-js extra-class"><pre class="language-js"><code><span class="token operator">&lt;</span>div id<span class="token operator">=</span><span class="token string">&quot;container&quot;</span><span class="token operator">&gt;</span><span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span>script<span class="token operator">&gt;</span>
+        <span class="token comment">//Konva使用的基本案例</span>
+        <span class="token comment">//第一步：创建舞台</span>
+        <span class="token keyword">let</span> stage <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Konva<span class="token punctuation">.</span>Stage</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+            container<span class="token operator">:</span><span class="token string">'container'</span><span class="token punctuation">,</span>
+            width<span class="token operator">:</span>window<span class="token punctuation">.</span>innerWidth<span class="token punctuation">,</span><span class="token comment">//设置全屏</span>
+            height<span class="token operator">:</span>window<span class="token punctuation">.</span>innerHeight
+        <span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+        <span class="token comment">//第二步：创建层</span>
+        <span class="token keyword">let</span> layer <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Konva<span class="token punctuation">.</span>Layer</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token comment">//创建一个层</span>
+        stage<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>layer<span class="token punctuation">)</span><span class="token comment">//把层添加到舞台</span>
+
+        <span class="token comment">//第三步： 创建矩形</span>
+        <span class="token keyword">let</span> rect<span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Konva<span class="token punctuation">.</span>Rect</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+            x<span class="token operator">:</span> <span class="token number">100</span><span class="token punctuation">,</span>                     <span class="token comment">//矩形的x坐标，相对其父容器的坐标</span>
+            y<span class="token operator">:</span> <span class="token number">100</span><span class="token punctuation">,</span>
+            width<span class="token operator">:</span> <span class="token number">100</span><span class="token punctuation">,</span>                 <span class="token comment">//矩形的宽度</span>
+            height<span class="token operator">:</span> <span class="token number">100</span><span class="token punctuation">,</span>                <span class="token comment">//矩形高度</span>
+            fill<span class="token operator">:</span> <span class="token string">'gold'</span><span class="token punctuation">,</span>               <span class="token comment">//矩形填充的颜色</span>
+            stroke<span class="token operator">:</span> <span class="token string">'navy'</span><span class="token punctuation">,</span>             <span class="token comment">//矩形描边的颜色</span>
+            strokeWidth<span class="token operator">:</span> <span class="token number">4</span><span class="token punctuation">,</span>             <span class="token comment">//填充宽度</span>
+            opactity<span class="token operator">:</span> <span class="token number">.2</span><span class="token punctuation">,</span>               <span class="token comment">//矩形的透明度</span>
+            scale<span class="token operator">:</span> <span class="token number">1.2</span><span class="token punctuation">,</span>                 <span class="token comment">//矩形的缩放 1：原来大小</span>
+            rotation<span class="token operator">:</span> <span class="token number">30</span><span class="token punctuation">,</span>               <span class="token comment">//旋转的角度，是deg不是弧度。</span>
+            cornerRadius<span class="token operator">:</span> <span class="token number">10</span><span class="token punctuation">,</span>           <span class="token comment">//圆角的大小（像素）</span>
+            id<span class="token operator">:</span> <span class="token string">'rect1'</span><span class="token punctuation">,</span>                <span class="token comment">//id属性，类似dom的id属性</span>
+            name<span class="token operator">:</span> <span class="token string">'rect'</span><span class="token punctuation">,</span>
+            draggable<span class="token operator">:</span> <span class="token boolean">true</span>             <span class="token comment">//是否可以进行拖拽</span>
+        <span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+        <span class="token comment">//创建一个组</span>
+        <span class="token keyword">var</span> group <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Konva<span class="token punctuation">.</span>Group</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+            x<span class="token operator">:</span> <span class="token number">40</span><span class="token punctuation">,</span>
+            y<span class="token operator">:</span> <span class="token number">40</span><span class="token punctuation">,</span>
+        <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        group<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span> rect <span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">//把矩形添加到组中</span>
+
+        <span class="token comment">//第四步： 把形状放到层中</span>
+        layer<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span> group <span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//把组添加到层中</span>
+        layer<span class="token punctuation">.</span><span class="token function">draw</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>       <span class="token comment">//绘制层到舞台上</span>
+    <span class="token operator">&lt;</span><span class="token operator">/</span>script<span class="token operator">&gt;</span>
+</code></pre></div><h2 id="konva-的动画系统"><a href="#konva-的动画系统" class="header-anchor">#</a> Konva 的动画系统</h2> <h3 id="tween-对象-重点"><a href="#tween-对象-重点" class="header-anchor">#</a> tween 对象(重点)</h3> <ul><li>tween，英文意思：两者之间， 英 [twiːn] 美 [twin]</li> <li>tween 是控制 Konva 对象进行动画的核心对象。</li> <li>tween 可以控制所有数字类型的属性进行动画处理，比如：x, y, rotation, width, height, radius, strokeWidth, opacity, scaleX 等</li></ul> <div class="language-js extra-class"><pre class="language-js"><code><span class="token comment">//案例：</span>
+<span class="token keyword">var</span> tween <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Konva<span class="token punctuation">.</span>Tween</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    node<span class="token operator">:</span> rect<span class="token punctuation">,</span>             <span class="token comment">//要进行动画的Konva对象</span>
+    x<span class="token operator">:</span> <span class="token number">300</span><span class="token punctuation">,</span>                 <span class="token comment">//要进行动画的属性</span>
+    opacity<span class="token operator">:</span> <span class="token number">.8</span><span class="token punctuation">,</span>
+    duration<span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">,</span>            <span class="token comment">//持续时间</span>
+    easing<span class="token operator">:</span> Konva<span class="token punctuation">.</span>Easings<span class="token punctuation">.</span>EaseIn<span class="token punctuation">,</span> <span class="token comment">//动画的动画效果</span>
+    yoyo<span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>             <span class="token comment">//是否进行循环播放的设置</span>
+    <span class="token function-variable function">onFinish</span><span class="token operator">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment">//动画执行结束后，执行此方法</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+tween<span class="token punctuation">.</span><span class="token function">play</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>   <span class="token comment">//启动动画</span>
+</code></pre></div><ul><li>tween 的控制方法
+<ul><li>tween.play(), //播放动画</li> <li>tween.pause(), //暂停动画</li> <li>tween.reverse(), //动画逆播放</li> <li>tween.reset(), //重置动画</li> <li>tween.finish(), //立即结束动画</li> <li>seek：英文：寻找 英 [siːk] 美 [sik]</li></ul></li> <li>tween 的缓动控制选项
+<ul><li>Konva.Easings.Linear //线性</li> <li>Konva.Easings.EaseIn //缓动，先慢后快</li> <li>Konva.Easings.EaseOut //先快后慢</li> <li>Konva.Easings.EaseInOut //两头慢，中间快</li> <li>Konva.Easings.BackEaseIn //往回来一点，然后往前冲，汽车启动类似...</li> <li>Konva.Easings.BackEaseOut</li> <li>Konva.Easings.BackEaseInOut</li> <li>Konva.Easings.ElasticEaseIn //橡皮筋 英 [ɪ'læstɪk] 美 [ɪ'læstɪk]</li> <li>Konva.Easings.ElasticEaseOut</li> <li>Konva.Easings.ElasticEaseInOut</li> <li>Konva.Easings.BounceEaseIn //弹跳；弹起，反跳；弹回 英 [baʊns] 美 [baʊns]</li> <li>Konva.Easings.BounceEaseOut</li> <li>Konva.Easings.BounceEaseInOut</li> <li>Konva.Easings.StrongEaseIn //强力</li> <li>Konva.Easings.StrongEaseOut</li> <li>Konva.Easings.StrongEaseInOut</li></ul></li></ul> <h3 id="动画-to-的使用"><a href="#动画-to-的使用" class="header-anchor">#</a> 动画 to 的使用</h3> <ul><li>to 就是对 tween 的封装，比较简单好用。</li></ul> <div class="language-js extra-class"><pre class="language-js"><code><span class="token comment">//案例：</span>
+<span class="token keyword">var</span> rect <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Konva<span class="token punctuation">.</span>Rect</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    x<span class="token operator">:</span> <span class="token number">10</span><span class="token punctuation">,</span>
+    y<span class="token operator">:</span> <span class="token number">10</span><span class="token punctuation">,</span>
+    width<span class="token operator">:</span> <span class="token number">100</span><span class="token punctuation">,</span>
+    height<span class="token operator">:</span> <span class="token number">100</span><span class="token punctuation">,</span>
+    fill<span class="token operator">:</span> <span class="token string">'red'</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+layer<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>rect<span class="token punctuation">)</span><span class="token punctuation">;</span>
+layer<span class="token punctuation">.</span><span class="token function">draw</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">//动画系统</span>
+rect<span class="token punctuation">.</span><span class="token function">to</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    x<span class="token operator">:</span> <span class="token number">100</span><span class="token punctuation">,</span>
+    y<span class="token operator">:</span> <span class="token number">100</span><span class="token punctuation">,</span>
+    opactity<span class="token operator">:</span> <span class="token number">.1</span><span class="token punctuation">,</span>
+    duration<span class="token operator">:</span> <span class="token number">3</span><span class="token punctuation">,</span>
+    <span class="token function-variable function">onFinish</span><span class="token operator">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">//to: 就是对tween的简单应用。Copy to clipboardErrorCopied</span>
+</code></pre></div><h3 id="animate-的应用"><a href="#animate-的应用" class="header-anchor">#</a> Animate 的应用</h3> <ul><li>Animation 动画，实际上就是浏览器通知开发者进行绘制，并提供当前的时间</li></ul> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">var</span> anim <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Konva<span class="token punctuation">.</span>Animation</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">frame</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">//动画系统提供的frame有三个属性可以使用：</span>
+    <span class="token keyword">var</span> time <span class="token operator">=</span> frame<span class="token punctuation">.</span>time<span class="token punctuation">,</span> <span class="token comment">// 动画执行的总时间</span>
+        timeDiff <span class="token operator">=</span> frame<span class="token punctuation">.</span>timeDiff<span class="token punctuation">,</span> <span class="token comment">// 距离上一帧的时间</span>
+        frameRate <span class="token operator">=</span> frame<span class="token punctuation">.</span>frameRate<span class="token punctuation">;</span> <span class="token comment">// 帧率（既1000/间隔时间）</span>
+
+    <span class="token comment">//动画的动作</span>
+
+<span class="token punctuation">}</span><span class="token punctuation">,</span> layer<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+anim<span class="token punctuation">.</span><span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//启动动画</span>
+
+<span class="token comment">//anim.stop();//结束动画</span>
+</code></pre></div><h3 id="循环播放动画的实现"><a href="#循环播放动画的实现" class="header-anchor">#</a> 循环播放动画的实现</h3> <div class="language-js extra-class"><pre class="language-js"><code><span class="token comment">//总体思路，使用tween 配合onFinish事件中重新播放动画，达到循环播放的效果</span>
+<span class="token keyword">var</span> loopTween <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Konva<span class="token punctuation">.</span>Tween</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  node<span class="token operator">:</span> star<span class="token punctuation">,</span> <span class="token comment">//设置要表现动画的 Konva对象</span>
+  rotation<span class="token operator">:</span> <span class="token number">360</span><span class="token punctuation">,</span> <span class="token comment">//旋转360度</span>
+  duration<span class="token operator">:</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token comment">//动画持续时间</span>
+  easing<span class="token operator">:</span> Konva<span class="token punctuation">.</span>Easings<span class="token punctuation">.</span>Linear<span class="token punctuation">,</span>
+  <span class="token function-variable function">onFinish</span><span class="token operator">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// this === loopTween //true</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">reset</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//重置动画</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">play</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//重新播放动画</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+loopTween<span class="token punctuation">.</span><span class="token function">play</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div><h3 id="回放且循环播放动画"><a href="#回放且循环播放动画" class="header-anchor">#</a> 回放且循环播放动画</h3> <ul><li>yoyo 属性可以进行对动画进行播放完后，回放当前动画，并持续循环来回切换播放。</li></ul> <div class="language-js extra-class"><pre class="language-js"><code>rect<span class="token punctuation">.</span><span class="token function">to</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  duration<span class="token operator">:</span> <span class="token number">2</span><span class="token punctuation">,</span>
+  scale<span class="token operator">:</span> <span class="token number">1.5</span><span class="token punctuation">,</span>
+  yoyo<span class="token operator">:</span> <span class="token boolean">true</span> <span class="token comment">// 此设置也可以用于 tween</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div><h2 id="konva-的事件-重要"><a href="#konva-的事件-重要" class="header-anchor">#</a> Konva 的事件（重要）</h2> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">var</span> rect <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Konva<span class="token punctuation">.</span>Rect</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  x<span class="token operator">:</span> <span class="token number">100</span><span class="token punctuation">,</span>
+  y<span class="token operator">:</span> <span class="token number">100</span><span class="token punctuation">,</span>
+  fill<span class="token operator">:</span> <span class="token string">'red'</span><span class="token punctuation">,</span>
+  width<span class="token operator">:</span> <span class="token number">200</span><span class="token punctuation">,</span>
+  height<span class="token operator">:</span> <span class="token number">200</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">//绑定事件 Konva支持事件：mouseover, mouseout, mouseenter, mouseleave, mousemove, mousedown, mouseup, mousewheel, click, dblclick, dragstart, dragmove, and dragend</span>
+
+rect<span class="token punctuation">.</span><span class="token function">on</span><span class="token punctuation">(</span><span class="token string">'click'</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment">//jQuery一模一样！！</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'^_^  ^_^'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">//绑定多个事件</span>
+rect<span class="token punctuation">.</span><span class="token function">on</span><span class="token punctuation">(</span><span class="token string">'click mousemove'</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">e</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">//解除绑定事件</span>
+rect<span class="token punctuation">.</span><span class="token function">off</span><span class="token punctuation">(</span><span class="token string">'click'</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//这不是jQuery吗？</span>
+
+<span class="token comment">//触发事件</span>
+rect<span class="token punctuation">.</span><span class="token function">fire</span><span class="token punctuation">(</span><span class="token string">'click'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">//取消事件冒泡</span>
+rect<span class="token punctuation">.</span><span class="token function">on</span><span class="token punctuation">(</span><span class="token string">'click'</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">evt</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token function">alert</span><span class="token punctuation">(</span><span class="token string">'You clicked the circle!'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  evt<span class="token punctuation">.</span>cancelBubble <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span> <span class="token comment">//取消事件冒泡</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div><h2 id="konva-的选择器"><a href="#konva-的选择器" class="header-anchor">#</a> Konva 的选择器</h2> <ul><li>选择方法。
+<ul><li>ID 选择法：stage.find('#id'); //此方法返回的是一个数组</li> <li>name 选择法：group.findOne('.name');//返回一个 Konva 对象</li> <li>type 选择法： group.find('Circle');//查找所有的圆形 Konva 对象</li></ul></li></ul> <div class="language-js extra-class"><pre class="language-js"><code><span class="token comment">//组中查找圆形的Konva对象</span>
+groupCircle<span class="token punctuation">.</span><span class="token function">find</span><span class="token punctuation">(</span><span class="token string">'Circle'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">each</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">circle<span class="token punctuation">,</span> index</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  circle<span class="token punctuation">.</span><span class="token function">setZIndex</span><span class="token punctuation">(</span><span class="token number">3</span> <span class="token operator">-</span> index<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div></div> <footer class="page-edit"><!----> <div class="last-updated"><span class="prefix">Last Updated:</span> <span class="time">7/11/2021, 8:30:11 PM</span></div></footer> <!----> </main></div><div class="global-ui"></div></div>
+    <script src="/assets/js/app.9602f2b3.js" defer></script><script src="/assets/js/2.10e03947.js" defer></script><script src="/assets/js/39.33cb8774.js" defer></script>
+  </body>
+</html>

@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "vuepress dev .",
+    "build-hub": "set NODE_ENV=hub&&vuepress build .",
     "build": "vuepress build ."
   },
   "keywords": [],

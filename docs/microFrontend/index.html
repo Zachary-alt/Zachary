@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>一、关于微前端 | Zachary</title>
+    <meta name="generator" content="VuePress 1.7.1">
+    
+    <meta name="description" content="前端学习笔记">
+    
+    <link rel="preload" href="/assets/css/0.styles.1fa053aa.css" as="style"><link rel="preload" href="/assets/js/app.9602f2b3.js" as="script"><link rel="preload" href="/assets/js/2.10e03947.js" as="script"><link rel="preload" href="/assets/js/32.d4d41104.js" as="script"><link rel="prefetch" href="/assets/js/10.d282350d.js"><link rel="prefetch" href="/assets/js/11.47e52921.js"><link rel="prefetch" href="/assets/js/12.883931d6.js"><link rel="prefetch" href="/assets/js/13.dc0644fb.js"><link rel="prefetch" href="/assets/js/14.0c158d85.js"><link rel="prefetch" href="/assets/js/15.5a57096f.js"><link rel="prefetch" href="/assets/js/16.fac896a5.js"><link rel="prefetch" href="/assets/js/17.41c1a054.js"><link rel="prefetch" href="/assets/js/18.672f4f7d.js"><link rel="prefetch" href="/assets/js/19.d5832c35.js"><link rel="prefetch" href="/assets/js/20.52dfb943.js"><link rel="prefetch" href="/assets/js/21.2304572a.js"><link rel="prefetch" href="/assets/js/22.03a4797a.js"><link rel="prefetch" href="/assets/js/23.895fe62d.js"><link rel="prefetch" href="/assets/js/24.f1acf19c.js"><link rel="prefetch" href="/assets/js/25.112ea51d.js"><link rel="prefetch" href="/assets/js/26.7226c84b.js"><link rel="prefetch" href="/assets/js/27.e6fcf2ab.js"><link rel="prefetch" href="/assets/js/28.af02f9a6.js"><link rel="prefetch" href="/assets/js/29.c26740bb.js"><link rel="prefetch" href="/assets/js/3.1d1c5862.js"><link rel="prefetch" href="/assets/js/30.0a35f588.js"><link rel="prefetch" href="/assets/js/31.3d7ff5dd.js"><link rel="prefetch" href="/assets/js/33.f44ca488.js"><link rel="prefetch" href="/assets/js/34.2380b0e7.js"><link rel="prefetch" href="/assets/js/35.bddd633e.js"><link rel="prefetch" href="/assets/js/36.b722a7c3.js"><link rel="prefetch" href="/assets/js/37.77333030.js"><link rel="prefetch" href="/assets/js/38.7558aa25.js"><link rel="prefetch" href="/assets/js/39.33cb8774.js"><link rel="prefetch" href="/assets/js/4.0222c010.js"><link rel="prefetch" href="/assets/js/40.564a584c.js"><link rel="prefetch" href="/assets/js/41.407953a2.js"><link rel="prefetch" href="/assets/js/42.e1ed73d2.js"><link rel="prefetch" href="/assets/js/43.640ba476.js"><link rel="prefetch" href="/assets/js/44.54f5c580.js"><link rel="prefetch" href="/assets/js/45.3ff513b5.js"><link rel="prefetch" href="/assets/js/46.991be6e1.js"><link rel="prefetch" href="/assets/js/47.3e95db90.js"><link rel="prefetch" href="/assets/js/48.437b180b.js"><link rel="prefetch" href="/assets/js/49.5fb361ea.js"><link rel="prefetch" href="/assets/js/5.dfe6aeb3.js"><link rel="prefetch" href="/assets/js/50.de2b35c1.js"><link rel="prefetch" href="/assets/js/51.e23d0831.js"><link rel="prefetch" href="/assets/js/52.357e0e1a.js"><link rel="prefetch" href="/assets/js/53.55490309.js"><link rel="prefetch" href="/assets/js/54.dcafdb46.js"><link rel="prefetch" href="/assets/js/55.e198df19.js"><link rel="prefetch" href="/assets/js/56.515ce078.js"><link rel="prefetch" href="/assets/js/57.ab0990db.js"><link rel="prefetch" href="/assets/js/58.6787c716.js"><link rel="prefetch" href="/assets/js/6.5acee334.js"><link rel="prefetch" href="/assets/js/7.7a1c67b0.js"><link rel="prefetch" href="/assets/js/8.f4ac18fa.js"><link rel="prefetch" href="/assets/js/9.2b6dec57.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.1fa053aa.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><img src="/assets/img/logo.jpg" alt="Zachary" class="logo"> <span class="site-name can-hide">Zachary</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/microFrontend/" aria-current="page" class="nav-link router-link-exact-active router-link-active">
+  首页
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="babel" class="dropdown-title"><span class="title">babel</span> <span class="arrow down"></span></button> <button type="button" aria-label="babel" class="mobile-dropdown-title"><span class="title">babel</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/babel/" class="nav-link">
+  概览
+</a></li><li class="dropdown-item"><!----> <a href="/babel/integration/" class="nav-link">
+  集成
+</a></li><li class="dropdown-item"><!----> <a href="/babel/presets/" class="nav-link">
+  Presets
+</a></li><li class="dropdown-item"><!----> <a href="/babel/tools/" class="nav-link">
+  工具
+</a></li><li class="dropdown-item"><!----> <a href="/babel/user/" class="nav-link">
+  Babel 用户手册
+</a></li><li class="dropdown-item"><!----> <a href="/babel/plugin/" class="nav-link">
+  Babel 插件手册
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="webpack" class="dropdown-title"><span class="title">webpack</span> <span class="arrow down"></span></button> <button type="button" aria-label="webpack" class="mobile-dropdown-title"><span class="title">webpack</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/webpack/" class="nav-link">
+  概览
+</a></li><li class="dropdown-item"><!----> <a href="/webpack/source/" class="nav-link">
+  原理分析
+</a></li><li class="dropdown-item"><!----> <a href="/webpack/diff2rollup/" class="nav-link">
+  同中有异的Rollup
+</a></li></ul></div></div><div class="nav-item"><a href="https://github.com/Zachary-alt" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  github
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/microFrontend/" aria-current="page" class="nav-link router-link-exact-active router-link-active">
+  首页
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="babel" class="dropdown-title"><span class="title">babel</span> <span class="arrow down"></span></button> <button type="button" aria-label="babel" class="mobile-dropdown-title"><span class="title">babel</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/babel/" class="nav-link">
+  概览
+</a></li><li class="dropdown-item"><!----> <a href="/babel/integration/" class="nav-link">
+  集成
+</a></li><li class="dropdown-item"><!----> <a href="/babel/presets/" class="nav-link">
+  Presets
+</a></li><li class="dropdown-item"><!----> <a href="/babel/tools/" class="nav-link">
+  工具
+</a></li><li class="dropdown-item"><!----> <a href="/babel/user/" class="nav-link">
+  Babel 用户手册
+</a></li><li class="dropdown-item"><!----> <a href="/babel/plugin/" class="nav-link">
+  Babel 插件手册
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="webpack" class="dropdown-title"><span class="title">webpack</span> <span class="arrow down"></span></button> <button type="button" aria-label="webpack" class="mobile-dropdown-title"><span class="title">webpack</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/webpack/" class="nav-link">
+  概览
+</a></li><li class="dropdown-item"><!----> <a href="/webpack/source/" class="nav-link">
+  原理分析
+</a></li><li class="dropdown-item"><!----> <a href="/webpack/diff2rollup/" class="nav-link">
+  同中有异的Rollup
+</a></li></ul></div></div><div class="nav-item"><a href="https://github.com/Zachary-alt" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  github
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>一、关于微前端</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/microFrontend/#_1-what-什么是微前端" class="sidebar-link">1.What?什么是微前端?</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/microFrontend/#_2-why-为什么去使用他" class="sidebar-link">2.Why?为什么去使用他?</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/microFrontend/#_3-how-怎样落地微前端" class="sidebar-link">3.How?怎样落地微前端?</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/microFrontend/#第一步-首先我们创建两个应用-一个子应用-一个父应用-我们需要父应用加载子应用" class="sidebar-link">第一步:首先我们创建两个应用;一个子应用,一个父应用;(我们需要父应用加载子应用)</a></li><li class="sidebar-sub-header"><a href="/microFrontend/#第二步-子应用相关操作" class="sidebar-link">第二步:子应用相关操作</a></li><li class="sidebar-sub-header"><a href="/microFrontend/#第三步-父应用相关操作" class="sidebar-link">第三步:父应用相关操作</a></li></ul></li><li><a href="/microFrontend/#三-css-隔离方案" class="sidebar-link">三. CSS 隔离方案</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/microFrontend/#四-js-沙箱机制" class="sidebar-link">四. JS 沙箱机制</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/microFrontend/#五、qiankun" class="sidebar-link">五、qiankun</a><ul class="sidebar-sub-headers"></ul></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="一、关于微前端"><a href="#一、关于微前端" class="header-anchor">#</a> 一、关于微前端</h1> <h2 id="_1-what-什么是微前端"><a href="#_1-what-什么是微前端" class="header-anchor">#</a> 1.What?什么是微前端?</h2> <p>微前端就是将不同的功能按照不同的维度拆分成多个子应用。通过主应用来加载这些子应用。
+微前端的核心在于拆, 拆完后在合!</p> <h2 id="_2-why-为什么去使用他"><a href="#_2-why-为什么去使用他" class="header-anchor">#</a> 2.Why?为什么去使用他?</h2> <p>不同团队间开发同一个应用技术栈不同怎么破？ 希望每个团队都可以独立开发，独立部署怎么破？ 项目中还需要老的应用代码怎么破？
+我们可以将一个应用划分成若干个子应用，将子应用打包成一个个的lib。当路径切换 时加载不同的子应用。这样每个子应用都是独立的，技术栈也不用做限制了！从而解决了前 端协同开发问题</p> <h2 id="_3-how-怎样落地微前端"><a href="#_3-how-怎样落地微前端" class="header-anchor">#</a> 3.How?怎样落地微前端?</h2> <p>2018年 Single-SPA诞生了， single-spa 是一个用于前端微服务化的 JavaScript 前端解决 方案 (本身没有处理样式隔离， js 执行隔离) 实现了路由劫持和应用加载(即根据不同的路由加载不同的应用)
+2019年 qiankun 基于Single-SPA, 提供了更加开箱即用的 API （ single-spa + sandbox + import-html-entry ）做到了，技术栈无关、并且接入简单（像i frame 一样简单）
+总结：子应用可以独立构建，运行时动态加载,主子应用完全解耦，技术栈无关，靠的是协 议接入（子应用必须导出 bootstrap、mount、unmount方法）
+这不是 iframe 吗？
+如果使用 iframe ， iframe 中的子应用切换路由时用户刷新页面就尴尬了。
+应用通信:
+基于URL来进行数据传递，但是传递消息能力弱(最简单)
+基于 CustomEvent 实现通信(window的原生API)
+基于props主子应用间通信
+使用全局变量、 Redux 进行通信
+公共依赖:
+CDN - externals
+webpack 联邦模块</p> <h1 id="二-、singlespa"><a href="#二-、singlespa" class="header-anchor">#</a> 二 、SingleSpa</h1> <p>让我们用SingleSpa开始微前端的开发吧</p> <h3 id="第一步-首先我们创建两个应用-一个子应用-一个父应用-我们需要父应用加载子应用"><a href="#第一步-首先我们创建两个应用-一个子应用-一个父应用-我们需要父应用加载子应用" class="header-anchor">#</a> 第一步:首先我们创建两个应用;一个子应用,一个父应用;(我们需要父应用加载子应用)</h3> <h3 id="第二步-子应用相关操作"><a href="#第二步-子应用相关操作" class="header-anchor">#</a> 第二步:子应用相关操作</h3> <p><strong>1.在子应用中安装single-spa-vue</strong></p> <p><code>npm i single-spa-vue -S</code></p> <p><strong>2.使用single-spa-vue</strong>
+在child-vue的main.js中我们使用以下代码:</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">import</span> Vue <span class="token keyword">from</span> <span class="token string">'vue'</span>
+<span class="token keyword">import</span> App <span class="token keyword">from</span> <span class="token string">'./App.vue'</span>
+<span class="token keyword">import</span> router <span class="token keyword">from</span> <span class="token string">'./router'</span>
+<span class="token keyword">import</span> singleSpaVue <span class="token keyword">from</span> <span class="token string">'single-spa-vue'</span>
+Vue<span class="token punctuation">.</span>config<span class="token punctuation">.</span>productionTip <span class="token operator">=</span> <span class="token boolean">false</span>
+
+<span class="token keyword">const</span> appOptions <span class="token operator">=</span> <span class="token punctuation">{</span>
+  el<span class="token operator">:</span> <span class="token string">'#vue'</span><span class="token punctuation">,</span> <span class="token comment">// 挂载到父应用中id为vue的标签中</span>
+  router<span class="token punctuation">,</span>
+  <span class="token function-variable function">render</span><span class="token operator">:</span> <span class="token parameter">h</span> <span class="token operator">=&gt;</span> <span class="token function">h</span><span class="token punctuation">(</span>App<span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// 使用 singleSpaVue 包装 Vue,</span>
+<span class="token comment">// 包装后返回的对象中vue包装好的三个生命周期,bootstrap,mount,unmount,</span>
+<span class="token keyword">const</span> vueLifeCycle <span class="token operator">=</span> <span class="token function">singleSpaVue</span><span class="token punctuation">(</span><span class="token punctuation">{</span> Vue<span class="token punctuation">,</span> appOptions <span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token comment">// 协议接入,我们定好了协议,父应用会调用这些方法</span>
+<span class="token keyword">export</span> <span class="token keyword">const</span> bootstrap <span class="token operator">=</span> vueLifeCycle<span class="token punctuation">.</span>bootstrap<span class="token punctuation">;</span>
+<span class="token keyword">export</span> <span class="token keyword">const</span> mount <span class="token operator">=</span> vueLifeCycle<span class="token punctuation">.</span>mount<span class="token punctuation">;</span>
+<span class="token keyword">export</span> <span class="token keyword">const</span> unmount <span class="token operator">=</span> vueLifeCycle<span class="token punctuation">.</span>unmount<span class="token punctuation">;</span>
+</code></pre></div><p><strong>3.设置子应用的路由</strong></p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">const</span> router <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">VueRouter</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  mode<span class="token operator">:</span> <span class="token string">'history'</span><span class="token punctuation">,</span>
+  base<span class="token operator">:</span> <span class="token string">&quot;/myVueApp&quot;</span><span class="token punctuation">,</span> <span class="token comment">// 须一致</span>
+  routes
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+</code></pre></div><p><strong>4.因为父应用需要加载子应用,所以我们配置好main.js之后,我们需要将子应用打包成一个lib去给父应用使用,所以我们在子应用的vue配置文件vue.config.js中使用以下代码:</strong></p> <div class="language-js extra-class"><pre class="language-js"><code>module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token punctuation">{</span>
+     configureWebpack<span class="token operator">:</span><span class="token punctuation">{</span>
+        output<span class="token operator">:</span><span class="token punctuation">{</span>
+            library<span class="token operator">:</span><span class="token string">'singleVue'</span><span class="token punctuation">,</span>
+            library<span class="token operator">:</span><span class="token string">'umd'</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        devServer<span class="token operator">:</span><span class="token punctuation">{</span>
+            port <span class="token operator">:</span><span class="token number">20000</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>当我们执行 npm run serve 时 子应用并不会跑起来,而是打包成了一个类库</p> <h3 id="第三步-父应用相关操作"><a href="#第三步-父应用相关操作" class="header-anchor">#</a> <strong>第三步:父应用相关操作</strong></h3> <p><strong>App.vue中:</strong></p> <div class="language-vue extra-class"><pre class="language-vue"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>template</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>app<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>router-link</span> <span class="token attr-name">to</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>/myVueApp<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>加载Vue应用<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>router-link</span><span class="token punctuation">&gt;</span></span> |
+    <span class="token comment">&lt;!-- 将子应用将会挂载到 id=&quot;vue&quot; 标签中 --&gt;</span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>vue<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>template</span><span class="token punctuation">&gt;</span></span>
+</code></pre></div><p><strong>main.js:</strong></p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">import</span> Vue <span class="token keyword">from</span> <span class="token string">'vue'</span>
+<span class="token keyword">import</span> App <span class="token keyword">from</span> <span class="token string">'./App.vue'</span>
+<span class="token keyword">import</span> router <span class="token keyword">from</span> <span class="token string">'./router'</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> registerApplication<span class="token punctuation">,</span> start <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'single-spa'</span><span class="token punctuation">;</span>
+Vue<span class="token punctuation">.</span>config<span class="token punctuation">.</span>productionTip <span class="token operator">=</span> <span class="token boolean">false</span>
+<span class="token keyword">async</span> <span class="token keyword">function</span> <span class="token function">loadScript</span> <span class="token punctuation">(</span><span class="token parameter">url</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">Promise</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">resolve<span class="token punctuation">,</span> reject</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+    <span class="token comment">// 创建标签,并将标签加到head中</span>
+    <span class="token keyword">let</span> script <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">createElement</span><span class="token punctuation">(</span><span class="token string">'script'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    script<span class="token punctuation">.</span>src <span class="token operator">=</span> url<span class="token punctuation">;</span>
+    script<span class="token punctuation">.</span>onload <span class="token operator">=</span> resolve<span class="token punctuation">;</span>
+    script<span class="token punctuation">.</span>onerror <span class="token operator">=</span> reject<span class="token punctuation">;</span>
+    document<span class="token punctuation">.</span>head<span class="token punctuation">.</span><span class="token function">appendChild</span><span class="token punctuation">(</span>script<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+<span class="token comment">// 注册应用</span>
+<span class="token function">registerApplication</span><span class="token punctuation">(</span><span class="token string">'myVueApp'</span><span class="token punctuation">,</span>
+  <span class="token keyword">async</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+    <span class="token comment">// 加载子组件导出的类库和资源,注意先后顺序</span>
+    <span class="token keyword">await</span> <span class="token function">loadScript</span><span class="token punctuation">(</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">http://localhost:20000/js/chunk-vendors.js</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">await</span> <span class="token function">loadScript</span><span class="token punctuation">(</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">http://localhost:20000/js/app.js</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">)</span>
+    <span class="token keyword">return</span> window<span class="token punctuation">.</span>singleVue<span class="token punctuation">;</span> <span class="token comment">// 返回子应用里导出的生命周期,mount,ummount,bootstrap</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token parameter">location</span> <span class="token operator">=&gt;</span> location<span class="token punctuation">.</span>pathname<span class="token punctuation">.</span><span class="token function">startsWith</span><span class="token punctuation">(</span><span class="token string">'/myVueApp'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">// 当用户切换到/myVueApp的路径下时，加载刚才定义子子应用</span>
+<span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">new</span> <span class="token class-name">Vue</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  router<span class="token punctuation">,</span>
+  <span class="token function-variable function">render</span><span class="token operator">:</span> <span class="token parameter">h</span> <span class="token operator">=&gt;</span> <span class="token function">h</span><span class="token punctuation">(</span>App<span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">$mount</span><span class="token punctuation">(</span><span class="token string">'#app'</span><span class="token punctuation">)</span>
+</code></pre></div><h2 id="三-css-隔离方案"><a href="#三-css-隔离方案" class="header-anchor">#</a> 三. CSS 隔离方案</h2> <p><strong>子应用之间样式隔离：</strong></p> <p>Dynamic Stylesheet 动态样式表，当应用切换时移除老应用样式，添加新应用样式</p> <p><strong>主应用和子应用之间的样式隔离：</strong></p> <ul><li>BEM (Block Element Modifier) 约定项目前缀</li> <li>CSS-Modules 打包时生成不冲突的选择器名</li> <li>ShadowDOM 真正意义上的隔离 css-in-js Shadow DOM隔离css:</li></ul> <div class="language-html extra-class"><pre class="language-html"><code><span class="token doctype"><span class="token punctuation">&lt;!</span><span class="token doctype-tag">DOCTYPE</span> <span class="token name">html</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span> <span class="token attr-name">lang</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>en<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">charset</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>UTF-8<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>viewport<span class="token punctuation">&quot;</span></span> <span class="token attr-name">content</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>width=device-width, initial-scale=1.0<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>title</span><span class="token punctuation">&gt;</span></span>Document<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>title</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>head</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">&gt;</span></span>hello world<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>x<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">&gt;</span></span><span class="token script"><span class="token language-javascript">
+        <span class="token comment">// dom的api</span>
+        <span class="token keyword">let</span> shadowDOM <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'x'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">attachShadow</span><span class="token punctuation">(</span><span class="token punctuation">{</span>mode<span class="token operator">:</span><span class="token string">'closed'</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 外界无法访问 shadow dom</span>
+        <span class="token keyword">let</span> pElm <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">createElement</span><span class="token punctuation">(</span><span class="token string">'p'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        pElm<span class="token punctuation">.</span>innerHTML <span class="token operator">=</span> <span class="token string">'hello zf'</span><span class="token punctuation">;</span>
+        <span class="token keyword">let</span> styleElm <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">createElement</span><span class="token punctuation">(</span><span class="token string">'style'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        styleElm<span class="token punctuation">.</span>textContent <span class="token operator">=</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">
+            p{color:red}
+        </span><span class="token template-punctuation string">`</span></span>
+        shadowDOM<span class="token punctuation">.</span><span class="token function">appendChild</span><span class="token punctuation">(</span>styleElm<span class="token punctuation">)</span>
+        shadowDOM<span class="token punctuation">.</span><span class="token function">appendChild</span><span class="token punctuation">(</span>pElm<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment">// document.body.appendChild(pElm);</span>
+    </span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">&gt;</span></span>
+</code></pre></div><p>attachShadow是浏览器原生的方法,可以用来创建Shadow-dom;Shadow-dom 是游离在 DOM 树之外的节点树，Shadow-dom 具有良好的密封性;当attachShadow的mode:'closed&quot;时; 外界无法访问 shadow dom,从而实现真正的样式隔离</p> <h2 id="四-js-沙箱机制"><a href="#四-js-沙箱机制" class="header-anchor">#</a> 四. JS 沙箱机制</h2> <img src="https://img-blog.csdnimg.cn/20200927173033721.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zOTA4NTgyMg==,size_16,color_FFFFFF,t_70#pic_center" alt="1604728604168" style="zoom:80%;"> <p>当运行子应用时应该跑在内部沙箱环境中
+快照沙箱，在应用沙箱挂载或卸载时记录快照，在切换时依据快照恢复环境 (无法支持多实 例)
+Proxy 代理沙箱,不影响全局环境
+1).快照沙箱
+1.激活时将当前window属性进行快照处理
+2.失活时用快照中的内容和当前window属性比对
+3.如果属性发生变化保存到 modifyPropsMap 中，并用快照还原window属性
+4.在次激活时，再次进行快照，并用上次修改的结果还原window</p> <div class="language-html extra-class"><pre class="language-html"><code><span class="token doctype"><span class="token punctuation">&lt;!</span><span class="token doctype-tag">DOCTYPE</span> <span class="token name">html</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span> <span class="token attr-name">lang</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>en<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">charset</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>UTF-8<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>viewport<span class="token punctuation">&quot;</span></span> <span class="token attr-name">content</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>width=device-width, initial-scale=1.0<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>title</span><span class="token punctuation">&gt;</span></span>Document<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>title</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>head</span><span class="token punctuation">&gt;</span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">&gt;</span></span><span class="token script"><span class="token language-javascript">
+    <span class="token comment">// 如果应用 加载 刚开始我加载A应用 window.a  B应用 (window.a);</span>
+    <span class="token comment">// 单应用切换  沙箱 创造一个干净的环境给这个子应用使用，当切换时 可以选择丢弃属性和恢复属性</span>
+    <span class="token comment">// 快照沙箱  1年前拍一张  现在再拍一张  （将区别保存起来） 在回到一年前</span>
+    <span class="token keyword">class</span> <span class="token class-name">SnapshotSandbox</span> <span class="token punctuation">{</span>
+      <span class="token function">constructor</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>proxy <span class="token operator">=</span> window<span class="token punctuation">;</span> <span class="token comment">// window属性</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>modifyPropsMap <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span> <span class="token comment">// 记录在window上的修改那些属性 </span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">active</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+      <span class="token function">active</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token comment">// 激活</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>windowSnapshot <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span> <span class="token comment">// 拍照 </span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">const</span> prop <span class="token keyword">in</span> window<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+          <span class="token keyword">if</span> <span class="token punctuation">(</span>window<span class="token punctuation">.</span><span class="token function">hasOwnProperty</span><span class="token punctuation">(</span>prop<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+             <span class="token comment">// 将window上的属性进行拍照 </span>
+            <span class="token keyword">this</span><span class="token punctuation">.</span>windowSnapshot<span class="token punctuation">[</span>prop<span class="token punctuation">]</span> <span class="token operator">=</span> window<span class="token punctuation">[</span>prop<span class="token punctuation">]</span><span class="token punctuation">;</span>
+          <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+        Object<span class="token punctuation">.</span><span class="token function">keys</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>modifyPropsMap<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span><span class="token parameter">p</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+          window<span class="token punctuation">[</span>p<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>modifyPropsMap<span class="token punctuation">[</span>p<span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span><span class="token punctuation">)</span>
+      <span class="token punctuation">}</span>
+      <span class="token function">inactive</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token comment">// 失活</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">const</span> prop <span class="token keyword">in</span> window<span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token comment">// diff 差异 </span>
+          <span class="token keyword">if</span> <span class="token punctuation">(</span>window<span class="token punctuation">.</span><span class="token function">hasOwnProperty</span><span class="token punctuation">(</span>prop<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+               <span class="token comment">// 将上次拍照的结果和本次window属性做对比 </span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>window<span class="token punctuation">[</span>prop<span class="token punctuation">]</span> <span class="token operator">!==</span> <span class="token keyword">this</span><span class="token punctuation">.</span>windowSnapshot<span class="token punctuation">[</span>prop<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token comment">// 保存修改后的结果 </span>
+              <span class="token keyword">this</span><span class="token punctuation">.</span>modifyPropsMap<span class="token punctuation">[</span>prop<span class="token punctuation">]</span> <span class="token operator">=</span> window<span class="token punctuation">[</span>prop<span class="token punctuation">]</span><span class="token punctuation">;</span>
+               <span class="token comment">// 还原window </span>
+              window<span class="token punctuation">[</span>prop<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>windowSnapshot<span class="token punctuation">[</span>prop<span class="token punctuation">]</span>
+            <span class="token punctuation">}</span>
+          <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">let</span> sandbox <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">SnapshotSandbox</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// 应用的运行 从开始到结束 ，切换后不会影响全局 </span>
+    <span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">window</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+      window<span class="token punctuation">.</span>a <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+      window<span class="token punctuation">.</span>b <span class="token operator">=</span> <span class="token number">2</span><span class="token punctuation">;</span>
+      console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>window<span class="token punctuation">.</span>a<span class="token punctuation">,</span> window<span class="token punctuation">.</span>b<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      sandbox<span class="token punctuation">.</span><span class="token function">inactive</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>window<span class="token punctuation">.</span>a<span class="token punctuation">,</span> window<span class="token punctuation">.</span>b<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      sandbox<span class="token punctuation">.</span><span class="token function">active</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>window<span class="token punctuation">.</span>a<span class="token punctuation">,</span> window<span class="token punctuation">.</span>b<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">(</span>sandbox<span class="token punctuation">.</span>proxy<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// sandbox.proxy就是window</span>
+    
+  </span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">&gt;</span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">&gt;</span></span>
+</code></pre></div><p><strong>注意:</strong></p> <p>为什么要用沙箱呢?因为当我们父应用再加载完A应用后要切换成B应用时,如果不A应用从window中清除的话,会造成全局资源的污染,而沙箱就能保证应用的运行 从开始到结束 ，切换后不会影响全局
+快照沙箱只能针对单实例应用场景,如果是多个实例同时挂载的情况则无法解决，只能通过 proxy代理沙箱来实现;es6的proxy代理沙箱可以实现多应用沙箱。把不同的应用用不同的代理来处理</p> <p>2).Proxy 代理沙箱</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">class</span> <span class="token class-name">ProxySandbox</span> <span class="token punctuation">{</span>
+  <span class="token function">constructor</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> rawWindow <span class="token operator">=</span> window<span class="token punctuation">;</span>
+    <span class="token keyword">const</span> fakeWindow <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+    <span class="token keyword">const</span> proxy <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Proxy</span><span class="token punctuation">(</span>fakeWindow<span class="token punctuation">,</span> <span class="token punctuation">{</span>
+      <span class="token function">set</span><span class="token punctuation">(</span>target<span class="token punctuation">,</span> p<span class="token punctuation">,</span> value<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        target<span class="token punctuation">[</span>p<span class="token punctuation">]</span> <span class="token operator">=</span> value<span class="token punctuation">;</span>
+        <span class="token keyword">return</span> <span class="token boolean">true</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token function">get</span><span class="token punctuation">(</span>target<span class="token punctuation">,</span> p<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> target<span class="token punctuation">[</span>p<span class="token punctuation">]</span> <span class="token operator">||</span> rawWindow<span class="token punctuation">[</span>p<span class="token punctuation">]</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>proxy <span class="token operator">=</span> proxy
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">let</span> sandbox1 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ProxySandbox</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">let</span> sandbox2 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ProxySandbox</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+window<span class="token punctuation">.</span>a <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+<span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">window</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  window<span class="token punctuation">.</span>a <span class="token operator">=</span> <span class="token string">'hello'</span><span class="token punctuation">;</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>window<span class="token punctuation">.</span>a<span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">(</span>sandbox1<span class="token punctuation">.</span>proxy<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">window</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  window<span class="token punctuation">.</span>a <span class="token operator">=</span> <span class="token string">'world'</span><span class="token punctuation">;</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>window<span class="token punctuation">.</span>a<span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">(</span>sandbox2<span class="token punctuation">.</span>proxy<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div><p>每个应用都创建一个proxy来代理window，好处是每个应用都是相对独立，不需要直接更 改全局window属性！</p> <h2 id="五、qiankun"><a href="#五、qiankun" class="header-anchor">#</a> 五、qiankun</h2> <p><a href="https://qiankun.umijs.org/zh/guide" target="_blank" rel="noopener noreferrer">qiankun<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a> 是一个基于 <a href="https://github.com/CanopyTax/single-spa" target="_blank" rel="noopener noreferrer">single-spa<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a> 的<a href="https://micro-frontends.org/" target="_blank" rel="noopener noreferrer">微前端<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a>实现库，是当前较为完善的微解决方案。</p></div> <footer class="page-edit"><!----> <div class="last-updated"><span class="prefix">Last Updated:</span> <span class="time">6/3/2021, 6:22:20 PM</span></div></footer> <!----> </main></div><div class="global-ui"></div></div>
+    <script src="/assets/js/app.9602f2b3.js" defer></script><script src="/assets/js/2.10e03947.js" defer></script><script src="/assets/js/32.d4d41104.js" defer></script>
+  </body>
+</html>
