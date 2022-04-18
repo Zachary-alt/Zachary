@@ -151,6 +151,10 @@ export default {
                             path:'/visualization/canvas'
                         },
                         {
+                            title:'svg干货',
+                            path:'/visualization/svg'
+                        },
+                        {
                             title:'konva',
                             path:'/visualization/konva'
                         }
