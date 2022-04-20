@@ -31,6 +31,10 @@ export default {
                                     path:'/web/js/js'
                                 },
                                 {
+                                    title:'进制转换',
+                                    path:'/web/js/binary'
+                                },
+                                {
                                     title:'类型转换',
                                     path:'/web/js/typeChange'
                                 },
