@@ -166,21 +166,28 @@ test(2);
 
 JS调用栈采用的是后进先出的规则，当函数执行的时候，会被添加到栈的顶部，当执行栈执行完成后，就会从栈顶移出，直到栈内被清空。
 
+我们看个例子：
+
+```js
+function sum(a,b){
+    return a+b
+}
+function printSum(a,b){
+    let s = sum(a,b)
+    console.log(s)
+}
+printSum(1,2)
+```
+
+![image.png](https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/a9494c6b7e6e429c9ac61c20bf5d4a05~tplv-k3u1fbpfcp-watermark.image?)
+
 ### 同步任务和异步任务
 
 `Javascript`单线程任务被分为**同步任务**和**异步任务**，同步任务会在调用栈中按照顺序等待主线程依次执行，异步任务会在异步任务有了结果后，将注册的回调函数放入任务队列中等待主线程空闲的时候（调用栈被清空），被读取到栈内等待主线程的执行。
 
 
 
-![img](https://user-gold-cdn.xitu.io/2019/1/18/1685f03d7f88792b?imageView2/0/w/1280/h/960/format/webp/ignore-error/1)
-
- 任务队列`Task Queue`
-
-
-
-
-
-![img](https://user-gold-cdn.xitu.io/2019/1/18/1685f037d48da0de?imageView2/0/w/1280/h/960/format/webp/ignore-error/1)
+![image.png](https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/4c039634992542c884bd7950023ed493~tplv-k3u1fbpfcp-watermark.image?)
 
 导图要表达的内容用文字来表述的话：
 
@@ -196,11 +203,11 @@ JS调用栈采用的是后进先出的规则，当函数执行的时候，会被
 - 清理IndexDB事务
 - 设置进入microtask检查点的标志为false。
 
-上述可能不太好理解，下图是我做的一张图片。
+事件循环，宏任务，微任务的关系如图所示：
 
 
 
-![img](https://user-gold-cdn.xitu.io/2019/1/18/1686078c7a2f63e5?imageslim)
+![image.png](https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/47f93cd88dac457d8b0c0f9910682883~tplv-k3u1fbpfcp-watermark.image?)
 
 
 
