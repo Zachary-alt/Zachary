@@ -102,7 +102,7 @@ export default {
                         },
                         {
                             title:'组件化',
-                            path:'/React/component'
+                            path:'/React/Component'
                         },
                         {
                             title:'Redux',
@@ -210,7 +210,7 @@ export default {
                         },
                         {
                             title:'算法技巧总结',
-                            path:'/algorithm/skills/'
+                            path:'/algorithm/skills'
                         },
                     ]
                 },
