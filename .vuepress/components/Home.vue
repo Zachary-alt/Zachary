@@ -207,6 +207,20 @@ export default {
                         {
                             title:'算法和数据结构',
                             path:'/algorithm/'
+                        },
+                        {
+                            title:'算法技巧总结',
+                            path:'/algorithm/skills/'
+                        },
+                    ]
+                },
+                {
+                    title:'计算机网络',
+                    item:true,
+                    children:[
+                        {
+                            title:'五层模型',
+                            path:'/internet/'
                         }
                     ]
                 },
