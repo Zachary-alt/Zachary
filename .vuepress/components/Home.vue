@@ -225,6 +225,16 @@ export default {
                     ]
                 },
                 {
+                    title:'持续集成/部署',
+                    item:true,
+                    children:[
+                        {
+                            title:'jekins',
+                            path:'/cicd/jekins'
+                        }
+                    ]
+                },
+                {
                     title:'Docker',
                     item:true,
                     children:[
