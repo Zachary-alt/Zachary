@@ -18,7 +18,6 @@
 
 ```sql
 docker search jenkins
-复制代码
 ```
 
 ### 拉取jenkins镜像
@@ -27,21 +26,18 @@ docker search jenkins
 
 ```bash
 docker pull jenkins/jenkins
-复制代码
 ```
 
 ### 部署jenkins
 
 ```arduino
 sudo docker run -p 8080:8080 -p 50000:50000 --name jenkins jenkins/jenkins
-复制代码
 ```
 
 ### 查看是否启动成功
 
 ```
 docker ps -l
-复制代码
 ```
 
 ### **访问Jenkins**
@@ -116,7 +112,6 @@ New item 选择**Freestyle project**输入任务名称
 cd ./ruoyi-ui
 npm i
 npm run build:prod
-复制代码
 ```
 
 ##### **Send files or execute commands over SSH**
